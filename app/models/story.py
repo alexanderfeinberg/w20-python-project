@@ -12,3 +12,4 @@ class Story(db.Model):
 
     user = db.relationship("User", back_populates="stories")
     comments = db.relationship("Comment", back_populates="story")
+    likes = db.relationship("Like", back_populates="story")
