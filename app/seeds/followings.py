@@ -3,7 +3,7 @@ from app.models import db, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 
 
-def seed_follows(users):
+def seed_followings(users):
     user1, user2, user3, user4 = users[0], users[1], users[2], users[3]
 
     user1.following.append(user2)
@@ -15,7 +15,7 @@ def seed_follows(users):
     db.session.commit()
 
 
-def undo_follows():
+def undo_followings():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.followers RESTART IDENTITY CASCADE;")
