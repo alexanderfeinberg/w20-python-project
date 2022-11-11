@@ -1,7 +1,7 @@
 from app.models import db, Like, environment, SCHEMA
 
 
-def seed_like():
+def seed_likes():
     instance1 = Like(
         user_id=1,
         story_id=1,
@@ -36,8 +36,7 @@ def seed_like():
     db.session.commit()
 
 
-
-def undo_like():
+def undo_likes():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.likes RESTART IDENTITY CASCADE;")
