@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -17,6 +18,7 @@ class User(db.Model, UserMixin):
     lsat_name = db.Column(db.String(200), nullable=False)
     profile_picture = db.Column(db.String,  nullable=False)
     bio = db.Column(db.String(5000))
+    created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
 
     users_followers = db.relationship(
         "Follower", back_populates="followed_user")
