@@ -18,6 +18,10 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String,  nullable=False)
     bio = db.Column(db.String(5000))
 
+    users_followers = db.relationship(
+        "Followers", back_populates="followed_user")
+    following = db.relationship("Followers", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password
