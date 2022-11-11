@@ -1,6 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
+from .follower import follows
+from sqlalchemy.orm import validates
 
 
 class User(db.Model, UserMixin):
@@ -13,6 +16,23 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(200), nullable=False)
+    last_name = db.Column(db.String(200), nullable=False)
+    profile_picture = db.Column(db.String,  nullable=False)
+    bio = db.Column(db.String(5000))
+    created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
+
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backhref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+    comments = db.relationship("Comment", back_populates="user")
+    stories = db.relationship("Story", back_populates="user")
+    likes = db.relationship("Like", back_populates="user")
 
     @property
     def password(self):
@@ -24,6 +44,11 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    @validates("following")
+    def validates_following(self, key, value):
+        if value == self.id:
+            raise ValueError("You cannot follow yourself!")
 
     def to_dict(self):
         return {
