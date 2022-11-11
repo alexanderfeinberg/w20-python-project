@@ -1,25 +1,24 @@
-from app.models import db, Follower, environment, SCHEMA
-
+from app.models import db, environment, SCHEMA, User
 
 # Adds a demo user, you can add other users here if you want
-def seed_followers():
-    instance1 = Follower(
+def seed_follows():
+    instance1 = follows.append(
         follower_id=1,
         following_id=2
     )
-    instance2 = Follower(
+    instance2 = follows.append(
         follower_id=2,
         following_id=1
     )
-    instance3 = Follower(
+    instance3 = follows.append(
         follower_id=4,
         following_id=1
     )
-    instance4 = Follower(
+    instance4 = follows.append(
         follower_id=4,
         following_id=2
     )
-    instance5 = Follower(
+    instance5 = follows.append(
         follower_id=4,
         following_id=3
     )
@@ -35,7 +34,7 @@ def seed_followers():
 
 
 
-def undo_followers():
+def undo_follows():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.followers RESTART IDENTITY CASCADE;")
