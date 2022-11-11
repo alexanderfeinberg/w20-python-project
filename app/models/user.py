@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
-        backhref=db.backhref("following", lazy="dynamic"),
+        backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
     )
     comments = db.relationship("Comment", back_populates="user")
