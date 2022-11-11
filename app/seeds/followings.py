@@ -1,37 +1,18 @@
-from app.models import db, environment, SCHEMA, User
+from app.models import db, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
-def seed_follows():
-    instance1 = follows.append(
-        follower_id=1,
-        following_id=2
-    )
-    instance2 = follows.append(
-        follower_id=2,
-        following_id=1
-    )
-    instance3 = follows.append(
-        follower_id=4,
-        following_id=1
-    )
-    instance4 = follows.append(
-        follower_id=4,
-        following_id=2
-    )
-    instance5 = follows.append(
-        follower_id=4,
-        following_id=3
-    )
 
 
-    db.session.add(instance1)
-    db.session.add(instance2)
-    db.session.add(instance3)
-    db.session.add(instance4)
-    db.session.add(instance5)
+def seed_follows(users):
+    user1, user2, user3, user4 = users[0], users[1], users[2], users[3]
+
+    user1.following.append(user2)
+    user2.following.append(user1)
+    user1.following.append(user4)
+    user2.following.append(user4)
+    user3.following.append(user4)
 
     db.session.commit()
-
 
 
 def undo_follows():

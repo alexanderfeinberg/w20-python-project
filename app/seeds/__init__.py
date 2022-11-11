@@ -25,11 +25,11 @@ def seed():
         undo_comments()
         undo_likes()
         undo_followings()
-    seed_users()
+    users = seed_users()
     seed_stories()
     seed_comments()
     seed_likes()
-    seed_followings()
+    seed_followings(users)
     # Add other seed functions here
 
 
