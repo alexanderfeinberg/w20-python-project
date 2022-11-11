@@ -1,13 +1,15 @@
 from .db import db
+from datetime import datetime
 
 
 class Like(db.Model):
     __tablename__ = "likes"
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    # COMPOSITE PRIMARY KEY, USE GET WITH A TUPLE (user_id, story_id)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        "users.id"), nullable=False, primary_key=True)
     story_id = db.Column(db.Integer, db.ForeignKey(
-        "stories.id"), nullable=False)
+        "stories.id"), nullable=False, primary_key=True)
     count = db.Column(db.Integer)
     created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
 
