@@ -13,6 +13,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(200), nullable=False)
+    lsat_name = db.Column(db.String(200), nullable=False)
+    profile_picture = db.Column(db.String,  nullable=False)
+    bio = db.Column(db.String(5000))
 
     @property
     def password(self):
