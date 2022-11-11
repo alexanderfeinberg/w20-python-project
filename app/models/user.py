@@ -19,8 +19,10 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(5000))
 
     users_followers = db.relationship(
-        "Followers", back_populates="followed_user")
-    following = db.relationship("Followers", back_populates="user")
+        "Follower", back_populates="followed_user")
+    following = db.relationship("Follower", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
+    stories = db.relationship("Story", back_populates="user")
 
     @property
     def password(self):

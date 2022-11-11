@@ -1,7 +1,7 @@
 from .db import db
 
 
-class Followers(db.Model):
+class Follower(db.Model):
     __tablename__ = "followers"
     # Adding index as (follower_id, following_id) ??
     follower_id = db.Column(db.Integer, db.ForeignKey("users.id"))
