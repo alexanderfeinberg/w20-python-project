@@ -20,14 +20,14 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(200), nullable=False)
     profile_picture = db.Column(db.String,  nullable=False)
     bio = db.Column(db.String(5000))
-    created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     followers = db.relationship(
         "User",
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
-        backref=db.backhref("following", lazy="dynamic"),
+        backhref=db.backhref("following", lazy="dynamic"),
         lazy="dynamic"
     )
     comments = db.relationship("Comment", back_populates="user")

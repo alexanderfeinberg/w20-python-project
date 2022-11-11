@@ -11,7 +11,7 @@ class Like(db.Model):
     story_id = db.Column(db.Integer, db.ForeignKey(
         "stories.id"), nullable=False, primary_key=True)
     count = db.Column(db.Integer)
-    created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     story = db.relationship("Story", back_populates="likes")
     user = db.relationship("User", back_populates="likes")

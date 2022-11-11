@@ -10,7 +10,7 @@ class Story(db.Model):
     title = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String)
     content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.Datetime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="stories")
     comments = db.relationship("Comment", back_populates="story")

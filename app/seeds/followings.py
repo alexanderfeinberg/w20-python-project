@@ -8,9 +8,9 @@ def seed_follows(users):
 
     user1.following.append(user2)
     user2.following.append(user1)
-    user1.following.append(user4)
-    user2.following.append(user4)
-    user3.following.append(user4)
+    user4.following.append(user1)
+    user4.following.append(user2)
+    user4.following.append(user3)
 
     db.session.commit()
 
