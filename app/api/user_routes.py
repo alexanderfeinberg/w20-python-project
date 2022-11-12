@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User
+from app.models import Story
+from app.errors import NotFoundError
+from .helpers import get_user_model
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +26,22 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+# Get all Stories by a UserId
+@user_routes.route("/<int:userId>/stories")
+def all_user_stories(userId):
+    stories = Story.query.filter(Story.user_id == userId).all()
+    return jsonify({"Stories": [story.to_dict() for story in stories]})
+
+
+# Follow a User by id
+@user_routes.route("/<int:userId>/followers")
+def follow_user(userId):
+    following = User.query.get(userId)
+    current = get_user_model(current_user, User)
+    if not following:
+        return NotFoundError("User not found.")
+
+    current.following.append(following)
+    return {"message": "Successfully Followed", "statusCode": 201}
