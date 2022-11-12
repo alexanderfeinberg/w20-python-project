@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import Comment, db
 from app.forms.comment_form import CommentForm
@@ -12,11 +12,11 @@ def edit_comment(commentId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        edit_comment = Comment.query.get(commentId)
-    if edit_comment:
-        edit_comment.content = form.data['content']
+        edited_comment = Comment.query.get(commentId)
+    if edited_comment:
+        edited_comment.content = form.data['content']
         db.session.commit()
-        return edit_comment.to_dict()
+        return jsonify(edited_comment.to_dict())
     else: 
         return NotFoundError("Comment can't be found")
 
@@ -32,3 +32,17 @@ def delete_comment(commentId):
         return {"message": "Successfully deleted!"}
     else: 
         return NotFoundError("Comment couldn't be found")
+
+
+# Get all Comments by story id
+@story_routes.route('/<int:storyId>/comments', methods=['GET'])
+def get_comments():
+    
+
+# Create a Comment
+ @story_routes.route('/<int:storyId>/comments', methods=['POST'])
+ def post_comment():
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
