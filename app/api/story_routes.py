@@ -84,4 +84,4 @@ def delete_story(story_id):
 
     db.session.delete(story)
     db.session.commit()
-    return {"message": f"Story {story_id} successfully deleted."}
+    return {"message": f"Story {story_id} successfully deleted.", "statusCode": 200}
