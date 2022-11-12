@@ -59,8 +59,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'firstName': self.first_name,
             'lastName': self.last_name,
-            'username': self.username,
-            'email': self.email,
+            'bio': self.bio,
             'followerCount': len(self.followers.all()),
             'profile_picture': self.profile_picture,
             'bio': self.bio

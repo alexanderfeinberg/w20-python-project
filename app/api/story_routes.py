@@ -100,16 +100,16 @@ def get_comments(story_id):
 
 @story_routes.route('/<int:story_id>/comments', methods=['POST'])
 @login_required
-def post_comment(story_id):
+def create_comment(story_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = form.data
+        story = Story.query.get(story_id)
         new_comment = Comment(
-            user_id=current_user.id,
-            story_id=story_id,
-            content=data['content'],
-            created_at=datetime.now())
+        user = get_user_model(current_user, User),
+        story_id = story_id,
+        content = form.data['content'],
+        created_at = datetime.now())
         db.session.add(new_comment)
         db.session.commit()
         return jsonify(new_comment.to_dict())
