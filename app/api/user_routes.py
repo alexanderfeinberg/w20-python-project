@@ -4,6 +4,7 @@ from app.models import User
 from app.models import Story
 from app.errors import NotFoundError
 from .helpers import get_user_model
+from ..models.db import db
 
 user_routes = Blueprint('users', __name__)
 
@@ -44,10 +45,32 @@ def follow_user(userId):
         return NotFoundError("User not found.")
 
     current.following.append(following)
+    db.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
 
 @user_routes.route('/<int:user_id>/followers')
 def get_followers_of_user(user_id):
     user = User.query.get(user_id)
+    if not user:
+        raise NotFoundError(f'User {user_id} does not exist.')
     return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
+
+
+@user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
+@login_required
+def remove_follow(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        raise NotFoundError(f'User {user_id} does not exist.')
+    current_user = get_user_model(current_user, User)
+    # for follower in user.followers:
+    #     if follower.id == current_user.id:
+    #         break
+    #     return {"message": f"Current user does not follow user {user_id}"}
+    if current_user not in user.followers:
+        return {"message": f"Current user does not follow user {user_id}"}
+
+    user.followers.remove(current_user)
+    db.session.commit()
+    return {"message": f'Unfollowed user {user_id}'}
