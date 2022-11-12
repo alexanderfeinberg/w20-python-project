@@ -45,3 +45,9 @@ def follow_user(userId):
 
     current.following.append(following)
     return {"message": "Successfully Followed", "statusCode": 201}
+
+
+@user_routes.route('/<int:user_id>/followers')
+def get_followers_of_user(user_id):
+    user = get_user_model(current_user, User)
+    return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
