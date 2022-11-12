@@ -1,12 +1,13 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from ..models import Story, User, Comment
+from ..models import Story, User, Comment, Like
 from ..errors import NotFoundError, ForbiddenError
 from ..forms.story_form import StoryForm
+from ..forms.like_form import LikeForm
 from ..forms.comment_form import CommentForm
 from ..models import db
 from datetime import datetime
-from .helpers import child_belongs_to_parent
+from .helpers import child_belongs_to_parent, get_user_model
 story_routes = Blueprint('stories', __name__)
 
 
@@ -88,14 +89,15 @@ def delete_story(story_id):
     return {"message": f"Story {story_id} successfully deleted.", "statusCode": 200}
 
 
-
 # Get all Comments by story id
 @story_routes.route('/<int:story_id>/comments')
 def get_comments(story_id):
     comments = Comment.query.filter(Comment.story_id == story_id).all()
-    return jsonify({"Comments": [comment.to_dict() for comment in comments ]})
+    return jsonify({"Comments": [comment.to_dict() for comment in comments]})
 
 # Create a Comment
+
+
 @story_routes.route('/<int:story_id>/comments', methods=['POST'])
 @login_required
 def post_comment(story_id):
@@ -104,11 +106,31 @@ def post_comment(story_id):
     if form.validate_on_submit():
         data = form.data
         new_comment = Comment(
-            user_id = current_user.id,
-            story_id = story_id,
-            content = data['content'],
-            created_at = datetime.now())
+            user_id=current_user.id,
+            story_id=story_id,
+            content=data['content'],
+            created_at=datetime.now())
         db.session.add(new_comment)
         db.session.commit()
         return jsonify(new_comment.to_dict())
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+@story_routes.route('/<int:story_id>/likes')
+def get_likes(story_id):
+    likes = Like.query.filter(Like.story_id == story_id)
+    users = [like.user.to_dict() for like in likes]
+    return jsonify({"Users": users})
+
+
+@story_routes.route('/<int:story_id>/likes', methods=['POST'])
+def create_story(story_id):
+    form = LikeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        story = Story.query.get(story_id)
+        new_like = Like(user=get_user_model(
+            current_user.id, User), story=story, count=form.data['count'])
+        db.session.add(new_like)
+        db.commit()
+        return {"message": "Successfully Liked.", "statusCode": 201}, 201
