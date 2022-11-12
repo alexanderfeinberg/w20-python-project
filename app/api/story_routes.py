@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from ..models.story import Story
-from ..errors import NotFoundError
+from ..models import Story, User
+from ..errors import NotFoundError, ForbiddenError
 from ..forms.story_form import StoryForm
 from ..models import db
 from datetime import datetime
-
+from .helpers import child_belongs_to_parent
 story_routes = Blueprint('stories', __name__)
 
 
@@ -41,5 +41,31 @@ def create_story():
                           image=form.data['image'],
                           content=form.data['content'],
                           created_at=datetime.now())
-        return jsonify(new_story.to_dict())
+        db.session.add(new_story)
+        db.session.commit()
+        return jsonify({'title': new_story.title, "image": new_story.image, "content": new_story.content})
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+@story_routes.route('/<int:story_id>', methods=["PUT", "PATCH"])
+@login_required
+def edit_story(story_id):
+    form = StoryForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit:
+        update_data = form.data
+        del update_data['csrf_token']
+        if update_data.get('submit'):
+            del update_data['submit']
+
+        story = Story.query.get(story_id)
+        try:
+            child_belongs_to_parent(User.query.get(
+                current_user.id), story, 'user_id')
+        except ForbiddenError as e:
+            return {"error": e.message}, e.status_code
+        for key, value in update_data.items():
+            setattr(story, key, update_data[key])
+        db.session.commit()
+        return jsonify(story.to_dict())
+    return {"errors": validation_errors_to_error_messages(form.errors)}
