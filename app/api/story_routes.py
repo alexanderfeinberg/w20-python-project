@@ -124,7 +124,7 @@ def get_likes(story_id):
 
 
 @story_routes.route('/<int:story_id>/likes', methods=['POST'])
-def create_story(story_id):
+def create_like(story_id):
     form = LikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
