@@ -36,7 +36,7 @@ def all_user_stories(userId):
 
 
 # Follow a User by id
-@user_routes.route("/<int:userId>/followers")
+@user_routes.route("/<int:userId>/followers", methods=["POST"])
 def follow_user(userId):
     following = User.query.get(userId)
     current = get_user_model(current_user, User)
@@ -49,5 +49,5 @@ def follow_user(userId):
 
 @user_routes.route('/<int:user_id>/followers')
 def get_followers_of_user(user_id):
-    user = get_user_model(current_user, User)
+    user = User.query.get(user_id)
     return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
