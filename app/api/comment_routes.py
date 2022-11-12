@@ -35,9 +35,10 @@ def edit_comment(comment_id):
 @login_required
 def delete_comment(comment_id):
     deleted_comment = Comment.query.get(comment_id)
-    if delete_comment:
+    print("DELETE COMMENT ", delete_comment)
+    if deleted_comment:
         child_belongs_to_parent(get_user_model(
-            current_user, User), delete_comment, 'user_id')
+            current_user, User), deleted_comment, 'user_id')
         db.session.delete(deleted_comment)
         db.session.commit()
         return {"message": "Comment successfully deleted."}
