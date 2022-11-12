@@ -69,4 +69,19 @@ def edit_story(story_id):
             setattr(story, key, update_data[key])
         db.session.commit()
         return jsonify(story.to_dict_no_relations())
-    return {"errors": validation_errors_to_error_messages(form.errors)}
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+@story_routes.route('/<int:story_id>', methods=["DELETE"])
+@login_required
+def delete_story(story_id):
+    story = Story.query.get(story_id)
+
+    try:
+        child_belongs_to_parent(current_user, story, 'user_id')
+    except ForbiddenError as e:
+        return {"error": e.message}, e.status_code
+
+    db.session.delete(story)
+    db.session.commit()
+    return {"message": f"Story {story_id} successfully deleted."}
