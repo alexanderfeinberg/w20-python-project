@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Comment, db
 from app.forms.comment_form import CommentForm
-
+from app.errors import NotFoundError
 comment_routes = Blueprint('comments', __name__)
 
 # Edit a Comment 
@@ -18,7 +18,7 @@ def edit_comment(commentId):
         db.session.commit()
         return edit_comment.to_dict()
     else: 
-        return {"message": "Comment can't be found"}
+        return NotFoundError("Comment can't be found")
 
 
 # Delete a Comment
@@ -31,4 +31,4 @@ def delete_comment(commentId):
         db.session.commit()
         return {"message": "Successfully deleted!"}
     else: 
-        return {"message": "Comment couldn't be found"}
+        return NotFoundError("Comment couldn't be found")
