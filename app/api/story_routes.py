@@ -88,7 +88,6 @@ def delete_story(story_id):
     return {"message": f"Story {story_id} successfully deleted.", "statusCode": 200}
 
 
-
 # Get all Comments by story id
 @story_routes.route('/<int:story_id>/comments')
 def get_comments(story_id):

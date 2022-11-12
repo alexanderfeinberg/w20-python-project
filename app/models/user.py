@@ -57,7 +57,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'profile_picture': self.profile_picture,
             'bio': self.bio,
-            # 'stories': self.stories.to_dict()
+            # 'Stories': self.stories.to_dict(),
             # 'followerCount': len(self.followers),
             # 'followingCount': len(self.following)
         }
