@@ -43,7 +43,7 @@ def create_story():
                           created_at=datetime.now())
         db.session.add(new_story)
         db.session.commit()
-        return jsonify({'title': new_story.title, "image": new_story.image, "content": new_story.content})
+        return jsonify(new_story.to_dict_no_relations())
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -64,8 +64,9 @@ def edit_story(story_id):
                 current_user.id), story, 'user_id')
         except ForbiddenError as e:
             return {"error": e.message}, e.status_code
+
         for key, value in update_data.items():
             setattr(story, key, update_data[key])
         db.session.commit()
-        return jsonify(story.to_dict())
+        return jsonify(story.to_dict_no_relations())
     return {"errors": validation_errors_to_error_messages(form.errors)}
