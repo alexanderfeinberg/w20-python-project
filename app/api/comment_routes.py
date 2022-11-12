@@ -19,8 +19,9 @@ def edit_comment(comment_id):
     if form.validate_on_submit():
         data = form.data
         edited_comment = Comment.query.get(comment_id)
-        child_belongs_to_parent(get_user_model(current_user, User), edited_comment, 'user_id')
     if edited_comment:
+        child_belongs_to_parent(get_user_model(
+            current_user, User), edited_comment, 'user_id')
         edited_comment.content = data['content']
         edited_comment.created_at = datetime.now()
         db.session.commit()
@@ -35,6 +36,8 @@ def edit_comment(comment_id):
 def delete_comment(comment_id):
     deleted_comment = Comment.query.get(comment_id)
     if delete_comment:
+        child_belongs_to_parent(get_user_model(
+            current_user, User), delete_comment, 'user_id')
         db.session.delete(deleted_comment)
         db.session.commit()
         return {"message": "Comment successfully deleted."}
