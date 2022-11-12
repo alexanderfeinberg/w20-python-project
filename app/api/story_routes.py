@@ -6,7 +6,7 @@ from ..forms.story_form import StoryForm
 from ..forms.comment_form import CommentForm
 from ..models import db
 from datetime import datetime
-from .helpers import child_belongs_to_parent
+from .helpers import child_belongs_to_parent, get_user_model
 story_routes = Blueprint('stories', __name__)
 
 
@@ -102,11 +102,11 @@ def create_comment(story_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = form.data
+        story = Story.query.get(story_id)
         new_comment = Comment(
-            user = current_user,
+            user = get_user_model(current_user, User),
             story_id = story_id,
-            content = data['content'],
+            content = form.data['content'],
             created_at = datetime.now())
         db.session.add(new_comment)
         db.session.commit()

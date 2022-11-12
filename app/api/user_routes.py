@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user, login_user
 from app.models import User
+from .helpers import get_user_model
+from app.errors import NotFoundError
 
 user_routes = Blueprint('users', __name__)
 
@@ -14,7 +16,6 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
-
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -23,3 +24,14 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+# Get details of current User
+@user_routes.route('/profile')
+def get_current_user():
+    curr_user = get_user_model(current_user, User)
+    if curr_user:
+        return curr_user.to_dict()
+    else:
+        return NotFoundError("User coudnl't be found.")
+
