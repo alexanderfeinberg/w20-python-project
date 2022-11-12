@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from ..models import Story, User
+from ..models import Story, User, Comment
 from ..errors import NotFoundError, ForbiddenError
 from ..forms.story_form import StoryForm
+from ..forms.comment_form import CommentForm
 from ..models import db
 from datetime import datetime
 from .helpers import child_belongs_to_parent
@@ -85,3 +86,29 @@ def delete_story(story_id):
     db.session.delete(story)
     db.session.commit()
     return {"message": f"Story {story_id} successfully deleted.", "statusCode": 200}
+
+
+
+# Get all Comments by story id
+@story_routes.route('/<int:story_id>/comments')
+def get_comments(story_id):
+    comments = Comment.query.filter(Comment.story_id == story_id).all()
+    return jsonify({"Comments": [comment.to_dict() for comment in comments ]})
+
+# Create a Comment
+@story_routes.route('/<int:story_id>/comments', methods=['POST'])
+@login_required
+def post_comment(story_id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_comment = Comment(
+            user_id = current_user.id,
+            story_id = story_id,
+            content = data['content'],
+            created_at = datetime.now())
+        db.session.add(new_comment)
+        db.session.commit()
+        return jsonify(new_comment.to_dict())
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
