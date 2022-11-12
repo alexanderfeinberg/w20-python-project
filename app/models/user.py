@@ -27,7 +27,8 @@ class User(db.Model, UserMixin):
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
-        backref=db.backref("following")
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
 
     )
     comments = db.relationship("Comment", back_populates="user")
@@ -60,7 +61,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'username': self.username,
             'email': self.email,
-            'followerCount': len(self.followers),
+            'followerCount': len(self.followers.all()),
             'profile_picture': self.profile_picture,
             'bio': self.bio
         }

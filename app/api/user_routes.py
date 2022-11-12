@@ -38,14 +38,17 @@ def all_user_stories(userId):
 
 # Follow a User by id
 @user_routes.route("/<int:userId>/followers", methods=["POST"])
+@login_required
 def follow_user(userId):
     following = User.query.get(userId)
+    print("FOLLOWING ", following)
     current = get_user_model(current_user, User)
+    print("CURRENT USER ", current.following)
     if not following:
         return NotFoundError("User not found.")
 
     current.following.append(following)
-    db.commit()
+    db.session.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
 
@@ -63,12 +66,12 @@ def remove_follow(user_id):
     user = User.query.get(user_id)
     if not user:
         raise NotFoundError(f'User {user_id} does not exist.')
-    current_user = get_user_model(current_user, User)
+    current = get_user_model(current_user, User)
     # for follower in user.followers:
     #     if follower.id == current_user.id:
     #         break
     #     return {"message": f"Current user does not follow user {user_id}"}
-    if current_user not in user.followers:
+    if current not in user.followers:
         return {"message": f"Current user does not follow user {user_id}"}
 
     user.followers.remove(current_user)
