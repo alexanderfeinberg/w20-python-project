@@ -17,6 +17,8 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
+
+# Get detail of User by id
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -24,24 +26,26 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    return user.to_dict()
-
+    if user:
+        stories = Story.query.filter(Story.user_id == id)
+        result = user.to_dict()
+        result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
+        return result
+    else:
+        return NotFoundError("User coudnl't be found.")
 
 # Get details of current User
 @user_routes.route('/profile')
+@login_required
 def get_current_user():
     curr_user = get_user_model(current_user, User)
 
     if curr_user:
         stories = Story.query.filter(Story.user_id == curr_user.id)
         result = curr_user.to_dict()
-        result["followersCount"] = len([ele.to_dict() for ele in curr_user.followers])
         result["followingCount"] = len([ele.to_dict() for ele in curr_user.following])
         result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
         return result
-    else:
-        return NotFoundError("User coudnl't be found.")
-
 
 
 
@@ -50,6 +54,16 @@ def get_current_user():
 def all_user_stories(userId):
     stories = Story.query.filter(Story.user_id == userId).all()
     return jsonify({"Stories": [story.to_dict() for story in stories]})
+
+
+# Get all Followers of a User
+@user_routes.route('/<int:user_id>/followers')
+def get_followers_of_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        raise NotFoundError("User not found")
+    return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
+
 
 
 # Follow a User by id
@@ -68,14 +82,8 @@ def follow_user(userId):
     return {"message": "Successfully Followed", "statusCode": 201}
 
 
-@user_routes.route('/<int:user_id>/followers')
-def get_followers_of_user(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        raise NotFoundError(f'User {user_id} does not exist.')
-    return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
 
-
+#Unfollow a User by id
 @user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
 @login_required
 def remove_follow(user_id):
@@ -92,4 +100,4 @@ def remove_follow(user_id):
 
     user.followers.remove(current_user)
     db.session.commit()
-    return {"message": f'Unfollowed user {user_id}'}
+    return {"message": "Successfully Unfollowed", "statusCode": 200}

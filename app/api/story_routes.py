@@ -22,16 +22,29 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+# Get All Stories
 @story_routes.route('/')
 def all_stories():
     stories = Story.query.all()
     print(stories)
     if not stories:
         return NotFoundError("No stories found.")
+    return jsonify({"Stories": [story.to_dict() for story in stories]})
 
-    return jsonify([story.to_dict() for story in stories])
+
+# Get details of a Story from an id
+@story_routes.route("/<int:storyId>")
+def single_story(storyId):
+    story = Story.query.get(storyId)
+    if story:
+        return jsonify(story.to_dict())
+    else:
+        return NotFoundError("Story Not Found")
 
 
+
+
+# Create a Story
 @story_routes.route('/', methods=["POST"])
 @login_required
 def create_story():
@@ -49,6 +62,7 @@ def create_story():
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
+# Edit a Story
 @story_routes.route('/<int:story_id>', methods=["PUT", "PATCH"])
 @login_required
 def edit_story(story_id):
@@ -74,6 +88,7 @@ def edit_story(story_id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
+# Delete a Story
 @story_routes.route('/<int:story_id>', methods=["DELETE"])
 @login_required
 def delete_story(story_id):
@@ -93,11 +108,10 @@ def delete_story(story_id):
 @story_routes.route('/<int:story_id>/comments')
 def get_comments(story_id):
     comments = Comment.query.filter(Comment.story_id == story_id).all()
-    return jsonify({"Comments": [comment.to_dict() for comment in comments]})
+    return jsonify({"Comments": [comment.to_dict_with_user() for comment in comments]})
+
 
 # Create a Comment
-
-
 @story_routes.route('/<int:story_id>/comments', methods=['POST'])
 @login_required
 def create_comment(story_id):
@@ -116,6 +130,7 @@ def create_comment(story_id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
+# Get all Users that like a Story by id
 @story_routes.route('/<int:story_id>/likes')
 def get_likes(story_id):
     likes = Like.query.filter(Like.story_id == story_id)
@@ -123,6 +138,7 @@ def get_likes(story_id):
     return jsonify({"Users": users})
 
 
+# Create Like on a Story by id
 @story_routes.route('/<int:story_id>/likes', methods=['POST'])
 @login_required
 def create_like(story_id):

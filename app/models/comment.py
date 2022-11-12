@@ -23,3 +23,12 @@ class Comment(db.Model):
             'content': self.content,
             "created_at": self.created_at
         }
+    def to_dict_with_user(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'story_id': self.story_id,
+            'content': self.content,
+            "created_at": self.created_at,
+            "user": self.user.to_dict()
+        }
