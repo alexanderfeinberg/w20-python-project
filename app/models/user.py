@@ -27,8 +27,8 @@ class User(db.Model, UserMixin):
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
-        backref=db.backref("following", lazy="dynamic"),
-        lazy="dynamic"
+        backref=db.backref("following")
+
     )
     comments = db.relationship("Comment", back_populates="user")
     stories = db.relationship("Story", back_populates="user")
@@ -51,13 +51,16 @@ class User(db.Model, UserMixin):
             raise ValueError("You cannot follow yourself!")
 
     def to_dict(self):
+        print("SELF FOLLOWERS ", self.followers)
+        print("SELF FOLLOWING ", self.following)
+        print("SELF COMMENTS ", self.comments)
         return {
             'id': self.id,
             'firstName': self.first_name,
             'lastName': self.last_name,
             'username': self.username,
             'email': self.email,
-            'followerCount': len(follows),
+            'followerCount': len(self.followers),
             'profile_picture': self.profile_picture,
             'bio': self.bio
         }
