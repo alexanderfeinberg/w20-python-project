@@ -98,13 +98,13 @@ def get_comments(story_id):
 # Create a Comment
 @story_routes.route('/<int:story_id>/comments', methods=['POST'])
 @login_required
-def post_comment(story_id):
+def create_comment(story_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_comment = Comment(
-            user_id = current_user.id,
+            user = current_user,
             story_id = story_id,
             content = data['content'],
             created_at = datetime.now())
