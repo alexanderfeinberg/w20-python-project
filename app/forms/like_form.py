@@ -3,6 +3,6 @@ from wtforms import StringField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length
 
 
-class StoryForm(FlaskForm):
+class LikeForm(FlaskForm):
     count = IntegerField("Count", validators=[DataRequired(
         message="Like count must be included.")])
