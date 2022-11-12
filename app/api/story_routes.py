@@ -124,13 +124,21 @@ def get_likes(story_id):
 
 
 @story_routes.route('/<int:story_id>/likes', methods=['POST'])
+@login_required
 def create_like(story_id):
     form = LikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         story = Story.query.get(story_id)
-        new_like = Like(user=get_user_model(
-            current_user.id, User), story=story, count=form.data['count'])
-        db.session.add(new_like)
-        db.commit()
+        existing_like = Like.query.filter(Like.user_id == current_user.id).filter(
+            Like.story_id == story_id).first()
+
+        if existing_like:
+            existing_like.count += form.data['count']
+        else:
+            new_like = Like(user=get_user_model(
+                current_user, User), story=story, count=form.data['count'])
+            db.session.add(new_like)
+
+        db.session.commit()
         return {"message": "Successfully Liked.", "statusCode": 201}, 201
