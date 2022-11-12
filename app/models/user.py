@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(200), nullable=False)
     last_name = db.Column(db.String(200), nullable=False)
-    profile_picture = db.Column(db.String,  nullable=False)
+    profile_picture = db.Column(db.String)
     bio = db.Column(db.String(5000))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
@@ -29,6 +29,7 @@ class User(db.Model, UserMixin):
         secondaryjoin=(follows.c.followed_id == id),
         backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
+
     )
     comments = db.relationship("Comment", back_populates="user")
     stories = db.relationship("Story", back_populates="user")
@@ -51,8 +52,15 @@ class User(db.Model, UserMixin):
             raise ValueError("You cannot follow yourself!")
 
     def to_dict(self):
+        print("SELF FOLLOWERS ", self.followers)
+        print("SELF FOLLOWING ", self.following)
+        print("SELF COMMENTS ", self.comments)
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'bio': self.bio,
+            'followerCount': len(self.followers.all()),
+            'profile_picture': self.profile_picture,
+            'bio': self.bio
         }

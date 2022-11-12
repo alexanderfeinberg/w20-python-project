@@ -14,3 +14,21 @@ class Comment(db.Model):
 
     user = db.relationship("User", back_populates="comments")
     story = db.relationship("Story", back_populates="comments")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'story_id': self.story_id,
+            'content': self.content,
+            "created_at": self.created_at
+        }
+    def to_dict_with_user(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'story_id': self.story_id,
+            'content': self.content,
+            "created_at": self.created_at,
+            "user": self.user.to_dict()
+        }
