@@ -39,9 +39,7 @@ def single_story(storyId):
     if story:
         return jsonify(story.to_dict())
     else:
-        return NotFoundError("Story Not Found")
-
-
+        raise NotFoundError("Story Not Found")
 
 
 # Create a Story

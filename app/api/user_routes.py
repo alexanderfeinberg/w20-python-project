@@ -15,8 +15,6 @@ def users():
     Query for all users and returns them in a list of user dictionaries
     """
     users = User.query.all()
-    if not users:
-        return {"message": "Users couldn't be found", "statusCode": 404}
     return {'users': [user.to_dict() for user in users]}
 
 
@@ -34,7 +32,7 @@ def user(id):
         result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
         return result
     else:
-        return {"message": "User couldn't be found", "statusCode": 404}
+        raise NotFoundError("Story Not Found")
 
 # Get details of current User
 @user_routes.route('/profile')
@@ -56,8 +54,7 @@ def get_current_user():
 def all_user_stories(userId):
     user = User.query.get(userId)
     if not user:
-        return {"message": "User couldn't be found", "statusCode": 404}
-
+        raise NotFoundError("User not found")
     stories = Story.query.filter(Story.user_id == userId).all()
     return jsonify({"Stories": [story.to_dict() for story in stories]})
 
@@ -67,7 +64,7 @@ def all_user_stories(userId):
 def get_followers_of_user(user_id):
     user = User.query.get(user_id)
     if not user:
-        return {"message": "User couldn't be found", "statusCode": 404}
+        raise NotFoundError("User not found")
     return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
 
 
@@ -81,7 +78,7 @@ def follow_user(userId):
     current = get_user_model(current_user, User)
     print("CURRENT USER ", current.following)
     if not following:
-        return {"message": "User couldn't be found", "statusCode": 404}
+        return NotFoundError("User not found.")
 
     current.following.append(following)
     db.session.commit()
@@ -95,8 +92,7 @@ def follow_user(userId):
 def remove_follow(user_id):
     user = User.query.get(user_id)
     if not user:
-        return {"message": "User couldn't be found", "statusCode": 404}
-
+        raise NotFoundError(f'User {user_id} does not exist.')
     current = get_user_model(current_user, User)
     # for follower in user.followers:
     #     if follower.id == current_user.id:
