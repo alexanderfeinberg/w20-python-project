@@ -117,7 +117,15 @@ const deleteStory = (storyId) => async(dispatch) => {
     }
 }
 
-
+const addLikeToStory = (story_id, count) = async(dispatch)=>{
+    const resp = await csrfFetch(`/api/stories/${story_id}/likes`, {
+        method:"POST",
+        body: JSON.stringify({count:count})
+    })
+    if (resp.ok){
+        return
+    }
+}
 
 
 
