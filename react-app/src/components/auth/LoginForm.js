@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { ModalContext } from "../../context/Modal"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const { setModalType } = useContext(ModalContext)
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -26,12 +27,15 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  useEffect(() => {
+    if (user) {
+      setModalType(null)
+    }
+  }, [user])
 
   return (
-    <form onSubmit={onLogin}>
+    <form className="modal-content" onSubmit={onLogin}>
+      <div>Log In</div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>

@@ -93,7 +93,7 @@ let initialState = {
     singleComment: {}
 }
 
-export const storyReducer = (state = initialState, action) => {
+export const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_COMMENTS:
             const allComments = {...state, allComments: {}}
