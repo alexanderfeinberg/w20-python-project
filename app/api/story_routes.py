@@ -28,7 +28,7 @@ def all_stories():
     stories = Story.query.all()
     print(stories)
     if not stories:
-        return NotFoundError("No stories found.")
+        raise NotFoundError("No stories found.")
     return jsonify({"Stories": [story.to_dict() for story in stories]})
 
 
@@ -73,6 +73,8 @@ def edit_story(story_id):
             del update_data['submit']
 
         story = Story.query.get(story_id)
+        if not story:
+            raise NotFoundError('Story not found')
         try:
             child_belongs_to_parent(User.query.get(
                 current_user.id), story, 'user_id')
@@ -91,6 +93,8 @@ def edit_story(story_id):
 @login_required
 def delete_story(story_id):
     story = Story.query.get(story_id)
+    if not story:
+        raise NotFoundError('Story not found')
 
     try:
         child_belongs_to_parent(current_user, story, 'user_id')
@@ -106,6 +110,8 @@ def delete_story(story_id):
 @story_routes.route('/<int:story_id>/comments')
 def get_comments(story_id):
     comments = Comment.query.filter(Comment.story_id == story_id).all()
+    if not comments:
+        raise NotFoundError('Story not found.')
     return jsonify({"Comments": [comment.to_dict_with_user() for comment in comments]})
 
 
@@ -133,6 +139,9 @@ def create_comment(story_id):
 def get_likes(story_id):
     likes = Like.query.filter(Like.story_id == story_id)
     users = [like.user.to_dict() for like in likes]
+    story = Story.query.get(story_id)
+    if not story:
+        raise NotFoundError('Story not found.')
     return jsonify({"Users": users})
 
 
@@ -144,6 +153,9 @@ def create_like(story_id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         story = Story.query.get(story_id)
+        if not story:
+            raise NotFoundError('Story not found.')
+        
         existing_like = Like.query.filter(Like.user_id == current_user.id).filter(
             Like.story_id == story_id).first()
 

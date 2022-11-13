@@ -32,7 +32,7 @@ def user(id):
         result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
         return result
     else:
-        raise NotFoundError("Story Not Found")
+        raise NotFoundError("User not found")
 
 # Get details of current User
 @user_routes.route('/profile')
@@ -78,7 +78,7 @@ def follow_user(userId):
     current = get_user_model(current_user, User)
     print("CURRENT USER ", current.following)
     if not following:
-        return NotFoundError("User not found.")
+        raise NotFoundError("User not found.")
 
     current.following.append(following)
     db.session.commit()

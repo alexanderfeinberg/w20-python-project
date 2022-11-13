@@ -28,7 +28,7 @@ def edit_comment(comment_id):
         db.session.commit()
         return jsonify(edited_comment.to_dict())
     else:
-        raise NotFoundError("Comment couldn't be found")
+        raise NotFoundError("Comment not found")
 
 
 
@@ -39,10 +39,13 @@ def delete_comment(comment_id):
     deleted_comment = Comment.query.get(comment_id)
     print("DELETE COMMENT ", delete_comment)
     if deleted_comment:
-        child_belongs_to_parent(get_user_model(
-            current_user, User), deleted_comment, 'user_id')
+        try:    
+            child_belongs_to_parent(get_user_model(
+                current_user, User), deleted_comment, 'user_id')
+        except ForbiddenError as e:
+            return {"error": e.message}, e.status_code
         db.session.delete(deleted_comment)
         db.session.commit()
         return {"message": "Comment successfully deleted.", "statusCode": 200}
     else:
-        raise NotFoundError("Comment couldn't be found")
+        raise NotFoundError("Comment not found")
