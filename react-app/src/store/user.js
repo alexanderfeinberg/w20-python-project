@@ -88,14 +88,14 @@ const followThunk = (userFollowedId) => async (dispatch) => {
   }
 };
 
-const unfollowThunk = (userUnfollowedId = async (dispatch) => {
+const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userUnfollowedId}/followers`, {
     method: "DELETE",
   });
   if (resp.ok) {
     return;
   }
-});
+};
 
 let initialState = {
   singleUser: {},
