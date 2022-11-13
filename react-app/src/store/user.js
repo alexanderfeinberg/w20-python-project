@@ -87,6 +87,11 @@ initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_USER:
+      const userState = { ...state, singleUser: { ...action.user } };
+      return userState;
+    case LOAD_CURRENT_USER:
+      const currentUserState = { ...state, singleUser: { ...action.user } };
     default:
       return state;
   }
