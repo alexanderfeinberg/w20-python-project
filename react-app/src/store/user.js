@@ -1,4 +1,3 @@
-import { response } from "express";
 import { csrfFetch } from "./csrf";
 
 const LOAD_USER = "/users/LOAD_USER";
@@ -37,12 +36,12 @@ const loadUserFollowers = (followers) => {
   };
 };
 
-// const followUser = (userToFollow) => {
-//   return {
-//     type: FOLLOW_USER,
-//     userToFollow,
-//   };
-// };
+const followUser = (userToFollow) => {
+  return {
+    type: FOLLOW_USER,
+    userToFollow,
+  };
+};
 
 const getUser = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}`);
@@ -79,6 +78,24 @@ const getUserfollowers = (userId) => async (dispatch) => {
     return followers;
   }
 };
+
+const followThunk = (userFollowedId) => async (dispatch) => {
+  const resp = await csrfFetch(`/api/users/${userFollowedId}/followers`, {
+    method: "POST",
+  });
+  if (resp.ok) {
+    return;
+  }
+};
+
+const unfollowThunk = (userUnfollowedId = async (dispatch) => {
+  const resp = await csrfFetch(`/api/users/${userUnfollowedId}/followers`, {
+    method: "DELETE",
+  });
+  if (resp.ok) {
+    return;
+  }
+});
 
 let initialState = {
   singleUser: {},
