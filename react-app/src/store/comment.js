@@ -88,7 +88,7 @@ const deleteComment = (commentId) => async (dispatch) => {
 
 
 
-initialState = {
+const initialState = {
     allComments: {},
     singleComment: {}
 }
