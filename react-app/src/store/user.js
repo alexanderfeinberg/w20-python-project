@@ -92,6 +92,9 @@ export const userReducer = (state = initialState, action) => {
       return userState;
     case LOAD_CURRENT_USER:
       const currentUserState = { ...state, singleUser: { ...action.user } };
+      return currentUserState;
+    case LOAD_USER_LIST:
+      const userListState = { ...state, userList: { ...action.users } };
     default:
       return state;
   }
