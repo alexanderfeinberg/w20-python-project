@@ -24,9 +24,12 @@ const GetOneStory = () => {
   }
 
   return (
-
+    <>
+    <div>{story.title}</div>
+    <div>{comments.length}</div>
+    </>
     );
-    
+
 };
 
 export default GetOneStory;

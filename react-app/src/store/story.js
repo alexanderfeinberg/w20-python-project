@@ -121,7 +121,7 @@ const deleteStory = (storyId) => async(dispatch) => {
 
 
 
-const initialState = {
+let initialState = {
     allStories: {},
     singleStory: {}
 }
