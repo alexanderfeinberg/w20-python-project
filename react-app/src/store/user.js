@@ -1,4 +1,3 @@
-import { response } from "express";
 import { csrfFetch } from "./csrf";
 
 const LOAD_USER = "/users/LOAD_USER";
