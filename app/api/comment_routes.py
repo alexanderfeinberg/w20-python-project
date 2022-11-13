@@ -3,14 +3,12 @@ from flask_login import login_required, current_user
 from app.models import Comment, db, User
 from app.forms.comment_form import CommentForm
 from datetime import datetime
-from app.errors import NotFoundError
+from app.errors import NotFoundError, ForbiddenError
 from .helpers import child_belongs_to_parent, get_user_model
 
 comment_routes = Blueprint('comments', __name__)
 
 # Edit a Comment
-
-
 @comment_routes.route('/<int:comment_id>', methods=["PUT"])
 @login_required
 def edit_comment(comment_id):
@@ -20,14 +18,18 @@ def edit_comment(comment_id):
         data = form.data
         edited_comment = Comment.query.get(comment_id)
     if edited_comment:
-        child_belongs_to_parent(get_user_model(
-            current_user, User), edited_comment, 'user_id')
+        try:
+            user = get_user_model(current_user, User)
+            child_belongs_to_parent(user, edited_comment, 'user_id')
+        except ForbiddenError as e:
+            return {"error": e.message}, e.status_code
         edited_comment.content = data['content']
         edited_comment.created_at = datetime.now()
         db.session.commit()
         return jsonify(edited_comment.to_dict())
     else:
-        return NotFoundError("Comment can't be found")
+        raise NotFoundError("Comment not found")
+
 
 
 # Delete a Comment
@@ -37,10 +39,13 @@ def delete_comment(comment_id):
     deleted_comment = Comment.query.get(comment_id)
     print("DELETE COMMENT ", delete_comment)
     if deleted_comment:
-        child_belongs_to_parent(get_user_model(
-            current_user, User), deleted_comment, 'user_id')
+        try:    
+            child_belongs_to_parent(get_user_model(
+                current_user, User), deleted_comment, 'user_id')
+        except ForbiddenError as e:
+            return {"error": e.message}, e.status_code
         db.session.delete(deleted_comment)
         db.session.commit()
-        return {"message": "Comment successfully deleted.", "statusCode": 200}, 200
+        return {"message": "Comment successfully deleted.", "statusCode": 200}
     else:
-        return NotFoundError("Comment couldn't be found")
+        raise NotFoundError("Comment not found")
