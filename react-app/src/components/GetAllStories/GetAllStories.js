@@ -6,7 +6,7 @@ import './GetAllStories.css';
 
 const GetAllStories = () => {
   const dispatch = useDispatch();
-  const stories = useSelector(state => state.stories.allStories);
+  const stories = useSelector(state => state.story.allStories);
   const storiesArr = Object.values(stories);
 
   useEffect(() => {
@@ -22,10 +22,18 @@ const GetAllStories = () => {
     <div className="stories_container">
         {storiesArr && storiesArr.map((story) => {
           return (
-            <div className="stories_img_wrapper">
+            <>
+            <div className="stories_author">{story.author.firstName} {story.author.lastName}</div>
+            {/* <NavLink key={story.author.id} to={`/users/${userId}`}></NavLink> */}
+            <div className="stories_wrapper">
               <NavLink key={story.id} to={`/stories/${story.id}`}>
-                <div className="stories_title">{story.title}</div>
-                <div className="stories_content">{story.content}</div>
+                <div className="stories_container_left">
+                    <div className="stories_title">{story.title}</div>
+                    <div className="stories_content">{story.content}</div>
+                </div>
+                <div className="stories_container_right">
+                    <div className="stories_image">{story.image}</div>
+                </div>
                 <img 
                     className="stories_img"
                     src={story.image}
@@ -33,6 +41,7 @@ const GetAllStories = () => {
                 />
               </NavLink>
           </div>
+          </>
           )
         })}
     </div>

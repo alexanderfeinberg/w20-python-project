@@ -8,9 +8,9 @@ const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
   const user = useSelector((state) => state.session.user)
-  const story = useSelector(state => state.stories.singleStory);
+  const story = useSelector(state => state.story.singleStory);
 
-  const comments = useSelector(state => state.comments.allComments);
+  const comments = useSelector(state => state.comment.allComments);
 
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -26,6 +26,8 @@ const GetOneStory = () => {
   return (
     <>
     <div>{story.title}</div>
+    <div>{story.content}</div>
+    <div>{story.image}</div>
     <div>{comments.length}</div>
     </>
     );
