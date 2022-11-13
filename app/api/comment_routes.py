@@ -9,8 +9,6 @@ from .helpers import child_belongs_to_parent, get_user_model
 comment_routes = Blueprint('comments', __name__)
 
 # Edit a Comment
-
-
 @comment_routes.route('/<int:comment_id>', methods=["PUT"])
 @login_required
 def edit_comment(comment_id):
@@ -27,7 +25,7 @@ def edit_comment(comment_id):
         db.session.commit()
         return jsonify(edited_comment.to_dict())
     else:
-        return NotFoundError("Comment can't be found")
+        return {"message": "Comment couldn't be found", "statusCode": 404}
 
 
 # Delete a Comment
@@ -41,6 +39,6 @@ def delete_comment(comment_id):
             current_user, User), deleted_comment, 'user_id')
         db.session.delete(deleted_comment)
         db.session.commit()
-        return {"message": "Comment successfully deleted.", "statusCode": 200}, 200
+        return {"message": "Comment successfully deleted.", "statusCode": 200}
     else:
-        return NotFoundError("Comment couldn't be found")
+        return {"message": "Comment couldn't be found", "statusCode": 404}
