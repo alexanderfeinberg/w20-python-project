@@ -2,7 +2,7 @@
 
 
 
-initialState = {
+let initialState = {
     singleUser: {},
     userList: {}
 }

@@ -38,12 +38,13 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form className="modal-content" onSubmit={onSignUp}>
+      <div>Sign Up</div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
