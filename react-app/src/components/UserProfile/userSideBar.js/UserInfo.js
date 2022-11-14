@@ -47,7 +47,7 @@ const UserInfo = ({ userId }) => {
           <div className="main-header">
             {user.firstName} {user.lastName}
           </div>
-          <div className="follow-count">
+          <div className="follow-count textBtn">
             <button onClick={showFollowerModal}>
               {user.followerCount} Followers
             </button>
@@ -58,7 +58,7 @@ const UserInfo = ({ userId }) => {
           <button onClick={handleFollow}>Follow</button>
         </div>
         <div className="following-peak">
-          <h3>Following</h3>
+          <h4>Following</h4>
           <div className="following-list">
             <ul>
               {followings.map((following, idx) => {
@@ -70,7 +70,7 @@ const UserInfo = ({ userId }) => {
               })}
             </ul>
           </div>
-          <div className="expand-following">
+          <div className="expand-following textBtn">
             <button onClick={showFollowingModal}>
               See all ({user.followingCount})
             </button>
