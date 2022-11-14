@@ -56,10 +56,10 @@ a:visited {
     margin-right: 30px;
  }
 
-/* .stories-container-right{
+.stories-container-right{
     display: flex;
     flex-direction: column;
-} */
+}
 
 .stories-image{
     width: 200px;
