@@ -25,7 +25,7 @@ function App() {
         <Route path="/stories/:storyId">
           <GetOneStory />
         </Route>
-        <Route path="users/:userId">
+        <Route path="/users/:userId">
           <Profile />
         </Route>
       </Switch>
