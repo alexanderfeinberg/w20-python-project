@@ -1,0 +1,14 @@
+#container-1 {
+    width: 79px;
+    border-right: 1px solid rgba(230, 230, 230, 1);
+}
+
+#container-1-logged-out {
+    height: 67px;
+    background-color: rgb(255, 192, 23);
+    border-bottom: 1px solid black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%
+}
