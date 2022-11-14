@@ -1,11 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { loadFollowings } from "../../../store/user";
+import { ModalContext } from "../../../context/Modal";
 
 const UserInfo = ({ user }) => {
   const followings = useSelector((state) => state.user.userList);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
+  const { setModalType } = useContext(ModalContext);
 
   console.log("FOLLOWINGS ", followings);
 
@@ -13,13 +15,21 @@ const UserInfo = ({ user }) => {
     dispatch(loadFollowings(user.id, "1", "5")).then(() => setisLoaded(true));
   }, [user.id]);
 
+  const showFollowerModal = () => {
+    setModalType("Followers");
+  };
+
   if (isLoaded) {
     return (
       <div>
         <div>
           <img src={user.profile_picture} />
         </div>
-        <div>{user.followerCount} Followers</div>
+        <div>
+          <button onClick={showFollowerModal}>
+            {user.followerCount} Followers
+          </button>
+        </div>
         <div>{user.bio}</div>
         <div>
           <button>Follow</button>
