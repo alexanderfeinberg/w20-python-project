@@ -104,14 +104,24 @@ export const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
   }
 };
 
-export const loadFollowings = (userId) => async (dispatch) => {
-  const resp = await csrfFetch(`/api/users/${userId}/followings`);
-  if (resp.ok) {
-    const followings = await resp.json();
-    dispatch(loadUserFollowings);
-    return followings;
-  }
-};
+export const loadFollowings =
+  (userId, page = null, size = null) =>
+  async (dispatch) => {
+    let query = "";
+    if (page) {
+      query += `page=${page}`;
+    }
+    if (size) {
+      query += `&size=${size}`;
+    }
+    const resp = await csrfFetch(`/api/users/${userId}/following?${query}`);
+    console.log("RESP ", resp);
+    if (resp.ok) {
+      const followings = await resp.json();
+      dispatch(loadUserFollowings(followings));
+      return followings;
+    }
+  };
 
 let initialState = {
   singleUser: {},
@@ -136,7 +146,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         userList: { ...action.followings },
       };
-      return userFollowerState;
+      return serFollowingsState;
     default:
       return state;
   }
