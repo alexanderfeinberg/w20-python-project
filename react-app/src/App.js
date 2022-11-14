@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./components/NavBar";
 import { authenticate } from "./store/session";
-import { Profile } from "./components/UserProfile/profile";
+import Profile from "./components/UserProfile/profile";
 import "./App.css";
 
 import Home from "./components/home";
