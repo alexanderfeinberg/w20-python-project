@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from "../../store/session";
 import "./index.css"
 
+import GetAllStories from "../GetAllStories/GetAllStories";
+
 const Home = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
@@ -34,26 +36,7 @@ const Home = () => {
                     </div>
                     <div id="home-lower-logged-out">
                         <div id="home-lower-logged-out-inner">
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RE
-                            NDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-                            RENDER ALL STORIES HERE
-
+                            <GetAllStories />
                         </div>
                     </div>
                 </div>
@@ -63,7 +46,7 @@ const Home = () => {
                 <>
                     <div id="container-2" className="border">
                         <div className="text-center">
-                            Placeholder
+                            <GetAllStories />
                         </div>
                         <div className="text-center">
                             Placeholder2
