@@ -43,7 +43,7 @@ const followUser = (userToFollow) => {
   };
 };
 
-const getUser = (userId) => async (dispatch) => {
+export const getUser = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}`);
   if (res.ok) {
     const user = await (await res).json();
@@ -52,7 +52,7 @@ const getUser = (userId) => async (dispatch) => {
   }
 };
 
-const getCurrentUser = () => async (dispatch) => {
+export const getCurrentUser = () => async (dispatch) => {
   const res = await csrfFetch(`api/users/profile`);
   if (res.ok) {
     const user = await res.json();
@@ -61,7 +61,7 @@ const getCurrentUser = () => async (dispatch) => {
   }
 };
 
-const getUserList = () => async (dispatch) => {
+export const getUserList = () => async (dispatch) => {
   const res = await csrfFetch(`/api/users`);
   if (res.ok) {
     const users = await res.json();
@@ -70,7 +70,7 @@ const getUserList = () => async (dispatch) => {
   }
 };
 
-const getUserfollowers = (userId) => async (dispatch) => {
+export const getUserfollowers = (userId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userId}/followers`);
   if (resp.ok) {
     const followers = await resp.json();
@@ -79,7 +79,7 @@ const getUserfollowers = (userId) => async (dispatch) => {
   }
 };
 
-const followThunk = (userFollowedId) => async (dispatch) => {
+export const followThunk = (userFollowedId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userFollowedId}/followers`, {
     method: "POST",
   });
@@ -88,7 +88,7 @@ const followThunk = (userFollowedId) => async (dispatch) => {
   }
 };
 
-const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
+export const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userUnfollowedId}/followers`, {
     method: "DELETE",
   });
