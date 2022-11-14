@@ -52,9 +52,7 @@ class User(db.Model, UserMixin):
             raise ValueError("You cannot follow yourself!")
 
     def to_dict(self):
-        print("SELF FOLLOWERS ", self.followers)
-        print("SELF FOLLOWING ", self.following)
-        print("SELF COMMENTS ", self.comments)
+
         return {
             'id': self.id,
             'firstName': self.first_name,
