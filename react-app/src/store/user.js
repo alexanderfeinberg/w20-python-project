@@ -6,7 +6,7 @@ const LOAD_USER_LIST = "/users/LOAD_USER_LIST";
 const FOLLOW_USER = "/users/FOLLOW_USER";
 const UNFOLLOW_USER = "/users/UNFOLLOW_USER";
 const LOAD_USER_FOLLOWERS = "/users/LOAD_USER_FOLLOWERS";
-
+const LOAD_USER_FOLLOWINGS = "/user/LOAD_USER_FOLLOWINGS";
 //actions
 const loadUser = (user) => {
   return {
@@ -36,10 +36,17 @@ const loadUserFollowers = (followers) => {
   };
 };
 
-const followUser = (userToFollow) => {
+// const followUser = (userToFollow) => {
+//   return {
+//     type: FOLLOW_USER,
+//     userToFollow,
+//   };
+// };
+
+const loadUserFollowings = (followings) => {
   return {
-    type: FOLLOW_USER,
-    userToFollow,
+    type: LOAD_USER_FOLLOWINGS,
+    followings,
   };
 };
 
@@ -70,14 +77,23 @@ export const getUserList = () => async (dispatch) => {
   }
 };
 
-export const getUserfollowers = (userId) => async (dispatch) => {
-  const resp = await csrfFetch(`/api/users/${userId}/followers`);
-  if (resp.ok) {
-    const followers = await resp.json();
-    dispatch(loadUserFollowers(followers));
-    return followers;
-  }
-};
+export const getUserfollowers =
+  (userId, page = null, size = null) =>
+  async (dispatch) => {
+    let query = "";
+    if (page) {
+      query += `page=${page}`;
+    }
+    if (size) {
+      query += `&size=${size}`;
+    }
+    const resp = await csrfFetch(`/api/users/${userId}/followers?${query}`);
+    if (resp.ok) {
+      const followers = await resp.json();
+      dispatch(loadUserFollowers(followers));
+      return followers;
+    }
+  };
 
 export const followThunk = (userFollowedId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userFollowedId}/followers`, {
@@ -97,6 +113,25 @@ export const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
   }
 };
 
+export const loadFollowings =
+  (userId, page = null, size = null) =>
+  async (dispatch) => {
+    let query = "";
+    if (page) {
+      query += `page=${page}`;
+    }
+    if (size) {
+      query += `&size=${size}`;
+    }
+    const resp = await csrfFetch(`/api/users/${userId}/following?${query}`);
+    console.log("RESP ", resp);
+    if (resp.ok) {
+      const followings = await resp.json();
+      dispatch(loadUserFollowings(followings));
+      return followings;
+    }
+  };
+
 let initialState = {
   singleUser: {},
   userList: {},
@@ -113,8 +148,17 @@ export const userReducer = (state = initialState, action) => {
     case LOAD_USER_LIST:
       const userListState = { ...state, userList: { ...action.users } };
     case LOAD_USER_FOLLOWERS:
-      const userFollowerState = { ...state, userList: { ...action.followers } };
+      const userFollowerState = {
+        ...state,
+        userList: { ...state.userList, ...action.followers },
+      };
       return userFollowerState;
+    case LOAD_USER_FOLLOWINGS:
+      const serFollowingsState = {
+        ...state,
+        userList: { ...action.followings },
+      };
+      return serFollowingsState;
     default:
       return state;
   }
