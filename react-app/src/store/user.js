@@ -77,14 +77,23 @@ export const getUserList = () => async (dispatch) => {
   }
 };
 
-export const getUserfollowers = (userId) => async (dispatch) => {
-  const resp = await csrfFetch(`/api/users/${userId}/followers`);
-  if (resp.ok) {
-    const followers = await resp.json();
-    dispatch(loadUserFollowers(followers));
-    return followers;
-  }
-};
+export const getUserfollowers =
+  (userId, page = null, size = null) =>
+  async (dispatch) => {
+    let query = "";
+    if (page) {
+      query += `page=${page}`;
+    }
+    if (size) {
+      query += `&size=${size}`;
+    }
+    const resp = await csrfFetch(`/api/users/${userId}/followers?${query}`);
+    if (resp.ok) {
+      const followers = await resp.json();
+      dispatch(loadUserFollowers(followers));
+      return followers;
+    }
+  };
 
 export const followThunk = (userFollowedId) => async (dispatch) => {
   const resp = await csrfFetch(`/api/users/${userFollowedId}/followers`, {
