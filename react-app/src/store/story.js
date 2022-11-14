@@ -52,7 +52,7 @@ const destroyStory = (storyId) => {
 // THUNKS
 
 // Get All Stories
-const getAllStories = () => async (dispatch) => {
+export const getAllStories = () => async (dispatch) => {
     const res = await csrfFetch("/api/stories")
     if (res.ok) {
         const stories = await res.json()
@@ -62,7 +62,7 @@ const getAllStories = () => async (dispatch) => {
 }
 
 // Get all Stories by a UserId
-const getUsersStories = (userId) => async (dispatch) => {
+export const getUsersStories = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/user/${userId}/stories`)
     if (res.ok) {
         const stories = await res.json()
@@ -72,7 +72,7 @@ const getUsersStories = (userId) => async (dispatch) => {
 }
 
 // Get details of a Story from an id
-const getSingleStory = (storyId) => async (dispatch) => {
+export const getSingleStory = (storyId) => async (dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}`)
     if (res.ok) {
         const story = await res.json()
@@ -82,7 +82,7 @@ const getSingleStory = (storyId) => async (dispatch) => {
 }
 
 // Create a Story
-const createStory = (data) => async (dispatch) => {
+export const createStory = (data) => async (dispatch) => {
     const res = await csrfFetch("/api/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -95,7 +95,7 @@ const createStory = (data) => async (dispatch) => {
     }
 }
 
-const updateStory = (storyId, data) => async (dispatch) => {
+export const updateStory = (storyId, data) => async (dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -108,7 +108,7 @@ const updateStory = (storyId, data) => async (dispatch) => {
     }
 }
 
-const deleteStory = (storyId) => async(dispatch) => {
+export const deleteStory = (storyId) => async(dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}`, {
         method: "DELETE"
     })
