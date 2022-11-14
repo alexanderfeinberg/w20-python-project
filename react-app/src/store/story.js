@@ -83,7 +83,7 @@ export const getSingleStory = (storyId) => async (dispatch) => {
 
 // Create a Story
 export const createStory = (data) => async (dispatch) => {
-  const res = await csrfFetch("/api/stories", {
+  const res = await csrfFetch("/api/stories/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
