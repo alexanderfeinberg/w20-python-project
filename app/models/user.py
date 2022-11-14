@@ -61,6 +61,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'bio': self.bio,
             'followerCount': len(self.followers.all()),
+            'followingCount': len(self.following.all()),
             'profile_picture': self.profile_picture,
             'bio': self.bio
         }

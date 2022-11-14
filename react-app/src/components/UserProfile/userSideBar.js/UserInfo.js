@@ -37,6 +37,9 @@ const UserInfo = ({ user }) => {
               })}
             </ul>
           </div>
+          <div>
+            <a>See all ({user.followingCount})</a>
+          </div>
         </div>
       </div>
     );
