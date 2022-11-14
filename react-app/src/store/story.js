@@ -88,6 +88,7 @@ export const createStory = (data) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+  console.log(res)
   if (res.ok) {
     const story = res.json();
     dispatch(newStory(story));

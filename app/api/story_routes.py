@@ -43,7 +43,7 @@ def single_story(storyId):
 
 
 # Create a Story
-@story_routes.route('', methods=["POST"])
+@story_routes.route('/', methods=["POST"])
 @login_required
 def create_story():
     form = StoryForm()
