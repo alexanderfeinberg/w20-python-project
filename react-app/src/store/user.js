@@ -143,7 +143,8 @@ export const loadFollowings =
     console.log("RESP ", resp);
     if (resp.ok) {
       const followings = await resp.json();
-      dispatch(loadUserFollowings(followings));
+      if (page > 1) dispatch(paginateFollowing(followings));
+      else dispatch(loadUserFollowings(followings));
       return followings;
     }
   };
@@ -189,6 +190,19 @@ export const userReducer = (state = initialState, action) => {
       };
 
       return paginateFollowersState;
+
+    case PAGINATE_FOLLOWING:
+      const paginateFollowings = {
+        ...state,
+        userList: {
+          ...state.userList,
+          Following: [
+            ...state.userList.Followings,
+            ...action.newFollowing.Followings,
+          ],
+        },
+      };
+      return paginateFollowings;
     default:
       return state;
   }
