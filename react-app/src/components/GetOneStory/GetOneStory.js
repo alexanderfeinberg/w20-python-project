@@ -8,7 +8,6 @@ const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
   const story = useSelector(state => state.story.singleStory);
-  console.log("story--------", story)
 
   const comments = useSelector(state => state.comment.allComments);
 

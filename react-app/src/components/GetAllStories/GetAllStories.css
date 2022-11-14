@@ -1,21 +1,48 @@
 a:link {
     text-decoration: none;
-}
-
-;
+};
 
 a:visited {
     text-decoration: none;
 }
 
-;
-
-a:hover {
-    text-decoration: none;
+.stories-container{
+    margin: 10px;
 }
 
-;
-
-a:active {
-    text-decoration: none;
+.stories-author {
+    margin-bottom: 20px;
 }
+
+.stories-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.stories-container-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.stories_title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    color: #292929;
+    font-style: normal;
+    line-height: 28px;
+
+ }
+
+.stories-content{
+    /* border-bottom: 1px solid gray; */
+ }
+
+.stories-container-right{
+    display: flex;
+}
+
+.stories-image{
+    width: 200px;
+    height: 134px;
+}
+
