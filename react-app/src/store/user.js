@@ -7,6 +7,8 @@ const FOLLOW_USER = "/users/FOLLOW_USER";
 const UNFOLLOW_USER = "/users/UNFOLLOW_USER";
 const LOAD_USER_FOLLOWERS = "/users/LOAD_USER_FOLLOWERS";
 const LOAD_USER_FOLLOWINGS = "/user/LOAD_USER_FOLLOWINGS";
+const PAGINATE_FOLLOWERS = "/user/PAGINATE_FOLLOWERS";
+const PAGINATE_FOLLOWING = "/users/PAGINATE_FOLLOWING";
 //actions
 const loadUser = (user) => {
   return {
@@ -36,6 +38,19 @@ const loadUserFollowers = (followers) => {
   };
 };
 
+const paginateFollowers = (newFollowers) => {
+  return {
+    type: PAGINATE_FOLLOWERS,
+    newFollowers,
+  };
+};
+
+const paginateFollowing = (newFollowing) => {
+  return {
+    type: PAGINATE_FOLLOWING,
+    newFollowing,
+  };
+};
 // const followUser = (userToFollow) => {
 //   return {
 //     type: FOLLOW_USER,
@@ -90,7 +105,8 @@ export const getUserfollowers =
     const resp = await csrfFetch(`/api/users/${userId}/followers?${query}`);
     if (resp.ok) {
       const followers = await resp.json();
-      dispatch(loadUserFollowers(followers));
+      if (page > 1) dispatch(paginateFollowers(followers));
+      else dispatch(loadUserFollowers(followers));
       return followers;
     }
   };
@@ -152,6 +168,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         userList: { ...state.userList, ...action.followers },
       };
+
       return userFollowerState;
     case LOAD_USER_FOLLOWINGS:
       const serFollowingsState = {
@@ -159,6 +176,19 @@ export const userReducer = (state = initialState, action) => {
         userList: { ...action.followings },
       };
       return serFollowingsState;
+    case PAGINATE_FOLLOWERS:
+      const paginateFollowersState = {
+        ...state,
+        userList: {
+          ...state.userList,
+          Followers: [
+            ...state.userList.Followers,
+            ...action.newFollowers.Followers,
+          ],
+        },
+      };
+
+      return paginateFollowersState;
     default:
       return state;
   }
