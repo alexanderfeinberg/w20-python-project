@@ -23,8 +23,7 @@ const GetAllStories = () => {
         {storiesArr && storiesArr.map((story) => {
           return (
             <div className="stories-container2">
-              <div className="stories-author">{story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}</div>
-              {/* <NavLink key={story.user.id} to={`/users/${user.id}`}></NavLink> */}
+              <div className="stories-author-info">{story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}</div>
               <div className="stories-wrapper">
                 <NavLink key={story.id} to={`/stories/${story.id}`}>
 
@@ -34,11 +33,12 @@ const GetAllStories = () => {
                 </div>
                   
                 <div className="stories-container-right">
-                  <img 
+                  <h1>Image Section</h1>
+                  {/* <img 
                       className="stories-image"
                       src={"https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg"}
                       alt=""
-                  />
+                  /> */}
                 </div>
                 </NavLink>
               </div>
