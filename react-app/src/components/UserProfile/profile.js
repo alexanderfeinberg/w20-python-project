@@ -12,7 +12,7 @@ const Profile = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(getUser(userId)).then(() => setIsLoaded(true));
-  });
+  }, [userId]);
 
   if (isLoaded) {
     return (
