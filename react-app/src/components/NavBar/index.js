@@ -9,7 +9,9 @@ import "./index.css";
 import homeIcon from "../../assets/home-icon.png"
 import logo from "../../assets/main-logo.png"
 import logo2 from "../../assets/main-logo-2.png"
+import createNewStoryIcon from "../../assets/create-story-icon.png"
 import { Redirect } from 'react-router-dom';
+
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -18,7 +20,8 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
 
   const goHome = () => {
-    window.location.reload(false)
+    history.push("/")
+    // window.location.reload(false)
   }
 
   const logoutButton = (e) => {
@@ -26,6 +29,17 @@ const NavBar = () => {
     dispatch(logout())
     history.push("/")
     alert("Successfully Logged Out")
+  }
+
+  const newStoryRoute = () => {
+    history.push("/story/new");
+    // let app = document.getElementById("app-container")
+    // app.removeChild(document.getElementById("container-1"))
+  }
+
+
+  if (window.location.href.includes("/story/new")) {
+    return null
   }
 
   return (
@@ -49,16 +63,16 @@ const NavBar = () => {
           :
           <div id="navbar">
             <img src={homeIcon} alt="Home Icon" />
-            <div>newstory</div>
+            <img src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
           </div>
         }
       </div>
       {user && (
-      <div>
+        <div>
 
-        <div>profile</div>
-        <button onClick={logoutButton}>Log Out</button>
-      </div>
+          <div onClick={() => history.push(`/users/${user.id}`)}>profile</div>
+          <button onClick={logoutButton}>Log Out</button>
+        </div>
 
       )}
     </div >

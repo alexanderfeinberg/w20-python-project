@@ -43,7 +43,7 @@ def single_story(storyId):
 
 
 # Create a Story
-@story_routes.route('/', methods=["POST"])
+@story_routes.route('', methods=["POST"])
 @login_required
 def create_story():
     form = StoryForm()
@@ -155,7 +155,7 @@ def create_like(story_id):
         story = Story.query.get(story_id)
         if not story:
             raise NotFoundError('Story not found.')
-        
+
         existing_like = Like.query.filter(Like.user_id == current_user.id).filter(
             Like.story_id == story_id).first()
 
