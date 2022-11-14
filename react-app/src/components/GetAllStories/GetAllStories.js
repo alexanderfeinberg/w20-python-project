@@ -34,11 +34,11 @@ const GetAllStories = () => {
                 <div className="stories_container_right">
                     <div className="stories_image">{story.image}</div>
                 </div>
-                <img 
+                {/* <img 
                     className="stories_img"
                     src={story.image}
                     alt=""
-                />
+                /> */}
               </NavLink>
           </div>
           </>

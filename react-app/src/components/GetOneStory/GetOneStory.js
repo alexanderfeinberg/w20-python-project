@@ -7,8 +7,8 @@ import './GetOneStory.css';
 const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
-  const user = useSelector((state) => state.session.user)
   const story = useSelector(state => state.story.singleStory);
+  console.log("story--------", story)
 
   const comments = useSelector(state => state.comment.allComments);
 
@@ -25,10 +25,13 @@ const GetOneStory = () => {
 
   return (
     <>
+    <div>{story.author.firstName} {story.author.lastName}</div>
     <div>{story.title}</div>
-    <div>{story.content}</div>
     <div>{story.image}</div>
-    <div>{comments.length}</div>
+    <div>{story.content}</div>
+    <div>{story.likeCount}</div>
+    <div>{story.commentCount}</div>
+
     </>
     );
 

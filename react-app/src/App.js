@@ -16,11 +16,11 @@ function App() {
       <NavBar />
       <h1>My Home Page</h1>
     <Switch>
-      <Route path='/'>
-        <GetAllStories />
-      </Route>
       <Route path='/stories/:storyId'>
         <GetOneStory />
+      </Route>
+      <Route path='/'>
+        <GetAllStories />
       </Route>
     </Switch>
     </BrowserRouter>
