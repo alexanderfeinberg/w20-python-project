@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../store/user";
 import { storyReducer } from "../../store/story";
+import UserInfo from "./userSideBar.js/UserInfo";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,7 @@ const Profile = () => {
           )}
         </div>
         <div className="right-container">
-          <img src={user.profile_picture} />
-          <div>{user.followerCount} Followers</div>
+          <UserInfo />
         </div>
       </div>
     );
