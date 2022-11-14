@@ -26,7 +26,7 @@ const FollowersModal = () => {
     return (
       <div className="modal-content">
         <UserListModal followers={followers} />
-        {followers.length >= 10 && (
+        {followers && followers.length >= 10 && (
           <div>
             <button onClick={handlePagination}>Show more</button>
           </div>

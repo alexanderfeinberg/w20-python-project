@@ -148,7 +148,10 @@ export const userReducer = (state = initialState, action) => {
     case LOAD_USER_LIST:
       const userListState = { ...state, userList: { ...action.users } };
     case LOAD_USER_FOLLOWERS:
-      const userFollowerState = { ...state, userList: { ...action.followers } };
+      const userFollowerState = {
+        ...state,
+        userList: { ...state.userList, ...action.followers },
+      };
       return userFollowerState;
     case LOAD_USER_FOLLOWINGS:
       const serFollowingsState = {
