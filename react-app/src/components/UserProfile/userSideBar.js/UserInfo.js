@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useContext } from "react";
 import { loadFollowings } from "../../../store/user";
 import { ModalContext } from "../../../context/Modal";
+import { followThunk } from "../../../store/user";
 
 const UserInfo = ({ user }) => {
   const followings = useSelector((state) => state.user.userList);
@@ -19,6 +20,12 @@ const UserInfo = ({ user }) => {
     setModalType("Followers");
   };
 
+  const handleFollow = () => {
+    dispatch(followThunk(user.id)).then(() => {
+      return;
+    });
+  };
+
   if (isLoaded) {
     return (
       <div>
@@ -32,7 +39,7 @@ const UserInfo = ({ user }) => {
         </div>
         <div>{user.bio}</div>
         <div>
-          <button>Follow</button>
+          <button onClick={handleFollow}>Follow</button>
         </div>
         <div>
           <h3>Following</h3>

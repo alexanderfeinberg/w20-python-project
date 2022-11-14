@@ -67,6 +67,7 @@ def get_followers_of_user(user_id):
     page = request.args.get('page', type=int)
     size = request.args.get('size', type=int)
     user = User.query.get(user_id)
+    print("FOLLOWER COUNT ", user.followers.all())
     if not user:
         raise NotFoundError("User not found")
     followers = user.followers.paginate(page=page, per_page=size).items

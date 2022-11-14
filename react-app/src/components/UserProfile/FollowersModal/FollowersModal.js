@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserfollowers } from "../../../store/user";
 
 const FollowersModal = () => {
-  dispatch = useDispatch();
-  followers = useSelector((state) => state.user.userList);
-  user = useSelector((state) => state.user.singleUser);
-  [page, setPage] = useState(1);
-  [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useDispatch();
+  const followers = useSelector((state) => state.user.userList.Followers);
+  const user = useSelector((state) => state.user.singleUser);
+  const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect((getUserfollowers) => {
+  useEffect(() => {
     dispatch(getUserfollowers(user.id, `${page}`, `10`)).then(() =>
       setIsLoaded(true)
     );
@@ -21,29 +21,37 @@ const FollowersModal = () => {
     );
   };
 
-  return (
-    <div>
-      {user.followerCount} Followers
-      <ul>
-        {followers.map((follower, idx) => {
-          return (
-            <div>
-              <li key={idx}>
-                <div>
-                  {follower.firstName} {follower.lastName}
-                </div>
-                <div>{follower.bio}</div>
-                <div>
-                  <button>Follow</button>
-                </div>
-              </li>
-            </div>
-          );
-        })}
-      </ul>
-      <div>
-        <button onClick={handlePagination}>Show more</button>
+  if (isLoaded) {
+    return (
+      <div className="modal-content">
+        {user.followerCount} Followers
+        <ul>
+          {followers.map((follower, idx) => {
+            return (
+              <div key={`main-${idx}`}>
+                <li key={idx}>
+                  <div>{follower.id}</div>
+                  <div>
+                    {follower.firstName} {follower.lastName}
+                  </div>
+                  <div key={idx}>{follower.bio}</div>
+                  <div>
+                    <button key={idx}>Follow</button>
+                  </div>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
+        {followers.length >= 10 && (
+          <div>
+            <button onClick={handlePagination}>Show more</button>
+          </div>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
+  return <h1>Loading....</h1>;
 };
+
+export default FollowersModal;

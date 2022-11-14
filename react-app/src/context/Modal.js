@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import "./Modal.css";
 import LoginForm from "../components/auth/LoginForm";
 import SignUpForm from "../components/auth/SignUpForm";
+import FollowersModal from "../components/UserProfile/FollowersModal/FollowersModal";
 export const ModalContext = React.createContext();
 
 export function ModalProvider({ children }) {
@@ -50,6 +51,7 @@ export function SelectedModals() {
   if (modalType == "Followers") {
     return (
       <div className="modal">
+        <FollowersModal />
         <div
           onClick={() => setModalType(null)}
           className="modal-background"
