@@ -28,7 +28,7 @@ return (
         {usersStories && usersStories.map((story) => {
           return (
             <>
-            <div className="stories-author">{story.author.firstName} {story.author.lastName}</div>
+            <div className="stories-author-info">{story.author.firstName} {story.author.lastName}</div>
             {/* <NavLink key={story.author.id} to={`/users/${userId}`}></NavLink> */}
             <div className="stories-wrapper">
               <NavLink key={story.id} to={`/stories/${story.id}`}>

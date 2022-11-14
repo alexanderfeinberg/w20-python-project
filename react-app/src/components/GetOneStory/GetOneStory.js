@@ -25,7 +25,6 @@ const GetOneStory = () => {
   return (
     <>
     <div className="containers">
-      <div className="container-1">1st Section</div>
       <div className="container-2">
         <div className="story-author">{story.author.firstName} {story.author.lastName}</div>
         <div className="story_title">{story.title}</div>
