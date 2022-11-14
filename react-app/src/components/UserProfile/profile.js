@@ -33,3 +33,5 @@ const Profile = () =>{
         </h1>
     </div>
 }
+
+export default Profile
