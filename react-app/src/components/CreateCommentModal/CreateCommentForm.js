@@ -1,33 +1,50 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import * as sessionActions from "../../store/session";
+import { useHistory, useParams } from 'react-router-dom';
+import createComment from '../../store/comment';
+
 import './CreateCommentForm.css';
 
 function CreateCommentForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const storyId = useParams();
+
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors([]);
 
-    if (!content){
+    let Comment = {content}
+
+    if (!Comment.content.length){
       return setErrors(['Please provide a response.'])
     }
 
-    setErrors([]);
-    return dispatch(sessionActions.login({ content })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    const payload = {
+      content
+    }
+    
+    let createdComment;
+
+    createdComment = dispatch(createComment(payload));
+
+    if (createComment) {
+      history.push(`/stories/${storyId}`);
+    }
+  };
+  
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    history.push(`/stories/${storyId}`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="Create_Comment_Form_Container">
-      <div className="Create_Comment_Form_Header">
-        <div className="Create_Comment_Form_Title">Responses</div>
+    <form onSubmit={handleSubmit} className="create_comment_form_container">
+      <div className="create_comment_form_header">
+        <div className="create_comment_form_title">Responses</div>
       </div>
       <ul className="errors">
         {errors.map((error, idx) => (
@@ -35,7 +52,7 @@ function CreateCommentForm() {
         ))}
       </ul>
         <input
-          className="Create_Comment_Form_Input"
+          className="create_comment_form_input"
           type="text"
           value={content}
           placeholder="What are your thoughts?"
