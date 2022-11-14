@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import {useDispatch, useSelector } from 'react-redux'
-import { useParams } from react-router-dom;
+import { useParams } from "react-router-dom";
 import { getUser } from "../../store/user";
 import { storyReducer } from "../../store/story";
 
@@ -12,7 +12,7 @@ const Profile = () =>{
     const [isLoaded, setIsLoaded] = useState(false)
     useEffect(()=>{
         dispatch(getUser(userId)).then(()=>setIsLoaded(true))
-    })
+    }, [userId])
 
     if(isLoaded) {
         return <div>
