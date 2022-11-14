@@ -6,7 +6,7 @@ const LOAD_USER_LIST = "/users/LOAD_USER_LIST";
 const FOLLOW_USER = "/users/FOLLOW_USER";
 const UNFOLLOW_USER = "/users/UNFOLLOW_USER";
 const LOAD_USER_FOLLOWERS = "/users/LOAD_USER_FOLLOWERS";
-
+const LOAD_USER_FOLLOWINGS = "/user/LOAD_USER_FOLLOWINGS";
 //actions
 const loadUser = (user) => {
   return {
@@ -36,10 +36,17 @@ const loadUserFollowers = (followers) => {
   };
 };
 
-const followUser = (userToFollow) => {
+// const followUser = (userToFollow) => {
+//   return {
+//     type: FOLLOW_USER,
+//     userToFollow,
+//   };
+// };
+
+const loadUserFollowings = (followings) => {
   return {
-    type: FOLLOW_USER,
-    userToFollow,
+    type: LOAD_USER_FOLLOWINGS,
+    followings,
   };
 };
 
@@ -97,6 +104,15 @@ export const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
   }
 };
 
+export const loadFollowings = (userId) => async (dispatch) => {
+  const resp = await csrfFetch(`/api/users/${userId}/followings`);
+  if (resp.ok) {
+    const followings = await resp.json();
+    dispatch(loadUserFollowings);
+    return followings;
+  }
+};
+
 let initialState = {
   singleUser: {},
   userList: {},
@@ -114,6 +130,12 @@ export const userReducer = (state = initialState, action) => {
       const userListState = { ...state, userList: { ...action.users } };
     case LOAD_USER_FOLLOWERS:
       const userFollowerState = { ...state, userList: { ...action.followers } };
+      return userFollowerState;
+    case LOAD_USER_FOLLOWINGS:
+      const serFollowingsState = {
+        ...state,
+        userList: { ...action.followings },
+      };
       return userFollowerState;
     default:
       return state;
