@@ -5,7 +5,7 @@ import { ModalContext } from "../../../context/Modal";
 import { followThunk } from "../../../store/user";
 
 const UserInfo = ({ user }) => {
-  const followings = useSelector((state) => state.user.userList);
+  const followings = useSelector((state) => state.user.userList.Followings);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
   const { setModalType } = useContext(ModalContext);
@@ -49,7 +49,7 @@ const UserInfo = ({ user }) => {
           <h3>Following</h3>
           <div>
             <ul>
-              {Object.values(followings).map((following, idx) => {
+              {followings.map((following, idx) => {
                 return (
                   <li key={idx}>
                     {following.firstName} {following.lastName}
