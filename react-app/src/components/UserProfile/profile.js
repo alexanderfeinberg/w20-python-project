@@ -3,27 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../store/user";
 import { storyReducer } from "../../store/story";
+import UserInfo from "./userSideBar.js/UserInfo";
+import "./profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
 
   const user = useSelector((state) => state.user.singleUser);
+  const currUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(getUser(userId)).then(() => setIsLoaded(true));
-  }, [userId]);
+  }, [userId, currUser]);
 
   if (isLoaded) {
     return (
-      <div>
-        <div>
-          <h1>
-            {user.firstName} {user.lastName}
-          </h1>
-        </div>
-        <div>"Home"</div>
-        <div>
+      <div className="main">
+        <div className="middle-container">
+          <div className="header">
+            <h1>
+              {user.firstName} {user.lastName}
+            </h1>
+          </div>
+          <div className="sub-nav">"Home"</div>
           {user.Stories && (
             <ul>
               {user.Stories.map((story, idx) => {
@@ -31,6 +34,9 @@ const Profile = () => {
               })}
             </ul>
           )}
+        </div>
+        <div className="right-container">
+          <UserInfo user={user} />
         </div>
       </div>
     );

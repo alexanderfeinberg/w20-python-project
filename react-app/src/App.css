@@ -1,12 +1,12 @@
 #app-container-logged-out {
-    width: 100%
+  width: 100%;
 }
 
 #app-container {
-    /* border: 5px solid red; */
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    max-width: 1504px;
-    display: flex;
+  /* border: 5px solid red; */
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  max-width: 1504px;
+  display: flex;
 }
