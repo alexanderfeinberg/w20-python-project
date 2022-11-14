@@ -75,7 +75,7 @@ export const getUser = (userId) => async (dispatch) => {
 };
 
 export const getCurrentUser = () => async (dispatch) => {
-  const res = await csrfFetch(`api/users/profile`);
+  const res = await csrfFetch(`/api/users/profile`);
   if (res.ok) {
     const user = await res.json();
     dispatch(loadCurrentUser(user));
