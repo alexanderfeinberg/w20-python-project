@@ -59,7 +59,9 @@ const UserInfo = ({ user }) => {
             </ul>
           </div>
           <div>
-            <button>See all ({user.followingCount})</button>
+            <button onClick={showFollowingModal}>
+              See all ({user.followingCount})
+            </button>
           </div>
         </div>
       </div>

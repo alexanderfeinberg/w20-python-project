@@ -52,7 +52,7 @@ export function SelectedModals() {
   if (modalType == "Followers") {
     return (
       <div className="modal">
-        <FollowingModal />
+        <FollowersModal />
         <div
           onClick={() => setModalType(null)}
           className="modal-background"
@@ -63,7 +63,7 @@ export function SelectedModals() {
   if (modalType == "Following") {
     return (
       <div className="modal">
-        <FollowersModal />
+        <FollowingModal />
         <div
           onClick={() => setModalType(null)}
           className="modal-background"

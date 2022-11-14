@@ -82,7 +82,7 @@ def get_followings_of_user(user_id):
     if not user:
         raise NotFoundError("User not found")
     followings = user.following.paginate(page=page, per_page=size).items
-    return jsonify([following.to_dict() for following in followings])
+    return jsonify({"Followings": [following.to_dict() for following in followings]})
 
 # Follow a User by id
 
