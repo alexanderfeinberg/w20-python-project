@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user
 from app.models import User, Story
 from app.errors import NotFoundError
@@ -35,6 +35,8 @@ def user(id):
         raise NotFoundError("User not found")
 
 # Get details of current User
+
+
 @user_routes.route('/profile')
 @login_required
 def get_current_user():
@@ -43,10 +45,10 @@ def get_current_user():
     if curr_user:
         stories = Story.query.filter(Story.user_id == curr_user.id)
         result = curr_user.to_dict()
-        result["followingCount"] = len([ele.to_dict() for ele in curr_user.following])
+        result["followingCount"] = len(
+            [ele.to_dict() for ele in curr_user.following])
         result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
         return result
-
 
 
 # Get all Stories by a UserId
@@ -68,8 +70,19 @@ def get_followers_of_user(user_id):
     return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
 
 
+@user_routes.route('<int:user_id>/following')
+def get_followings_of_user(user_id):
+    page = request.args.get('page', type=int)
+    size = request.args.get('size', type=int)
+    user = User.query.get(user_id)
+    if not user:
+        raise NotFoundError("User not found")
+    followings = user.following.paginate(page=page, per_page=size).items
+    return jsonify([following.to_dict() for following in followings])
 
 # Follow a User by id
+
+
 @user_routes.route("/<int:userId>/followers", methods=["POST"])
 @login_required
 def follow_user(userId):
@@ -85,8 +98,7 @@ def follow_user(userId):
     return {"message": "Successfully Followed", "statusCode": 201}
 
 
-
-#Unfollow a User by id
+# Unfollow a User by id
 @user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
 @login_required
 def remove_follow(user_id):
