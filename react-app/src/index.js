@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import { ModalProvider, SelectedModals } from './context/Modal';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 
@@ -11,7 +13,12 @@ const store = configureStore();
 function Root() {
   return (
     <Provider store={store}>
-      <App />
+      <ModalProvider>
+        <SelectedModals />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   )
 }

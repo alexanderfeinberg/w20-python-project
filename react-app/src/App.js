@@ -1,50 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-import { authenticate } from './store/session';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./components/NavBar";
+import { authenticate } from "./store/session";
+import "./App.css";
+
+import Home from "./components/home";
+import GetOneStory from "./components/GetOneStory/GetOneStory";
+import Profile from "./components/UserProfile/profile";
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.session.user);
   useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
+    dispatch(authenticate());
   }, [dispatch]);
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
-    <BrowserRouter>
+    <div id={user ? "app-container" : "app-container-logged-out"}>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
+        <Route exact path="/">
+          <Home />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path="/stories/:storyId">
+          <GetOneStory />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <Route path="/users/:userId">
+          <Profile />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </div>
   );
 }
 

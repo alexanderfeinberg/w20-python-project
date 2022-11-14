@@ -32,7 +32,7 @@ def user(id):
         result["Stories"] = [ele.to_dict_no_relations() for ele in stories]
         return result
     else:
-        return NotFoundError("User coudnl't be found.")
+        raise NotFoundError("User not found")
 
 # Get details of current User
 @user_routes.route('/profile')
@@ -52,6 +52,9 @@ def get_current_user():
 # Get all Stories by a UserId
 @user_routes.route("/<int:userId>/stories")
 def all_user_stories(userId):
+    user = User.query.get(userId)
+    if not user:
+        raise NotFoundError("User not found")
     stories = Story.query.filter(Story.user_id == userId).all()
     return jsonify({"Stories": [story.to_dict() for story in stories]})
 
@@ -75,7 +78,7 @@ def follow_user(userId):
     current = get_user_model(current_user, User)
     print("CURRENT USER ", current.following)
     if not following:
-        return NotFoundError("User not found.")
+        raise NotFoundError("User not found.")
 
     current.following.append(following)
     db.session.commit()

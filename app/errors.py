@@ -1,5 +1,5 @@
 class NotFoundError(Exception):
-    status_code = 400
+    status_code = 404
     title = "Resource not found."
 
     def __init__(self, message):
