@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./components/home";
 import GetOneStory from "./components/GetOneStory/GetOneStory";
 import Profile from "./components/UserProfile/profile";
+import CreateStory from "./components/createStory";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function App() {
           <Profile />
         </Route>
         <Route path="/story/new">
-          <h1 onClick={() => history.push("/")}>create story route test</h1>
+          <CreateStory />
         </Route>
       </Switch>
     </div>
