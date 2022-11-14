@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    width: 80px;
+    width: 100px;
     /* min-height: 100vh; */
     border: .5px solid rgb(31, 30, 30);
 }

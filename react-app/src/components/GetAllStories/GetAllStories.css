@@ -9,7 +9,7 @@ a:visited {
 .stories-container{
     box-sizing: content-box;
     display: block;
-    padding: 50px;
+    margin: 5% 10% 5% 10%;
 }
 
 .stories-author {
