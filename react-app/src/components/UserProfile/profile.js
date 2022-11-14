@@ -9,10 +9,11 @@ const Profile = () => {
   const { userId } = useParams();
 
   const user = useSelector((state) => state.user.singleUser);
+  const currUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(getUser(userId)).then(() => setIsLoaded(true));
-  }, [userId]);
+  }, [userId, currUser]);
 
   if (isLoaded) {
     return (
@@ -23,7 +24,7 @@ const Profile = () => {
           </h1>
         </div>
         <div>"Home"</div>
-        <div>
+        <div className="middle-container">
           {user.Stories && (
             <ul>
               {user.Stories.map((story, idx) => {
@@ -31,6 +32,10 @@ const Profile = () => {
               })}
             </ul>
           )}
+        </div>
+        <div className="right-container">
+          <img src={user.profile_picture} />
+          <div>{user.followerCount} Followers</div>
         </div>
       </div>
     );
