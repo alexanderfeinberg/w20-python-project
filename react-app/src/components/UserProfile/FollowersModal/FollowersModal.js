@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserfollowers } from "../../../store/user";
+import UserListModal from "./UserListModal";
 
 const FollowersModal = () => {
   const dispatch = useDispatch();
@@ -24,25 +25,7 @@ const FollowersModal = () => {
   if (isLoaded) {
     return (
       <div className="modal-content">
-        {user.followerCount} Followers
-        <ul>
-          {followers.map((follower, idx) => {
-            return (
-              <div key={`main-${idx}`}>
-                <li key={idx}>
-                  <div>{follower.id}</div>
-                  <div>
-                    {follower.firstName} {follower.lastName}
-                  </div>
-                  <div key={idx}>{follower.bio}</div>
-                  <div>
-                    <button key={idx}>Follow</button>
-                  </div>
-                </li>
-              </div>
-            );
-          })}
-        </ul>
+        <UserListModal followers={followers} />
         {followers.length >= 10 && (
           <div>
             <button onClick={handlePagination}>Show more</button>

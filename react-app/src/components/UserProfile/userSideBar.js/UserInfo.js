@@ -20,6 +20,10 @@ const UserInfo = ({ user }) => {
     setModalType("Followers");
   };
 
+  const showFollowingModal = () => {
+    setModalType("Following");
+  };
+
   const handleFollow = () => {
     dispatch(followThunk(user.id)).then(() => {
       return;
@@ -55,7 +59,7 @@ const UserInfo = ({ user }) => {
             </ul>
           </div>
           <div>
-            <a>See all ({user.followingCount})</a>
+            <button>See all ({user.followingCount})</button>
           </div>
         </div>
       </div>
