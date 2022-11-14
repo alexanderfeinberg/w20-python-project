@@ -1,0 +1,82 @@
+import NavBar from "../NavBar"
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { authenticate } from "../../store/session";
+import "./index.css"
+
+const Home = () => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user)
+    useEffect(() => {
+        dispatch(authenticate())
+      }, [dispatch])
+
+    return (
+        <div id={user ? "main-container" : "main-container-logged-out"}>
+            {!user && (
+                <div>
+                    <div id="home-upper-logged-out">
+                        <div id="home-upper-left-logged-out">
+                            <h1>
+                                Stay Curious.
+                            </h1>
+                            <p>
+                                Discover stories, thinking, and expertise from writers on any topic.
+                            </p>
+                            <button>
+                                Start reading
+                            </button>
+                        </div>
+                        <div id="home-upper-right-logged-out">
+                            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+                        </div>
+                    </div>
+                    <div id="home-lower-logged-out">
+                        <div id="home-lower-logged-out-inner">
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RE
+                            NDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+                            RENDER ALL STORIES HERE
+
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {user && (
+                <>
+                    <div id="container-2" className="border">
+                        <div className="text-center">
+                            Placeholder
+                        </div>
+                        <div className="text-center">
+                            Placeholder2
+                        </div>
+                    </div>
+
+                    <div id={user ? "container-3" : "container-3-logged-out"}>3rd Section</div>
+                </>
+
+            )}
+        </div>
+
+    )
+}
+
+export default Home

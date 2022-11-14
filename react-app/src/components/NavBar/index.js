@@ -5,17 +5,13 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { ModalContext } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/session';
+import "./index.css"
 
 const NavBar = () => {
   const dispatch = useDispatch()
   const { setModalType } = useContext(ModalContext)
   const history = useHistory()
-  const sessionUser = useSelector(state => state.session.user)
-
-  // useEffect(() => {
-  //   console.log(sessionUser)
-  // }, [sessionUser])
-
+  const user = useSelector(state => state.session.user)
 
   const logoutButton = (e) => {
     e.preventDefault()
@@ -25,30 +21,33 @@ const NavBar = () => {
   }
 
   return (
-    <nav>
-      <div>
-        <NavLink to='/' exact={true} activeClassName='active'>
-          Home
-        </NavLink>
-      </div>
+    <div id={user ? "container-1" : "container-1-logged-out"}>
+      {/* <div> */}
 
-      <div>
-        {!sessionUser
-          ?
-          <>
-            <div onClick={() => setModalType("Login")}>Login</div>
-            <div onClick={() => setModalType("Signup")}>Get Started</div>
-          </>
-          :
-          <>
-            <div>CURRENTLY LOGGED IN XD</div>
-            <div>{`Hello ${sessionUser.firstName}`}</div>
-            <button onClick={logoutButton}>Log Out</button>
-          </>
-        }
-      </div>
+        <div>
+          <NavLink to='/' exact={true} activeClassName='active'>
+            Home
+          </NavLink>
+        </div>
 
-    </nav>
+        <div>
+          {!user
+            ?
+            <>
+              <div onClick={() => setModalType("Login")}>Login</div>
+              <div onClick={() => setModalType("Signup")}>Get Started</div>
+            </>
+            :
+            <>
+              <div>CURRENTLY LOGGED IN XD</div>
+              <div>{`Hello ${user.firstName}`}</div>
+              <button onClick={logoutButton}>Log Out</button>
+            </>
+          }
+        </div>
+      {/* </div> */}
+
+    </div>
   );
 }
 

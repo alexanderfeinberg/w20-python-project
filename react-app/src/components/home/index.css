@@ -1,0 +1,124 @@
+#main-container {
+    border: 1px solid red;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    max-width: 1504px;
+    display: flex;
+    justify-content: space-between;
+}
+#main-container-logged-out {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+
+/* when below 960px width, should do a new type of view!!!
+BELOW IS FOR 960px or wider screens */
+/* #container-1 {
+    width: 79px;
+    border-right: 1px solid rgba(230, 230, 230, 1);
+} */
+#container-2 {
+    max-width: 1030px;
+    min-width: 552px;
+    width: 100%;
+}
+#container-3 {
+    width: 329px;
+    border-left: 1px solid rgba(230, 230, 230, 1);
+}
+
+/* #container-1-logged-out {
+    height: 67px;
+    background-color: rgb(255, 192, 23);
+    border-bottom: 1px solid black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%
+} */
+
+
+
+
+#home-upper-logged-out {
+    border-bottom: 1px solid black;
+    padding-top: 100px;
+    position: absolute;
+    top: 0;
+    background-color: rgb(255, 192, 23);
+    width: 100%;
+    height: 376px;
+    display: flex;
+    justify-content: right
+}
+
+#home-upper-left-logged-out {
+    min-width: 412px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 32px;
+}
+
+#home-upper-left-logged-out > h1 {
+    font-size: 72px;
+    font-weight: 400;
+    padding: 0, 32px;
+    margin-top: 48px;
+    margin-bottom: 0;
+}
+#home-upper-left-logged-out > p {
+    font-size: 25px;
+    font-weight: 400;
+    padding: 0, 32px;
+    max-width: 420px;
+}
+#home-upper-left-logged-out > button {
+    background-color: black;
+    color: white;
+    width: 213px;
+    height: 42px;
+    padding: 7px 32px 9px;
+    border-radius: 99em;
+    font-size: 20px;
+    font-weight: 400;
+    display: inline-block
+}
+
+#home-upper-right-logged-out {
+    width: 50%;
+    font-size: 24px;
+    text-align: right;
+    /* line-height: 360px; */
+    overflow-wrap: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
+#home-lower-logged-out {
+    height: 5000px;
+    /* padding-top: 420px; */
+    margin-top: 420px;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home-lower-logged-out-inner {
+    border: 1px solid black;
+    max-width: 1192px;
+    width: 100%;
+}

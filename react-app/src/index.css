@@ -8,6 +8,13 @@ html, body {
     padding: 0;
 }
 
+#root {
+    /* border: 5px solid blue; */
+    display: flex;
+    justify-content: center;
+    width: auto
+}
+
 .text-center {
     text-align: center;
 }
