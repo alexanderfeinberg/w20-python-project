@@ -1,7 +1,7 @@
 import NavBar from "../NavBar"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { ModalContext } from "../../context/Modal"
 import { authenticate } from "../../store/session";
 import "./index.css"
 
@@ -9,6 +9,7 @@ import GetAllStories from "../GetAllStories/GetAllStories";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const {setModalType} = useContext(ModalContext)
     const user = useSelector(state => state.session.user)
     useEffect(() => {
         dispatch(authenticate())
@@ -26,7 +27,7 @@ const Home = () => {
                             <p>
                                 Discover stories, thinking, and expertise from writers on any topic.
                             </p>
-                            <button>
+                            <button onClick={() => setModalType("Signup")}>
                                 Start reading
                             </button>
                         </div>

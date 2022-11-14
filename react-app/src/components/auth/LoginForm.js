@@ -33,6 +33,13 @@ const LoginForm = () => {
     }
   }, [user])
 
+  const demoLogin = () => {
+    setEmail("email1@gmail.com")
+    setPassword("password1")
+    return dispatch(login(email, password)).then(() => setModalType(null))
+  }
+
+
   return (
     <form className="modal-content" onSubmit={onLogin}>
       <div>Log In</div>
@@ -61,6 +68,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+        <button onClick={() => demoLogin()}>Demo Login</button>
       </div>
     </form>
   );
