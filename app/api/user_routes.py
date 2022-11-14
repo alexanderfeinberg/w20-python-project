@@ -64,10 +64,13 @@ def all_user_stories(userId):
 # Get all Followers of a User
 @user_routes.route('/<int:user_id>/followers')
 def get_followers_of_user(user_id):
+    page = request.args.get('page', type=int)
+    size = request.args.get('size', type=int)
     user = User.query.get(user_id)
     if not user:
         raise NotFoundError("User not found")
-    return jsonify({"Followers": [follower.to_dict() for follower in user.followers]})
+    followers = user.followers.paginate(page=page, per_page=size).items
+    return jsonify({"Followers": [follower.to_dict() for follower in followers]})
 
 
 @user_routes.route('<int:user_id>/following')

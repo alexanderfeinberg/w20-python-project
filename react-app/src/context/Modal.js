@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
-import './Modal.css';
-import LoginForm from '../components/auth/LoginForm';
-import SignUpForm from '../components/auth/SignUpForm';
+import React, { useContext, useRef, useState, useEffect } from "react";
+import "./Modal.css";
+import LoginForm from "../components/auth/LoginForm";
+import SignUpForm from "../components/auth/SignUpForm";
 export const ModalContext = React.createContext();
 
 export function ModalProvider({ children }) {
@@ -11,39 +11,52 @@ export function ModalProvider({ children }) {
 
   useEffect(() => {
     setValue(modalRef.current);
-  }, [])
+  }, []);
 
   return (
     <>
       <ModalContext.Provider value={{ value, modalType, setModalType }}>
-          {children}
+        {children}
       </ModalContext.Provider>
       <div ref={modalRef} />
     </>
   );
 }
 
-
 export function SelectedModals() {
-  const { modalType, setModalType } = useContext(ModalContext)
+  const { modalType, setModalType } = useContext(ModalContext);
   if (modalType === "Login") {
     return (
       <div className="modal">
         <LoginForm />
-        <div onClick={() => setModalType(null)} className="modal-background"></div>
+        <div
+          onClick={() => setModalType(null)}
+          className="modal-background"
+        ></div>
       </div>
-
-    )
+    );
   }
   if (modalType === "Signup") {
     return (
       <div className="modal">
         <SignUpForm />
-        <div onClick={() => setModalType(null)} className="modal-background"></div>
+        <div
+          onClick={() => setModalType(null)}
+          className="modal-background"
+        ></div>
       </div>
-
-    )
+    );
+  }
+  if (modalType == "Followers") {
+    return (
+      <div className="modal">
+        <div
+          onClick={() => setModalType(null)}
+          className="modal-background"
+        ></div>
+      </div>
+    );
   }
 
-  return null
+  return null;
 }
