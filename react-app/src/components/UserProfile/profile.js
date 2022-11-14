@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getUser } from "../../store/user";
 import { storyReducer } from "../../store/story";
 import UserInfo from "./userSideBar.js/UserInfo";
+import "./profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,14 @@ const Profile = () => {
 
   if (isLoaded) {
     return (
-      <div>
-        <div>
-          <h1>
-            {user.firstName} {user.lastName}
-          </h1>
-        </div>
-        <div>"Home"</div>
+      <div className="main">
         <div className="middle-container">
+          <div className="header">
+            <h1>
+              {user.firstName} {user.lastName}
+            </h1>
+          </div>
+          <div className="sub-nav">"Home"</div>
           {user.Stories && (
             <ul>
               {user.Stories.map((story, idx) => {
