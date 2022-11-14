@@ -7,24 +7,27 @@ a:visited {
 }
 
 .stories-container{
-    box-sizing: content-box;
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: 5% 10% 5% 10%;
 }
 
 .stories-author {
     margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #292929;
+    font-style: normal;        
+    line-height: 20px;
 }
 
 .stories-wrapper{
     display: flex;
-    box-sizing: inherit;
     flex-direction: column;
 }
 
 .stories-container-left{
     display: flex;
-    box-sizing: inherit;
     flex-direction: column;
 }
 
@@ -46,12 +49,14 @@ a:visited {
  }
 
 .stories-container-right{
-    display: flex;;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
 }
 
 .stories-image{
     width: 200px;
     height: 134px;
+    display: flex;
+    
 }
 

@@ -24,7 +24,7 @@ const GetAllStories = () => {
           return (
             <>
             <div className="stories-author">{story.author.firstName} {story.author.lastName}</div>
-            {/* <NavLink key={story.author.id} to={`/users/${userId}`}></NavLink> */}
+            {/* <NavLink key={story.user.id} to={`/users/${user.id}`}></NavLink> */}
             <div className="stories-wrapper">
               <NavLink key={story.id} to={`/stories/${story.id}`}>
 
