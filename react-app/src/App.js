@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import { authenticate } from './store/session';
 import GetAllStories from './components/GetAllStories/GetAllStories';
 import GetOneStory from './components/GetOneStory/GetOneStory';
+import GetUsersStories from './components/GetUsersStories/GetUsersStories';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ function App() {
     <Switch>
       <Route path='/stories/:storyId'>
         <GetOneStory />
+      </Route>
+      <Route path='/users/:userId/stories'>
+        <GetUsersStories />
       </Route>
       <Route path='/'>
         <GetAllStories />
