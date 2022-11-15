@@ -12,6 +12,7 @@ a:visited {
     flex-wrap: wrap;
     margin: 5% 10% 5% 10%;
     text-align: left;
+    max-width: 792px;
 }
 
 
@@ -19,9 +20,17 @@ a:visited {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: .5px solid #dddddd;
+    max-height: 250px;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.stories-divider {
+    border-bottom: .5px solid #dddddd;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 
 .stories-info {
     display: flex;
@@ -35,8 +44,9 @@ a:visited {
     color: #292929;
     font-style: normal;        
     line-height: 20px;
+    overflow: clip;
+    text-overflow: ellipsis;
 }
-
 
 
 .stories-title{
@@ -53,6 +63,10 @@ a:visited {
     line-height: 24px;
     color: #292929;
     margin-right: 30px;
+    max-height: 48px;
+    overflow: clip;
+    text-overflow: ellipsis;
+    word-break: break-word;
  }
 
 .stories-image-container{
@@ -63,5 +77,13 @@ a:visited {
 .stories-image{
     width: 200px;
     height: 134px;
+    margin-bottom: 10px;
 }
 
+.stories-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+    align-self: flex-end;
+}
