@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route path="/stories/:storyId">
           <NavBar />
-          <GetOneStory /> 
+          <GetOneStory />
         </Route>
         <Route path="/users/:userId">
           <NavBar />
@@ -40,10 +40,6 @@ function App() {
         <Route path="/story/:storyId/edit">
           <EditStory />
         </Route>
-        <Route path="/createComment/:storyId">
-          <CreateCommentForm />
-        </Route>
-       
       </Switch>
     </div>
   );
