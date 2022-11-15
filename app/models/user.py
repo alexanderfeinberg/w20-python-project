@@ -54,18 +54,17 @@ class User(db.Model, UserMixin):
     def _is_following(self, user):
         print("USER ID ", user.id)
         return self.following.filter(
-            follows.c.follower_id == user.id).count() > 0
+            follows.c.followed_id == user.id).count() > 0
 
     def follow(self, user):
         if not self._is_following(user):
-            print("NOT FOLLOWED")
+
             self.following.append(user)
             return self
-        print("ALRADY FOLLOWING")
 
     def unfollow(self, user):
         if self._is_following(user):
-            print("FOLLOWING ")
+
             self.following.remove(user)
             return self
 
