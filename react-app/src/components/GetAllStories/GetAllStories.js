@@ -53,6 +53,7 @@ const GetAllStories = () => {
                   </div>
                   </NavLink>
                 </div>
+                 <i className="fa-solid fa-ellipsis"></i>
           </div>
           )
         })}
