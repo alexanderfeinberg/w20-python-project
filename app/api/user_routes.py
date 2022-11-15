@@ -67,7 +67,7 @@ def get_followers_of_user(user_id):
     page = request.args.get('page', type=int)
     size = request.args.get('size', type=int)
     user = User.query.get(user_id)
-    print("FOLLOWER COUNT ", user.followers.all())
+
     if not user:
         raise NotFoundError("User not found")
     followers = user.followers.paginate(page=page, per_page=size).items
@@ -91,13 +91,13 @@ def get_followings_of_user(user_id):
 @login_required
 def follow_user(userId):
     following = User.query.get(userId)
-    print("FOLLOWING ", following)
     current = get_user_model(current_user, User)
-    print("CURRENT USER ", current.following)
+
     if not following:
         raise NotFoundError("User not found.")
 
-    current.following.append(following)
+    res = current.follow(following)
+    db.session.add(res)
     db.session.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
@@ -106,17 +106,19 @@ def follow_user(userId):
 @user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
 @login_required
 def remove_follow(user_id):
+    print("UNFOLLOWING")
     user = User.query.get(user_id)
     if not user:
         raise NotFoundError(f'User {user_id} does not exist.')
     current = get_user_model(current_user, User)
-    # for follower in user.followers:
-    #     if follower.id == current_user.id:
-    #         break
-    #     return {"message": f"Current user does not follow user {user_id}"}
+
     if current not in user.followers:
         return {"message": f"Current user does not follow user {user_id}"}
 
-    user.followers.remove(current_user)
+    # del user.followers[i]
+
+    resp = current.unfollow(user)
+    db.session.add(resp)
+
     db.session.commit()
     return {"message": "Successfully Unfollowed", "statusCode": 200}

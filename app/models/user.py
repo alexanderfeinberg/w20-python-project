@@ -51,6 +51,19 @@ class User(db.Model, UserMixin):
         if value == self.id:
             raise ValueError("You cannot follow yourself!")
 
+    def _is_following(self, user):
+        return self.followers.filter(follows.c.followed_id == user.id).count() > 0
+
+    def follow(self, user):
+        if not self._is_following(user):
+            self.followers.append(user)
+            return self
+
+    def unfollow(self, user):
+        if self._is_following(user):
+            self.followers.remove(user)
+            return self
+
     def to_dict(self):
 
         return {

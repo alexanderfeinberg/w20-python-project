@@ -2,14 +2,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useContext } from "react";
 import { loadFollowings } from "../../../store/user";
 import { ModalContext } from "../../../context/Modal";
-import { followThunk } from "../../../store/user";
-import { getUser } from "../../../store/user";
+import { followThunk, unfollowThunk } from "../../../store/user";
+import { getUser, getUserfollowers } from "../../../store/user";
 
 import "./UserInfo.css";
 
 const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
   const followings = useSelector((state) => state.user.userList.Followings);
+  const followers = useSelector((state) => state.user.userList.Followers);
+  const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
   const { setModalType } = useContext(ModalContext);
@@ -18,8 +20,10 @@ const UserInfo = ({ userId }) => {
 
   useEffect(() => {
     dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => getUser(userId))
-      .then(() => setisLoaded(true));
+      .then(() => dispatch(getUser(userId)).then((res) => res))
+      .then(() =>
+        dispatch(getUserfollowers(userId)).then(() => setisLoaded(true))
+      );
   }, [userId]);
 
   const showFollowerModal = () => {
@@ -31,11 +35,16 @@ const UserInfo = ({ userId }) => {
   };
 
   const handleFollow = () => {
-    console.log("USER ", user);
     user = dispatch(followThunk(userId)).then(() =>
       dispatch(getUser(userId)).then((res) => res)
     );
   };
+
+  // const handleUnfollow = () => {
+  //   user = dispatch(unfollowThunk(userId)).then(() =>
+  //     dispatch(getUserfollowers(userId)).then((res) => res)
+  //   );
+  // };
 
   if (isLoaded) {
     return (
@@ -57,6 +66,7 @@ const UserInfo = ({ userId }) => {
         <div className="action-btns">
           <button onClick={handleFollow}>Follow</button>
         </div>
+
         <div className="following-peak">
           <h4>Following</h4>
           <div className="following-list">
