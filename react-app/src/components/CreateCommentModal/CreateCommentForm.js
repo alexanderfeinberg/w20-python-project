@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { createComment, getAllComments, updateComment, deleteComment } from '../../store/comment';
-
+import EditComment from "../EditComment";
 import './CreateCommentForm.css';
 
 function CreateCommentForm({ story }) {
@@ -19,7 +19,7 @@ function CreateCommentForm({ story }) {
 
   const [dropdown, setDropdown] = useState(false)
   const [number, setNumber] = useState("")
-  const [edit, setEdit] = useState(true)
+  const [edit, setEdit] = useState(false)
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -27,6 +27,7 @@ function CreateCommentForm({ story }) {
 
   useEffect(() => {
     dispatch(getAllComments(storyId))
+    setEdit(false)
     console.log("----------", storyId)
   }, [dispatch, comment]);
 
@@ -47,6 +48,7 @@ function CreateCommentForm({ story }) {
   }
 
   const correctComment = (i) => {
+    if (edit) return
     setNumber(i)
   }
 
@@ -71,6 +73,10 @@ function CreateCommentForm({ story }) {
 
   const deleteCommentClick = (commentId) => {
     dispatch(deleteComment(commentId))
+  }
+
+  const editCommentButton = (i) => {
+    setEdit(true)
   }
 
   return (
@@ -99,28 +105,34 @@ function CreateCommentForm({ story }) {
         <div className="all_comments">
           <h3>Comments</h3>
           {commentsArr.map((comment, i) => {
-            return (
-              <div onClick={() => correctComment(i)} className="border individual-comment">
-                <div>
-                  <div>{comment.user_id}</div>
-                  <div>{comment.content}</div>
-                </div>
-                <div className="dropdown-button">
+            if (!edit || i !== number) {
+              return (
+                <div onClick={() => correctComment(i)} className="border individual-comment">
+                  <div>
+                    <div>{comment.user_id}</div>
+                    <div>{comment.content}</div>
+                  </div>
+                  <div className="dropdown-button">
 
-                  <button onClick={() => openDropdown()}>Dropdown</button>
-                  {dropdown && user.id == comment.user_id && number == i && (
-                    <>
-                      <button>Edit</button>
-                      <button onClick={() => deleteCommentClick(comment.id)}>Delete</button>
-                    </>
-                  )}
-                  {dropdown && user.id != comment.user_id && number == i && (
-                    <div>other</div>
-                  )}
+                    <button onClick={() => openDropdown()}>Dropdown</button>
+                    {dropdown && user.id == comment.user_id && number == i && (
+                      <>
+                        <button onClick={() => editCommentButton(i)}>Edit</button>
+                        <button onClick={() => deleteCommentClick(comment.id)}>Delete</button>
+                      </>
+                    )}
+                    {dropdown && user.id != comment.user_id && number == i && (
+                      <div>other</div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            } else if (edit && i == number) {
+              return (<EditComment comment={comment} />)
+            }
+          }
+
+          )}
         </div>
       </div>
     </div>
