@@ -158,7 +158,6 @@ def create_like(story_id):
 
         existing_like = Like.query.filter(Like.user_id == current_user.id).filter(
             Like.story_id == story_id).first()
-        print("EXISTING ", existing_like.count)
 
         if existing_like:
             existing_like.count += form.data['count']
