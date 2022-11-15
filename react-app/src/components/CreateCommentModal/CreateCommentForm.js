@@ -65,25 +65,26 @@ function CreateCommentForm() {
           onChange={(e) => setContent(e.target.value)}
           // required
         />
+      <button type="submit" className="create_comment_cancel_button"  onClick={cancelHandler}>Cancel</button>
       <button type="submit" className="create_comment_respond_button">Respond</button>
-      <button type="submit" className="create_comment_cancel_button"  onClick={cancelHandler}
-        >
-        Cancel
-      </button>
     </form>
 
     <div className="all_comments">
       <h3>Comments</h3>
-      {commentsArr.map((comment) => {
-        return (
-          <div className="border">
-            <div>{comment.content}</div>
-            <div>{comment.user_id}</div>
-          </div>
-        )
-      })}
+        {commentsArr.map((comment) => {
+          return (
+            <>
+            <div className="create_comment_container">
+              <div className="create_comment_user_info">{comment.user.profile_picture}</div>
+              <div className="create_comment_user_info2">{comment.user.firstName} {comment.user.lastName} </div>
+              <div className="create_comment_date">{comment.created_at.slice(5, 11)}</div>
+              <div className="create_comment_content">{comment.content}</div>
+            </div>
+          </>
+          )
+        })}
     </div>
-    </>
+  </>
   );
 }
 
