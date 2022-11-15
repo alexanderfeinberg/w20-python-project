@@ -16,7 +16,7 @@ const GetAllStories = ({stories}) => {
   useEffect(() => {
     dispatch(getUser())
   }, [dispatch]);
-    
+
   if (Object.keys(storiesArr).length === 0) {
     return null;
   }
@@ -26,14 +26,14 @@ const GetAllStories = ({stories}) => {
     history.push("/");
   };
 
-  
+
   return (
     storiesArr && (
     <div className="stories-container">
         {storiesArr && storiesArr.map((story) => {
           return (
             <>
-            <div className="stories-author-info" 
+            <div className="stories-author-info"
               onClick={() => history.push(`/users/${story.author.id}`)}>
               {story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}
             </div>
@@ -43,24 +43,24 @@ const GetAllStories = ({stories}) => {
                     <div className="stories-title">{story.title}</div>
                     <div className="stories-content">{story.content}</div>
                   </NavLink>
-                </div>  
+                </div>
                   <div className="stories-buttons">
-                    {user.id === story.user_id &&  
+                    {user && user.id === story.user_id &&
                       (<div className="stories-options-dropdown">
                         <i className="fa-solid fa-ellipsis"></i>
-                      {user.id === story.user_id && 
+                      {user.id === story.user_id &&
                         <button className="edit-story-button"
                           onClick={() => history.push(`/story/${story.id}/edit`)}>
                           Edit story
                         </button>}
-                      {user.id === story.user_id && 
+                      {user.id === story.user_id &&
                         (<button className="delete-story-button"
                           onClick={() => deleteStoryHandler(story.id)}>
                           Delete story
                         </button>)}
                     </div>)}
                   </div>
-                  
+
                   <NavLink key={story.id} to={`/stories/${story.id}`}>
                   <div className="stories-image-container">
                     <img
