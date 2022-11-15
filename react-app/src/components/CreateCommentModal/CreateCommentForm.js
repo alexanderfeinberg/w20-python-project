@@ -18,6 +18,8 @@ function CreateCommentForm({ story }) {
   const commentsArr = Object.values(comments);
 
   const [dropdown, setDropdown] = useState(false)
+  const [number, setNumber] = useState("")
+  const [edit, setEdit] = useState(true)
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -28,13 +30,24 @@ function CreateCommentForm({ story }) {
     console.log("----------", storyId)
   }, [dispatch, comment]);
 
+  useEffect(() => {
+    if (!dropdown) return;
+    const closeDropdown = () => {
+      setDropdown(false)
+    }
+    console.log(number)
+    document.addEventListener("click", closeDropdown);
+    return () => document.removeEventListener("click", closeDropdown);
+  })
+
 
   const openDropdown = () => {
     if (dropdown) return setDropdown(false)
     setDropdown(true)
   }
-  const closeDropdown = () => {
-    setDropdown(false)
+
+  const correctComment = (i) => {
+    setNumber(i)
   }
 
   const handleSubmit = (e) => {
@@ -85,20 +98,26 @@ function CreateCommentForm({ story }) {
 
         <div className="all_comments">
           <h3>Comments</h3>
-          {commentsArr.map((comment) => {
+          {commentsArr.map((comment, i) => {
             return (
-              <div className="border">
+              <div onClick={() => correctComment(i)} className="border individual-comment">
                 <div>
                   <div>{comment.user_id}</div>
                   <div>{comment.content}</div>
                 </div>
-                <button onClick={() => openDropdown()}>Dropdown</button>
-                {dropdown && (
-                  <div className="dropdown">dropdown content</div>
-                )}
-                {/* {user.id == comment.user_id && (
-                  <button onClick={() => deleteCommentClick(comment.id)}>test</button>
-                )} */}
+                <div className="dropdown-button">
+
+                  <button onClick={() => openDropdown()}>Dropdown</button>
+                  {dropdown && user.id == comment.user_id && number == i && (
+                    <>
+                      <button>Edit</button>
+                      <button onClick={() => deleteCommentClick(comment.id)}>Delete</button>
+                    </>
+                  )}
+                  {dropdown && user.id != comment.user_id && number == i && (
+                    <div>other</div>
+                  )}
+                </div>
               </div>
             )
           })}
