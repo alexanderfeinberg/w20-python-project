@@ -41,11 +41,12 @@ const GetAllStories = ({stories}) => {
     return null;
   }
 
-  const deleteHandler = (storyId) => {
+  const deleteStoryHandler = (storyId) => {
     dispatch(deleteStory(storyId));
     history.push("/");
   };
 
+  
   return (
     storiesArr && (
     <div className="stories-container">
@@ -53,24 +54,28 @@ const GetAllStories = ({stories}) => {
           return (
             <div className="stories-container2">
                 <div className="stories-info">
-                  <div className="stories-author-info" onClick={() => history.push(`/users/${user.id}`)}>{story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}
-                    <NavLink key={user.id} to={`/users/${user.id}`}></NavLink>
+                  <div className="stories-author-info" 
+                    onClick={() => history.push(`/users/${story.author.id}`)}>
+                    {story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}
                   </div>
                   <NavLink key={story.id} to={`/stories/${story.id}`}>
-                      <div className="stories-title">{story.title}</div>
+                    <div className="stories-title">{story.title}</div>
                     <div className="stories-content">{story.content}</div>
                   </NavLink>
-                  {user && showMenu &&  <button type='button' className="stories-options-dropdown">
-                  <i className="fa-solid fa-ellipsis"></i>
-                    {user && <button className="edit-story-button"
-                      onClick={() => history.push(`/story/${story.id}/edits`)}>
-                      Edit story
-                    </button>}
-                    {user && <button className="delete-story-button"
-                      onClick={() => deleteHandler(story.id)}>
-                      Delete story
-                    </button>}
-                  </button>}
+                  {user.id === story.user_id &&  
+                    (<button type='button' className="stories-options-dropdown">
+                      <i className="fa-solid fa-ellipsis"></i>
+                    {user.id === story.user_id && 
+                      <button className="edit-story-button"
+                        onClick={() => history.push(`/story/${story.id}/edit`)}>
+                        Edit story
+                      </button>}
+                    {user.id === story.user_id && 
+                      (<button className="delete-story-button"
+                        onClick={() => deleteStoryHandler(story.id)}>
+                        Delete story
+                      </button>)}
+                  </button>)}
                 </div>  
 
                   <div className="stories-image-container">
