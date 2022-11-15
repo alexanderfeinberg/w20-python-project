@@ -56,7 +56,7 @@ function CreateCommentForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-        <input
+        <textarea
           className="create_comment_form_input"
           type="text"
           value={content}
