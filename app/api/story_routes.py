@@ -26,7 +26,7 @@ def validation_errors_to_error_messages(validation_errors):
 @story_routes.route('/')
 def all_stories():
     stories = Story.query.all()
-    print(stories)
+
     if not stories:
         raise NotFoundError("No stories found.")
     return jsonify({"Stories": [story.to_dict() for story in stories]})
@@ -124,10 +124,10 @@ def create_comment(story_id):
     if form.validate_on_submit():
         story = Story.query.get(story_id)
         new_comment = Comment(
-        user = get_user_model(current_user, User),
-        story_id = story_id,
-        content = form.data['content'],
-        created_at = datetime.now())
+            user=get_user_model(current_user, User),
+            story_id=story_id,
+            content=form.data['content'],
+            created_at=datetime.now())
         db.session.add(new_comment)
         db.session.commit()
         return jsonify(new_comment.to_dict())

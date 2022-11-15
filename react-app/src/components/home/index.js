@@ -3,8 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from "../../context/Modal"
 import { authenticate } from "../../store/session";
+import { getAllStories as getAllStoriesThunk } from "../../store/story";
 import "./index.css"
-
 import GetAllStories from "../GetAllStories/GetAllStories";
 
 const Home = () => {
@@ -13,7 +13,10 @@ const Home = () => {
     const user = useSelector(state => state.session.user)
     useEffect(() => {
         dispatch(authenticate())
+        dispatch(getAllStoriesThunk())
       }, [dispatch])
+    const stories = useSelector(state => state.story.allStories)
+
 
     return (
         <div id={user ? "main-container" : "main-container-logged-out"}>
@@ -37,7 +40,7 @@ const Home = () => {
                     </div>
                     <div id="home-lower-logged-out">
                         <div id="home-lower-logged-out-inner">
-                            <GetAllStories />
+                            <GetAllStories stories={stories} />
                         </div>
                     </div>
                 </div>
@@ -47,7 +50,7 @@ const Home = () => {
                 <>
                     <div id="container-2" className="border">
                         <div className="text-center">
-                            <GetAllStories />
+                            <GetAllStories stories={stories} />
                         </div>
                         <div className="text-center">
                             Placeholder2

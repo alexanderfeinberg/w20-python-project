@@ -5,6 +5,7 @@ import { getUser } from "../../store/user";
 import { storyReducer } from "../../store/story";
 import UserInfo from "./userSideBar.js/UserInfo";
 import "./profile.css";
+import { getUsersStories } from "../../store/story";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,13 @@ const Profile = () => {
   const user = useSelector((state) => state.user.singleUser);
   const currUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+  const stories = useSelector(state => state.story.allStories)
+
   useEffect(() => {
-    dispatch(getUser(userId)).then(() => setIsLoaded(true));
+    dispatch(getUser(userId))
+    .then(() => dispatch(getUsersStories(userId)))
+    .then(() => setIsLoaded(true));
+
   }, [userId, currUser]);
 
   if (isLoaded) {

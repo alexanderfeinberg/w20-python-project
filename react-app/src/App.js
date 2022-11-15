@@ -10,7 +10,7 @@ import GetOneStory from "./components/GetOneStory/GetOneStory";
 import Profile from "./components/UserProfile/profile";
 import CreateStory from "./components/createStory";
 import CreateCommentForm from "./components/CreateCommentModal/CreateCommentForm";
-import GetUsersStories from "./components/GetUsersStories/GetUsersStories";
+import EditStory from "./components/editStory";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,9 +26,6 @@ function App() {
           <NavBar />
           <Home />
         </Route>
-        <Route path="/users/:userId/stories">
-          <GetUsersStories />
-        </Route>
         <Route path="/stories/:storyId">
           <NavBar />
           <GetOneStory /> 
@@ -39,6 +36,9 @@ function App() {
         </Route>
         <Route path="/story/new">
           <CreateStory />
+        </Route>
+        <Route path="/story/:storyId/edit">
+          <EditStory />
         </Route>
         <Route path="/createComment/:storyId">
           <CreateCommentForm />

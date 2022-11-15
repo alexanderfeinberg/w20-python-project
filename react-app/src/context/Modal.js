@@ -55,7 +55,7 @@ export function SelectedModals() {
         <FollowersModal />
         <div
           onClick={() => setModalType(null)}
-          className="modal-background"
+          className="modal-background follow-background"
         ></div>
       </div>
     );
@@ -66,7 +66,7 @@ export function SelectedModals() {
         <FollowingModal />
         <div
           onClick={() => setModalType(null)}
-          className="modal-background"
+          className="modal-background follow-background"
         ></div>
       </div>
     );
