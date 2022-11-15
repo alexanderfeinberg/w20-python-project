@@ -24,23 +24,23 @@ const GetUsersStories = () => {
 
 return (
     usersStories && (
-    <div className="stories_container">
+    <div className="stories-container">
         {usersStories && usersStories.map((story) => {
           return (
             <>
-            <div className="stories_author">{story.author.firstName} {story.author.lastName}</div>
+            <div className="stories-author-info">{story.author.firstName} {story.author.lastName}</div>
             {/* <NavLink key={story.author.id} to={`/users/${userId}`}></NavLink> */}
-            <div className="stories_wrapper">
+            <div className="stories-wrapper">
               <NavLink key={story.id} to={`/stories/${story.id}`}>
                 <div className="stories_container_left">
-                    <div className="stories_title">{story.title}</div>
-                    <div className="stories_content">{story.content}</div>
+                    <div className="stories-title">{story.title}</div>
+                    <div className="stories-content">{story.content}</div>
                 </div>
-                <div className="stories_container_right">
-                    <div className="stories_image">{story.image}</div>
+                <div className="stories-container-right">
+                    <div className="stories-image">{story.image}</div>
                 </div>
                 {/* <img 
-                    className="stories_img"
+                    className="stories-img"
                     src={story.image}
                     alt=""
                 /> */}
