@@ -36,7 +36,7 @@ const GetOneStory = () => {
       <div className="container-2">
         <div className="story-info">
         <div className="story-header">
-          <div className="story-author-info">{story.author.firstName} {story.author.lastName}</div>
+          <div className="story-author-info">{story?.author?.firstName} {story.author.lastName}</div>
           <div className="story-author-info2"> {story.createdAt.slice(5, 11)}</div>
         </div>
         <div className="story-title">{story.title}</div>

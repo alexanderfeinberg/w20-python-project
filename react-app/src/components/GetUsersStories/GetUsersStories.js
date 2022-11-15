@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { getAllStories } from '../../store/story';
+import { NavLink, useParams } from "react-router-dom";
+import { getUsersStories } from '../../store/story';
 import './GetUsersStories.css';
 
 
 const GetUsersStories = () => {  
   const dispatch = useDispatch();
+  const { userId } = useParams();
 
   const user = useSelector((state) => state.session.user);
   const stories = useSelector(state => state.story.allStories);
   const storiesArr = Object.values(stories);  
   const usersStories = storiesArr.filter((story) => story.user_id === user.id);
+  console.log("stories-----", stories)
 
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    dispatch(getAllStories())
+    dispatch(getUsersStories(userId))
     .then(() => setIsLoaded(true))
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
 
 

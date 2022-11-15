@@ -31,10 +31,10 @@ a:visited {
     line-height: 20px;
 }
 
-.stories-info {
+/* .stories-info {
     display: flex;
     flex-direction: column;
-}
+} */
 
 .stories-container-left{
     display: flex;
@@ -59,7 +59,7 @@ a:visited {
 
 .stories-container-right{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .stories-image{

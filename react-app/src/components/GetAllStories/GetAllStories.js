@@ -43,6 +43,7 @@ const GetAllStories = () => {
                   <div className="stories-container-left">
                       <div className="stories_title">{story.title}</div>
                     <div className="stories-content">{story.content}</div>
+                  </div>
                   <div className="stories-container-right">
                     <img 
                         className="stories-image"
@@ -50,8 +51,6 @@ const GetAllStories = () => {
                         alt=""
                     />
                   </div>
-                  </div>
-                    
                   </NavLink>
                 </div>
           </div>
