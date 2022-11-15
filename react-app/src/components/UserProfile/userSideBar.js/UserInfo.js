@@ -77,13 +77,15 @@ const UserInfo = ({ userId }) => {
         <div className="bio">{user.bio}</div>
         <div className="action-btns">
           {isFollowingUser && user.id != currentUser.id && (
-            <button id="unfollow" onClick={handleUnfollow}>
+            <button className="unfollow" onClick={handleUnfollow}>
               Unfollow
             </button>
           )}
 
           {!isFollowingUser && user.id != currentUser.id && (
-            <button onClick={handleFollow}>Follow</button>
+            <button className="follow-btn" onClick={handleFollow}>
+              Follow
+            </button>
           )}
         </div>
 
