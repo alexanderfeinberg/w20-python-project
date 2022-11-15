@@ -6,28 +6,28 @@ const DESTROY_COMMENT = "/comments/DESTROY_COMMENT"
 
 
 // ACTIONS
-const allComments = (comments) => {
+export const allComments = (comments) => {
     return {
         type: LOAD_ALL_COMMENTS,
         comments
     }
 }
 
-const newComment = (comment) => {
+export const newComment = (comment) => {
     return {
         type: NEW_COMMENT,
         comment
     }
 }
 
-const editComment = (comment) => {
+export const editComment = (comment) => {
     return {
         type: EDIT_COMMENT,
         comment
     }
 }
 
-const destroyComment = (comment) => {
+export const destroyComment = (comment) => {
     return {
         type: DESTROY_COMMENT,
         comment

@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./components/home";
 import GetOneStory from "./components/GetOneStory/GetOneStory";
 import Profile from "./components/UserProfile/profile";
+import CreateCommentForm from "./components/CreateCommentModal/CreateCommentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/users/:userId">
           <Profile />
+        </Route>
+        <Route path="/createComment/:storyId">
+          <CreateCommentForm />
         </Route>
       </Switch>
     </div>
