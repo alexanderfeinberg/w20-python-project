@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider, SelectedModals } from './context/Modal';
+import { ModalProvider2, SelectedModals2 } from './context/Modal2';
 import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
@@ -13,12 +14,15 @@ const store = configureStore();
 function Root() {
   return (
     <Provider store={store}>
-      <ModalProvider>
-        <SelectedModals />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ModalProvider>
+      <ModalProvider2>
+        <ModalProvider>
+          <SelectedModals />
+          <SelectedModals2 />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ModalProvider>
+      </ModalProvider2>
     </Provider>
   )
 }

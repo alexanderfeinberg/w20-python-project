@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { addLikeToStory, getSingleStory } from "../../store/story";
 import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
 import "./GetOneStory.css";
+import { ModalContext2 } from "../../context/Modal2";
 
 const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
   const history = useHistory();
+  const {setModalType2} = useContext(ModalContext2)
 
   const story = useSelector((state) => state.story.singleStory);
   const count = useSelector((state) => state.story.singleStory.likeCount);
@@ -69,7 +71,7 @@ const GetOneStory = () => {
               </div>
               <div
                 className="story-comments"
-                onClick={() => history.push(`/createComment/${storyId}`)}
+                onClick={() => setModalType2("comments")}
               >
                 <img
                   className="comment-icon"
