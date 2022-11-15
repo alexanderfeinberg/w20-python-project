@@ -63,7 +63,7 @@ export const getAllStories = () => async (dispatch) => {
 
 // Get all Stories by a UserId
 export const getUsersStories = (userId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/user/${userId}/stories`);
+  const res = await csrfFetch(`/api/users/${userId}/stories`);
   if (res.ok) {
     const stories = await res.json();
     dispatch(usersStories(stories));
@@ -83,11 +83,12 @@ export const getSingleStory = (storyId) => async (dispatch) => {
 
 // Create a Story
 export const createStory = (data) => async (dispatch) => {
-  const res = await csrfFetch("/api/stories", {
+  const res = await csrfFetch("/api/stories/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+  console.log(res);
   if (res.ok) {
     const story = res.json();
     dispatch(newStory(story));
@@ -147,9 +148,9 @@ export const storyReducer = (state = initialState, action) => {
       });
       return usersStories;
     case LOAD_SINGLE_STORIES:
-      const singleStory = { ...state, singleStory: {} };
-      singleStory.singleStory = action.story;
-      return singleStory;
+      const singleStory = { ...state, singleStory: action.story };
+      // singleStory.singleStory = action.story;
+      return { ...singleStory };
     case NEW_STORY:
       const newStory = { ...state, singleStory: {} };
       newStory.singleStory = action.story;

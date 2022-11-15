@@ -6,28 +6,28 @@ const DESTROY_COMMENT = "/comments/DESTROY_COMMENT"
 
 
 // ACTIONS
-const allComments = (comments) => {
+export const allComments = (comments) => {
     return {
         type: LOAD_ALL_COMMENTS,
         comments
     }
 }
 
-const newComment = (comment) => {
+export const newComment = (comment) => {
     return {
         type: NEW_COMMENT,
         comment
     }
 }
 
-const editComment = (comment) => {
+export const editComment = (comment) => {
     return {
         type: EDIT_COMMENT,
         comment
     }
 }
 
-const destroyComment = (comment) => {
+export const destroyComment = (comment) => {
     return {
         type: DESTROY_COMMENT,
         comment
@@ -38,7 +38,7 @@ const destroyComment = (comment) => {
 // THUNKS
 
 // Get All Comment
-const getAllComments = (storyId) => async (dispatch) => {
+export const getAllComments = (storyId) => async (dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}/comments`)
     if (res.ok) {
         const comments = await res.json()
@@ -48,7 +48,7 @@ const getAllComments = (storyId) => async (dispatch) => {
 }
 
 // Create a Comment
-const createComment = (storyId, data) => async(dispatch) => {
+export const createComment = (storyId, data) => async(dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
@@ -62,7 +62,7 @@ const createComment = (storyId, data) => async(dispatch) => {
 }
 
 // Edit a Commment
-const updateComment = (commentId, data) => async (dispatch) => {
+export const updateComment = (commentId, data) => async (dispatch) => {
     const res = await csrfFetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -76,7 +76,7 @@ const updateComment = (commentId, data) => async (dispatch) => {
 }
 
 // Delete a Comment
-const deleteComment = (commentId) => async (dispatch) => {
+export const deleteComment = (commentId) => async (dispatch) => {
     const res = await csrfFetch(`/api/comments/${commentId}`, {
         method: "DELETE",
     })
@@ -97,7 +97,7 @@ export const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_COMMENTS:
             const allComments = {...state, allComments: {}}
-            action.stories.Stories.forEach(ele => {
+            action.comments.Comments.forEach(ele => {
                 allComments.allComments[ele.id] = ele
             })
             return allComments
