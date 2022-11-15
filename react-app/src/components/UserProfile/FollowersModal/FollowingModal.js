@@ -24,7 +24,7 @@ const FollowingModal = () => {
 
   if (isLoaded) {
     return (
-      <div className="modal-content">
+      <div className="modal-content follow">
         <UserListModal following={following} />
         {following && following.length >= 10 && (
           <div>

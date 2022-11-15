@@ -1,3 +1,5 @@
+import "./UserListModal.css";
+
 const UserListModal = ({ followers, following }) => {
   const followData = followers ? followers : following;
   const title = followers ? "Followers" : "Following";
@@ -7,14 +9,14 @@ const UserListModal = ({ followers, following }) => {
       <ul>
         {followData.map((user, idx) => {
           return (
-            <div key={`main-${idx}`}>
+            <div key={`main-${idx}`} className="follower">
               <li key={idx}>
                 <div>{user.id}</div>
                 <div>
                   {user.firstName} {user.lastName}
                 </div>
                 <div key={idx}>{user.bio}</div>
-                <div>
+                <div className="action-btns">
                   <button key={idx}>Follow</button>
                 </div>
               </li>

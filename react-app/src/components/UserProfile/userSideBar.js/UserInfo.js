@@ -16,7 +16,7 @@ const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
   const followings = useSelector((state) => state.user.userList.Followings);
   // const followers = useSelector((state) => state.user.userList.Followers);
-  // const currentUser = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
   const [isFollowingUser, setFollowsUser] = useState(false);
@@ -76,11 +76,13 @@ const UserInfo = ({ userId }) => {
         </div>
         <div className="bio">{user.bio}</div>
         <div className="action-btns">
-          {isFollowingUser ? (
+          {isFollowingUser && user.id != currentUser.id && (
             <button id="unfollow" onClick={handleUnfollow}>
               Unfollow
             </button>
-          ) : (
+          )}
+
+          {!isFollowingUser && user.id != currentUser.id && (
             <button onClick={handleFollow}>Follow</button>
           )}
         </div>
