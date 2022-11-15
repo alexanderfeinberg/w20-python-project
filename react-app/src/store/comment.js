@@ -97,7 +97,7 @@ export const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_COMMENTS:
             const allComments = {...state, allComments: {}}
-            action.stories.Stories.forEach(ele => {
+            action.comments.Comments.forEach(ele => {
                 allComments.allComments[ele.id] = ele
             })
             return allComments

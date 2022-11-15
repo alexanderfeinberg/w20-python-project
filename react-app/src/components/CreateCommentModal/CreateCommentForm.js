@@ -18,9 +18,10 @@ function CreateCommentForm() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllComments())
+    console.log("USE EFFECT RUNNING")
+    dispatch(getAllComments(storyId))
   }, [dispatch]);
- 
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ function CreateCommentForm() {
       history.push(`/stories/${storyId}`);
     }
   };
-  
+
   const cancelHandler = (e) => {
     e.preventDefault();
     history.push(`/stories/${storyId}`);
@@ -73,13 +74,13 @@ function CreateCommentForm() {
     </form>
 
     <div className="all_comments">
+      <h3>Comments</h3>
       {commentsArr.map((comment) => {
         return (
-          <>
-            <h3>Comments</h3>
+          <div className="border">
             <div>{comment.content}</div>
             <div>{comment.user_id}</div>
-          </>
+          </div>
         )
       })}
     </div>
