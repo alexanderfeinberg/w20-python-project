@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
-import { getSingleStory } from '../../store/story';
+import { addLikeToStory, getSingleStory } from '../../store/story';
 import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
 import './GetOneStory.css';
@@ -11,8 +11,9 @@ const GetOneStory = () => {
   const { storyId } = useParams();
   const history = useHistory();
   
-  const story = useSelector(state => state.story.singleStory);
-
+  const story = useSelector(state => state.story.singleStory);  
+  const count = useSelector(state => state.story.singleStory.likeCount)
+  
   const comments = useSelector(state => state.comment.allComments);
   const comment = useSelector(state => state.comment.singleComment);
 
@@ -23,9 +24,11 @@ const GetOneStory = () => {
     .then(() => setIsLoaded(true))
   }, [dispatch, storyId, comment]);
   
-  if (Object.keys(story).length === 0) {
-    return null;
-  }
+  useEffect(() => {
+    dispatch(addLikeToStory(storyId, count))
+    .then(() => setIsLoaded(true))
+  }, [dispatch, storyId, count]);
+
 
   return (
     <>
@@ -44,7 +47,7 @@ const GetOneStory = () => {
         />        
         <div className="story-content">{story.content}</div>
         <div className="story-likes-comments">
-          <div className="story-likes">
+          <div className="story-likes" onClick={() => dispatch(addLikeToStory(storyId, count))}>
             <img className="like-icon" src={likeIcon} alt="Like Icon"/> 
               <span className="story-like-counts">{story.likeCount}</span>
           </div>
