@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getSingleStory } from '../../store/story';
 import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
@@ -9,16 +9,19 @@ import './GetOneStory.css';
 const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
+  const history = useHistory();
+  
   const story = useSelector(state => state.story.singleStory);
 
   const comments = useSelector(state => state.comment.allComments);
+  const comment = useSelector(state => state.comment.singleComment);
 
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     dispatch(getSingleStory(storyId))
     .then(() => setIsLoaded(true))
-  }, [dispatch, storyId]);
+  }, [dispatch, storyId, comment]);
   
   if (Object.keys(story).length === 0) {
     return null;
@@ -43,7 +46,8 @@ const GetOneStory = () => {
         <div className="story-likes-comment">
           <img className="like-icon" src={likeIcon} alt="Like Icon"/> 
             <span className="story-likes">{story.likeCount}</span>
-          <img className="comment-icon" src={commentIcon} alt="Comment Icon" /> {story.commentCount}      
+          <img className="comment-icon" src={commentIcon} alt="Comment Icon" onClick={() => history.push(`/createComment/${storyId}`)}    
+          /> {story.commentCount}  
         </div>
         </div>
       </div>
