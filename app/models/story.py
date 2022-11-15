@@ -14,8 +14,10 @@ class Story(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
     user = db.relationship("User", back_populates="stories")
-    comments = db.relationship("Comment", back_populates="story")
-    likes = db.relationship("Like", back_populates="story")
+    comments = db.relationship(
+        "Comment", back_populates="story", cascade="all, delete")
+    likes = db.relationship(
+        "Like", back_populates="story", cascade="all,delete")
 
     def to_dict(self):
 
