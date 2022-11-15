@@ -148,9 +148,9 @@ export const storyReducer = (state = initialState, action) => {
       });
       return usersStories;
     case LOAD_SINGLE_STORIES:
-      const singleStory = { ...state, singleStory: {} };
-      singleStory.singleStory = action.story;
-      return singleStory;
+      const singleStory = { ...state, singleStory: action.story };
+      // singleStory.singleStory = action.story;
+      return {...singleStory};
     case NEW_STORY:
       const newStory = { ...state, singleStory: {} };
       newStory.singleStory = action.story;
