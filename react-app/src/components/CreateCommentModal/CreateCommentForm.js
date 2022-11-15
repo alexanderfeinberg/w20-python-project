@@ -113,7 +113,7 @@ function CreateCommentForm({ story }) {
                     <div>{comment.content}</div>
                   </div>
                   <div className="dropdown-button">
-
+                  {/* <i onClick={() => openDropdown()} className="fa-solid fa-ellipsis"></i> */}
                     <button onClick={() => openDropdown()}>Dropdown</button>
                     {dropdown && user.id == comment.user_id && number == i && (
                       <>
