@@ -82,3 +82,24 @@
     color: #292929;
     margin-top: 10px;
 }
+
+.individual-comment {
+    display:flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+/* dropdowns */
+.dropdown {
+    position: absolute;
+    z-index: 1
+}
+
+.dropdown-button {
+    width: 80px
+}

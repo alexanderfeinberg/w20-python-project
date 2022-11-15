@@ -3,7 +3,7 @@ const LOAD_ALL_COMMENTS = "/comments/LOAD_ALL_COMMENTS"
 const NEW_COMMENT = "/comments/NEW_COMMENT"
 const EDIT_COMMENT = "/comments/EDIT_COMMENT"
 const DESTROY_COMMENT = "/comments/DESTROY_COMMENT"
-
+const TEST_COMMENT = "/comments/TEST_COMMENT"
 
 // ACTIONS
 export const allComments = (comments) => {
@@ -31,6 +31,12 @@ export const destroyComment = (commentId) => {
     return {
         type: DESTROY_COMMENT,
         commentId
+    }
+}
+
+export const testComment = () => {
+    return {
+        type: TEST_COMMENT
     }
 }
 
@@ -119,7 +125,10 @@ export const commentReducer = (state = initialState, action) => {
             const deleteComment = {...state, allComments: {...state.allComments}, singleComment: {}}
             delete deleteComment.allComments[action.commentId]
             return {...deleteComment}
-
+        case TEST_COMMENT:
+            const test = {...state, singleComment: {...state.singleComment}}
+            test.singleComment = {}
+            return test
 
         default:
             return state
