@@ -7,6 +7,7 @@ import UserInfo from "./userSideBar.js/UserInfo";
 import "./profile.css";
 import { getUsersStories } from "../../store/story";
 import GetAllStories from "../GetAllStories/GetAllStories";
+import FollowingSneakPeak from "./userSideBar.js/FollowingSneakPeak";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Profile = () => {
         </div>
         <div className="right-container">
           <UserInfo userId={user.id} />
+          <FollowingSneakPeak userId={user.id} />
         </div>
       </div>
     );
