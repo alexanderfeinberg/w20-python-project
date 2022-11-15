@@ -25,8 +25,8 @@ class User(db.Model, UserMixin):
     followers = db.relationship(
         "User",
         secondary=follows,
-        primaryjoin=(follows.c.follower_id == id),
-        secondaryjoin=(follows.c.followed_id == id),
+        primaryjoin=(follows.c.followed_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
         backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
 
@@ -52,6 +52,7 @@ class User(db.Model, UserMixin):
             raise ValueError("You cannot follow yourself!")
 
     def _is_following(self, user):
+        print("USER ID ", user.id)
         return self.following.filter(
             follows.c.follower_id == user.id).count() > 0
 
