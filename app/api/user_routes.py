@@ -123,3 +123,11 @@ def remove_follow(user_id):
 
     db.session.commit()
     return {"message": "Successfully Unfollowed", "statusCode": 200}
+
+
+# Check if current user follows target user
+@user_routes.route('/<int:user_id>/isFollowing')
+@login_required
+def is_following(user_id):
+    user = get_user_model(current_user, User)
+    return {'isFollowing': user.is_following(user_id)}

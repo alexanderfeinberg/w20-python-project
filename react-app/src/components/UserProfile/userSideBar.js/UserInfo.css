@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.unfollow button {
+#unfollow {
   background-color: white;
   color: rgb(26, 137, 23);
   border: 1px solid rgb(26, 137, 23);
