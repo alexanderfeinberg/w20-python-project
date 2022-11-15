@@ -48,15 +48,14 @@ function CreateCommentForm() {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="create_comment_form_container">
-      <div className="create_comment_form_header">
-        <div className="create_comment_form_title">Responses ()</div>
-      </div>
-      <ul className="errors">
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+    <div className="comments_wrapper">
+      <form onSubmit={handleSubmit} className="create_comment_form_container">
+        <div className="create_comment_form_header">
+          <div className="create_comment_form_title"> Responses ({commentsArr.length})</div>
+        </div>
+        <ul className="errors">
+          {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+        </ul>
         <textarea
           className="create_comment_form_input"
           type="text"
@@ -65,24 +64,28 @@ function CreateCommentForm() {
           onChange={(e) => setContent(e.target.value)}
           // required
         />
-      <button type="submit" className="create_comment_cancel_button"  onClick={cancelHandler}>Cancel</button>
-      <button type="submit" className="create_comment_respond_button">Respond</button>
-    </form>
+        <button type="submit" className="create_comment_cancel_button"  onClick={cancelHandler}>Cancel</button>
+        <button type="submit" className="create_comment_respond_button">Respond</button>
+      </form>
 
-    <div className="all_comments">
-      <h3>Comments</h3>
-        {commentsArr.map((comment) => {
-          return (
-            <>
-            <div className="create_comment_container">
-              <div className="create_comment_user_info">{comment.user.profile_picture}</div>
-              <div className="create_comment_user_info2">{comment.user.firstName} {comment.user.lastName} </div>
-              <div className="create_comment_date">{comment.created_at.slice(5, 11)}</div>
-              <div className="create_comment_content">{comment.content}</div>
-            </div>
-          </>
-          )
-        })}
+      <div className="all_comments">
+        <h3>Comments</h3>
+          {commentsArr.map((comment) => {
+            return (
+              <>
+              <div className="all_comments_container">
+                <div className="all_comments_user_header">
+                  <div className="all_comments_user_info">{comment.user.profile_picture} {comment.user.firstName} {comment.user.lastName}</div>
+                    <i className="fa-solid fa-ellipsis"></i>
+                </div>
+                <div className="all_comments_date">{comment.created_at.slice(5, 11)}</div>
+                <div className="all_comments_content">{comment.content}</div>
+
+              </div>
+            </>
+            )
+          })}
+      </div>
     </div>
   </>
   );
