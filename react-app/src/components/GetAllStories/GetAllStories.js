@@ -13,29 +13,9 @@ const GetAllStories = ({stories}) => {
   const user = useSelector((state) => state.session.user);
   const storiesArr = Object.values(stories);
 
-  const [showMenu, setShowMenu] = useState(false);
-
   useEffect(() => {
     dispatch(getUser())
   }, [dispatch]);
-
-    const openMenu = () => {
-      if (showMenu) return;
-      setShowMenu(true);
-    };
-    
-    useEffect(() => {
-      if (!showMenu) return;
-  
-      const closeMenu = () => {
-        setShowMenu(false);
-      };
-  
-      document.addEventListener('click', closeMenu);
-    
-      return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
-  
     
   if (Object.keys(storiesArr).length === 0) {
     return null;
@@ -77,7 +57,8 @@ const GetAllStories = ({stories}) => {
                       </button>)}
                   </button>)}
                 </div>  
-
+                  
+                  <NavLink key={story.id} to={`/stories/${story.id}`}>
                   <div className="stories-image-container">
                     <img
                         className="stories-image"
@@ -85,6 +66,7 @@ const GetAllStories = ({stories}) => {
                         alt=""
                     />
                   </div>
+                  </NavLink>
                 </div>
           )
         })}
