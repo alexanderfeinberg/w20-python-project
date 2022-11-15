@@ -15,3 +15,6 @@ class Like(db.Model):
 
     story = db.relationship("Story", back_populates="likes")
     user = db.relationship("User", back_populates="likes")
+
+    def get_count(self):
+        return self.count

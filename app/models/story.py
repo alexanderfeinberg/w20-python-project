@@ -18,9 +18,10 @@ class Story(db.Model):
     likes = db.relationship("Like", back_populates="story")
 
     def to_dict(self):
+
         return {"id": self.id, "user_id": self. user_id,
                 "title": self.title, "image": self.image, "content": self.content, "createdAt": self.created_at,
-                'author': self.user.to_dict(), 'likeCount': len(self.likes), 'commentCount': len(self.comments)}
+                'author': self.user.to_dict(), 'likeCount': sum(like.get_count() for like in self.likes), 'commentCount': len(self.comments)}
 
     def to_dict_no_relations(self):
         return {
