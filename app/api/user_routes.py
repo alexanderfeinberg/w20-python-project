@@ -97,7 +97,8 @@ def follow_user(userId):
         raise NotFoundError("User not found.")
 
     res = current.follow(following)
-    db.session.add(res)
+    print("RES ", res)
+    current.following = res.following
     db.session.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
@@ -118,7 +119,7 @@ def remove_follow(user_id):
     # del user.followers[i]
 
     resp = current.unfollow(user)
-    db.session.add(resp)
+    current.following = resp.following
 
     db.session.commit()
     return {"message": "Successfully Unfollowed", "statusCode": 200}

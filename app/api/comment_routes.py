@@ -9,6 +9,8 @@ from .helpers import child_belongs_to_parent, get_user_model
 comment_routes = Blueprint('comments', __name__)
 
 # Edit a Comment
+
+
 @comment_routes.route('/<int:comment_id>', methods=["PUT"])
 @login_required
 def edit_comment(comment_id):
@@ -31,15 +33,14 @@ def edit_comment(comment_id):
         raise NotFoundError("Comment not found")
 
 
-
 # Delete a Comment
 @comment_routes.route('/<int:comment_id>', methods=['DELETE'])
 @login_required
 def delete_comment(comment_id):
     deleted_comment = Comment.query.get(comment_id)
-    print("DELETE COMMENT ", delete_comment)
+
     if deleted_comment:
-        try:    
+        try:
             child_belongs_to_parent(get_user_model(
                 current_user, User), deleted_comment, 'user_id')
         except ForbiddenError as e:
