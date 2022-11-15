@@ -67,7 +67,7 @@ def get_followers_of_user(user_id):
     page = request.args.get('page', type=int)
     size = request.args.get('size', type=int)
     user = User.query.get(user_id)
-    print("FOLLOWER COUNT ", user.followers.all())
+
     if not user:
         raise NotFoundError("User not found")
     followers = user.followers.paginate(page=page, per_page=size).items
@@ -91,13 +91,14 @@ def get_followings_of_user(user_id):
 @login_required
 def follow_user(userId):
     following = User.query.get(userId)
-    print("FOLLOWING ", following)
     current = get_user_model(current_user, User)
-    print("CURRENT USER ", current.following)
+
     if not following:
         raise NotFoundError("User not found.")
 
-    current.following.append(following)
+    res = current.follow(following)
+    print("RES ", res)
+    current.following = res.following
     db.session.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
@@ -106,17 +107,27 @@ def follow_user(userId):
 @user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
 @login_required
 def remove_follow(user_id):
+    print("UNFOLLOWING")
     user = User.query.get(user_id)
     if not user:
         raise NotFoundError(f'User {user_id} does not exist.')
     current = get_user_model(current_user, User)
-    # for follower in user.followers:
-    #     if follower.id == current_user.id:
-    #         break
-    #     return {"message": f"Current user does not follow user {user_id}"}
+
     if current not in user.followers:
         return {"message": f"Current user does not follow user {user_id}"}
 
-    user.followers.remove(current_user)
+    # del user.followers[i]
+
+    resp = current.unfollow(user)
+    current.following = resp.following
+
     db.session.commit()
     return {"message": "Successfully Unfollowed", "statusCode": 200}
+
+
+# Check if current user follows target user
+@user_routes.route('/<int:user_id>/isFollowing')
+@login_required
+def is_following(user_id):
+    user = get_user_model(current_user, User)
+    return {'isFollowing': user.is_following(user_id)}

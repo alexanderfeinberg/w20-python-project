@@ -2,25 +2,40 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useContext } from "react";
 import { loadFollowings } from "../../../store/user";
 import { ModalContext } from "../../../context/Modal";
-import { followThunk } from "../../../store/user";
-import { getUser } from "../../../store/user";
+import {
+  getUser,
+  getUserfollowers,
+  followsUser,
+  followThunk,
+  unfollowThunk,
+} from "../../../store/user";
 
 import "./UserInfo.css";
 
 const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
   const followings = useSelector((state) => state.user.userList.Followings);
+  // const followers = useSelector((state) => state.user.userList.Followers);
+  const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
+  const [isFollowingUser, setFollowsUser] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
   console.log("FOLLOWINGS ", followings);
+  console.log("IS FOLLOWING USER", isFollowingUser);
 
   useEffect(() => {
     dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => getUser(userId))
+      .then(() => dispatch(getUser(userId)).then((res) => res))
+      .then(() => followsUser(userId).then((res) => setFollowsUser(res)))
       .then(() => setisLoaded(true));
   }, [userId]);
+
+  useEffect(() => {
+    const res = followsUser(user.id);
+    setFollowsUser(res);
+  }, [user.followerCount]);
 
   const showFollowerModal = () => {
     setModalType("Followers");
@@ -31,10 +46,16 @@ const UserInfo = ({ userId }) => {
   };
 
   const handleFollow = () => {
-    console.log("USER ", user);
     user = dispatch(followThunk(userId)).then(() =>
       dispatch(getUser(userId)).then((res) => res)
     );
+  };
+
+  const handleUnfollow = () => {
+    user = dispatch(unfollowThunk(userId))
+      .then(() => dispatch(getUser(userId)))
+      .then(() => followsUser(userId))
+      .then((res) => setFollowsUser(res));
   };
 
   if (isLoaded) {
@@ -55,8 +76,17 @@ const UserInfo = ({ userId }) => {
         </div>
         <div className="bio">{user.bio}</div>
         <div className="action-btns">
-          <button onClick={handleFollow}>Follow</button>
+          {isFollowingUser && user.id != currentUser.id && (
+            <button id="unfollow" onClick={handleUnfollow}>
+              Unfollow
+            </button>
+          )}
+
+          {!isFollowingUser && user.id != currentUser.id && (
+            <button onClick={handleFollow}>Follow</button>
+          )}
         </div>
+
         <div className="following-peak">
           <h4>Following</h4>
           <div className="following-list">

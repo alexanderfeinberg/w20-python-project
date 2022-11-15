@@ -1,0 +1,29 @@
+.follow-data-content {
+  display: flex;
+  flex-direction: column;
+}
+
+#follow-data {
+  padding: 0;
+}
+
+#follow-data-title {
+  justify-self: center;
+  align-items: center;
+}
+.follow-user li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.follow-right-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.follow-info {
+  display: flex;
+  flex-direction: column;
+}
