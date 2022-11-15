@@ -5,20 +5,13 @@ import { getAllStories } from '../../store/story';
 import { getUser, getUserList } from "../../store/user";
 import './GetAllStories.css';
 
-const GetAllStories = () => {
+const GetAllStories = ({stories}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { userId }  = useParams();
 
-  const stories = useSelector(state => state.story.allStories);
   const storiesArr = Object.values(stories);
 
-  const user = useSelector(state => state.user.singleUser)
 
-  useEffect(() => {
-    dispatch(getAllStories())
-  }, [dispatch]);
- 
   useEffect(() => {
     dispatch(getUser())
   }, [dispatch]);
@@ -44,9 +37,9 @@ const GetAllStories = () => {
                       <div className="stories_title">{story.title}</div>
                       <div className="stories-content">{story.content}</div>
                   </div>
-                    
+
                   <div className="stories-container-right">
-                    <img 
+                    <img
                         className="stories-image"
                         src={"https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg"}
                         alt=""
