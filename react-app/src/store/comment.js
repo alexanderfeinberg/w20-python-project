@@ -27,10 +27,10 @@ export const editComment = (comment) => {
     }
 }
 
-export const destroyComment = (comment) => {
+export const destroyComment = (commentId) => {
     return {
         type: DESTROY_COMMENT,
-        comment
+        commentId
     }
 }
 
@@ -40,6 +40,7 @@ export const destroyComment = (comment) => {
 // Get All Comment
 export const getAllComments = (storyId) => async (dispatch) => {
     const res = await csrfFetch(`/api/stories/${storyId}/comments`)
+    console.log("asdfasdfasdf")
     if (res.ok) {
         const comments = await res.json()
         dispatch(allComments(comments))
@@ -48,12 +49,15 @@ export const getAllComments = (storyId) => async (dispatch) => {
 }
 
 // Create a Comment
-export const createComment = (storyId, data) => async(dispatch) => {
+export const createComment = (storyId, data) => async (dispatch) => {
+    console.log("-------storyid", storyId)
+    console.log("-------data", data)
     const res = await csrfFetch(`/api/stories/${storyId}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify(data)
     })
+    console.log("dddddddddddd")
     if (res.ok) {
         const comment = await res.json()
         dispatch(newComment(comment))

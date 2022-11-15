@@ -111,7 +111,8 @@ def delete_story(story_id):
 def get_comments(story_id):
     comments = Comment.query.filter(Comment.story_id == story_id).all()
     if not comments:
-        raise NotFoundError('Story not found.')
+        return {"Comments": []}
+        # raise NotFoundError('Story not found.')
     return jsonify({"Comments": [comment.to_dict_with_user() for comment in comments]})
 
 
@@ -158,6 +159,7 @@ def create_like(story_id):
 
         existing_like = Like.query.filter(Like.user_id == current_user.id).filter(
             Like.story_id == story_id).first()
+        print("EXISTING ", existing_like.count)
 
         if existing_like:
             existing_like.count += form.data['count']
