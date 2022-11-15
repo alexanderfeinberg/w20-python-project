@@ -1,8 +1,23 @@
 .create_comment_form_input {
-    width: 400px;
-    height: 200px;
+    display: flex;
+    width: 366px;
+    min-height: 200px;
+    border: .5px solid #dddddd;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 8px;
+    background-color: white;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin: 5%;
 }
 
 .create_comment_respond_button {
-    
+    background: rgb(26, 137, 23);
+    padding: 4px 12px 6px;
+    border-width: 1px;
+    border-radius: 99em;
+    font-size: 14px;
+    overflow: visible;
+    color: white;
+
 }

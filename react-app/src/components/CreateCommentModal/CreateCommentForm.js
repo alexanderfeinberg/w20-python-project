@@ -10,6 +10,7 @@ function CreateCommentForm() {
   const history = useHistory();
   const {storyId} = useParams();
 
+  // const story = useSelector(state => state.story.singleStory);
   const comments = useSelector(state => state.comment.allComments);
   const commentsArr = Object.values(comments);
 
@@ -33,7 +34,7 @@ function CreateCommentForm() {
 
     let createdComment;
 
-    createdComment = dispatch(createComment(comment));
+    createdComment = dispatch(createComment(storyId, comment));
 
     if (createdComment) {
       history.push(`/stories/${storyId}`);
