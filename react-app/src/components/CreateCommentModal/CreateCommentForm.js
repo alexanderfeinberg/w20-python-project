@@ -18,9 +18,8 @@ function CreateCommentForm() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    console.log("USE EFFECT RUNNING")
     dispatch(getAllComments(storyId))
-  }, [dispatch]);
+  }, [dispatch, storyId]);
 
 
   const handleSubmit = (e) => {

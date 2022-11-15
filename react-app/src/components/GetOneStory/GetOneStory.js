@@ -43,11 +43,15 @@ const GetOneStory = () => {
             alt=""
         />        
         <div className="story-content">{story.content}</div>
-        <div className="story-likes-comment">
-          <img className="like-icon" src={likeIcon} alt="Like Icon"/> 
-            <span className="story-likes">{story.likeCount}</span>
-          <img className="comment-icon" src={commentIcon} alt="Comment Icon" onClick={() => history.push(`/createComment/${storyId}`)}    
-          /> {story.commentCount}  
+        <div className="story-likes-comments">
+          <div className="story-likes">
+            <img className="like-icon" src={likeIcon} alt="Like Icon"/> 
+              <span className="story-like-counts">{story.likeCount}</span>
+          </div>
+          <div className="story-comments" onClick={() => history.push(`/createComment/${storyId}`)}>
+            <img className="comment-icon" src={commentIcon} alt="Comment Icon"/>
+              <span className="story-comment-counts">{story.commentCount}</span>
+          </div>
         </div>
         </div>
       </div>
