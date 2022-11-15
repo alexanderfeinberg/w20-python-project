@@ -14,20 +14,16 @@ import "./UserInfo.css";
 
 const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
-  const followings = useSelector((state) => state.user.userList.Followings);
-  // const followers = useSelector((state) => state.user.userList.Followers);
   const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
   const [isFollowingUser, setFollowsUser] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
-  console.log("FOLLOWINGS ", followings);
   console.log("IS FOLLOWING USER", isFollowingUser);
 
   useEffect(() => {
-    dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => dispatch(getUser(userId)).then((res) => res))
+    dispatch(getUser(userId))
       .then(() => followsUser(userId).then((res) => setFollowsUser(res)))
       .then(() => setisLoaded(true));
   }, [userId]);
@@ -39,10 +35,6 @@ const UserInfo = ({ userId }) => {
 
   const showFollowerModal = () => {
     setModalType("Followers");
-  };
-
-  const showFollowingModal = () => {
-    setModalType("Following");
   };
 
   const handleFollow = () => {
@@ -87,26 +79,6 @@ const UserInfo = ({ userId }) => {
               Follow
             </button>
           )}
-        </div>
-
-        <div className="following-peak">
-          <h4>Following</h4>
-          <div className="following-list">
-            <ul>
-              {followings.map((following, idx) => {
-                return (
-                  <li key={idx}>
-                    {following.firstName} {following.lastName}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="expand-following textBtn">
-            <button onClick={showFollowingModal}>
-              See all ({user.followingCount})
-            </button>
-          </div>
         </div>
       </div>
     );
