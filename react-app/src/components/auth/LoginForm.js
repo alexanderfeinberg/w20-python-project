@@ -1,23 +1,22 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../../store/session';
-import { ModalContext } from "../../context/Modal"
-import "./login-signup.css"
+import React, { useState, useContext, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../store/session";
+import { ModalContext } from "../../context/Modal";
+import "./login-signup.css";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const { setModalType } = useContext(ModalContext)
+  const { setModalType } = useContext(ModalContext);
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    const data = await dispatch(login(email, password))
+      .then((res) => res)
+      .catch((e) => e.json().then((res) => setErrors(res.errors)));
   };
 
   const updateEmail = (e) => {
@@ -30,16 +29,15 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user) {
-      setModalType(null)
+      setModalType(null);
     }
-  }, [user])
+  }, [user]);
 
   const demoLogin = () => {
-    setEmail("email1@gmail.com")
-    setPassword("password1")
-    return dispatch(login(email, password)).then(() => setModalType(null))
-  }
-
+    setEmail("email1@gmail.com");
+    setPassword("password1");
+    return dispatch(login(email, password)).then(() => setModalType(null));
+  };
 
   return (
     <form id="login-container" className="modal-content" onSubmit={onLogin}>
@@ -50,26 +48,26 @@ const LoginForm = () => {
         ))}
       </div>
       {/* <div className="border"> */}
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          // placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
+      <label htmlFor="email">Email</label>
+      <input
+        name="email"
+        type="text"
+        // placeholder='Email'
+        value={email}
+        onChange={updateEmail}
+      />
       {/* </div> */}
       {/* <div className="border"> */}
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          // placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
+      <label htmlFor="password">Password</label>
+      <input
+        name="password"
+        type="password"
+        // placeholder='Password'
+        value={password}
+        onChange={updatePassword}
+      />
       {/* </div> */}
-      <button type='submit'>Login</button>
+      <button type="submit">Login</button>
       <button onClick={() => demoLogin()}>Demo Login</button>
     </form>
   );
