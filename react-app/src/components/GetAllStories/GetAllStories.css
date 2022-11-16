@@ -10,7 +10,7 @@ a:visited {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 5% 10% 5% 10%;
+    margin: 5% 10% 0% 10%;
     text-align: left;
     max-width: 792px;
 }
@@ -35,6 +35,8 @@ a:visited {
 .stories-info {
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .stories-author-info {
@@ -44,10 +46,14 @@ a:visited {
     color: #292929;
     font-style: normal;        
     line-height: 20px;
-    overflow: clip;
-    text-overflow: ellipsis;
+    vertical-align: bottom;
 }
 
+.profile-icon {
+    max-width: 24px;
+    margin-right: 3px;
+    vertical-align: bottom;
+}
 
 .stories-title{
     font-family: Arial, Helvetica, sans-serif;
@@ -55,18 +61,24 @@ a:visited {
     color: #292929;
     font-style: normal;
     line-height: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
  }
 
 .stories-content{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
     line-height: 24px;
-    color: #292929;
+    color: rgba(41, 41, 41, 1);
     margin-right: 30px;
     max-height: 48px;
-    overflow: clip;
     text-overflow: ellipsis;
+    overflow: hidden;
     word-break: break-word;
+    cursor: pointer;
+    /* width: 520px; */
+    text-decoration: none;
+    margin-bottom: 35px;
  }
 
 .stories-image-container{
@@ -83,7 +95,35 @@ a:visited {
 .stories-buttons {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
-    align-self: flex-end;
+    margin-right: 50px;
+    cursor: pointer;
+    width: 562px;
+}
+
+.edit-story-button {
+    padding: 4px 12px 6px;
+    border-width: 1px;
+    border-radius: 99em;
+    font-size: 14px;
+    overflow: visible;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    color: rgb(26, 137, 23);
+    border: 1px solid rgb(26, 137, 23);
+    background-color: white;}
+
+.delete-story-button {
+    padding: 4px 12px 6px;
+    border-width: 1px;
+    border-radius: 99em;
+    font-size: 14px;
+    overflow: visible;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    color:rgb(26, 137, 23);
+    border: 1px solid rgb(26, 137, 23);
+    background-color: white;
 }

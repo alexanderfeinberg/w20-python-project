@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { addLikeToStory, getSingleStory } from "../../store/story";
 import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
@@ -8,17 +8,15 @@ import "./GetOneStory.css";
 import { ModalContext2 } from "../../context/Modal2";
 import UserInfo from "../UserProfile/userSideBar.js/UserInfo";
 import MoreArticles from "../UserProfile/userSideBar.js/MoreArticles";
+import GetAllStories from "../GetAllStories/GetAllStories";
 
 const GetOneStory = () => {
   const dispatch = useDispatch();
   const { storyId } = useParams();
-  const history = useHistory();
   const { setModalType2 } = useContext(ModalContext2);
 
   const story = useSelector((state) => state.story.singleStory);
-  const count = useSelector((state) => state.story.singleStory.likeCount);
-
-  const comments = useSelector((state) => state.comment.allComments);
+  const stories = useSelector(state => state.story.allStories)
   const comment = useSelector((state) => state.comment.singleComment);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,7 +84,12 @@ const GetOneStory = () => {
                 </div>
               </div>
             </div>
+              <div className="get-all-stories">
+                More from {story?.author?.firstName} {story?.author?.lastName}
+              <GetAllStories stories={stories}/>
+              </div>
           </div>
+          
           <div className="container-3">
             <UserInfo userId={story.author.id} />
             <MoreArticles userId={story.author.id} />
