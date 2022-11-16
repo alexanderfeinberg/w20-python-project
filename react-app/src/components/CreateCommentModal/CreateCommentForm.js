@@ -107,11 +107,14 @@ function CreateCommentForm({ story }) {
         <div className="all-comments comment-container-3">
           <h3>Comments</h3>
           {commentsArr.map((comment, i) => {
+            let dateReviewed = comment.created_at.slice(4,17)
             if (!edit || i !== number) {
               return (
                 <div onClick={() => correctComment(i)} className="border individual-comment">
                   <div>
-                    <div>{comment.user_id}</div>
+                    <img className="comment-container-2-1-a-1" src="https://media.istockphoto.com/id/1162198273/vector/question-mark-icon-flat-vector-illustration-design.jpg?s=612x612&w=0&k=20&c=MJbd8bw2iewJRd8sEkHxyGMgY3__j9MKA8cXvIvLT9E=" />
+                    <div>{dateReviewed}</div>
+                    <div>{comment.user.firstName} {comment.user.lastName}</div>
                     <div>{comment.content}</div>
                   </div>
                   <div className="dropdown-button">
