@@ -62,9 +62,7 @@
 
 .container-3 {
     display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: row;
+    flex-direction: column;
     width: 394px;
     min-height: 100vh;    
     border: .5px solid #dddddd;
@@ -80,8 +78,9 @@
     flex-direction: row;
     align-items: baseline;
     align-self: center;
-    position: sticky;
-    top: 20px;
+    /* position: sticky;
+    top: 20px; */
+    vertical-align: bottom;
 }
 
 .like-icon {
@@ -99,10 +98,6 @@
     margin-right: 5px;
 }
 
-.story-likes-comments {
-    position: sticky;
-    vertical-align: bottom;
-}
 .story-like-counts {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -121,7 +116,19 @@
     vertical-align: bottom;
 }
 
-
+.get-all-stories {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50%;
+    width: 692px;
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #191919;
+    font-style: normal;
+    line-height: 24px;
+    font-weight: 500;
+}
 
 
 
