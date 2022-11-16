@@ -8,10 +8,10 @@
     align-items: center;
     flex-direction: column;
     width: 1030px;
-    min-width: 552px;
+    min-width: 552px; 
     min-height: 100vh;
     /* border-right: .5px solid #dddddd; */
-    margin: 5% 10% 5% 10%;
+    margin: 5% 10% 0% 10%;
     text-align: left;
 }
 
