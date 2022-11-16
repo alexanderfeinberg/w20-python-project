@@ -29,16 +29,15 @@ const MoreArticles = ({ userId }) => {
         <div className="more-articles-title">
           <h4>More from Medium</h4>
         </div>
-        <div className="article-list">
+        <div className="article-list" onMouseLeave={handleCloseUserCard}>
           {stories.map((story, idx) => (
             <li key={idx}>
               <div className="article-item">
-                {showUserCard == idx && <UserCard user={story.author} />}
-                <div
-                  className="author"
-                  onMouseOver={() => handleUserCard(idx)}
-                  onMouseOut={handleCloseUserCard}
-                >
+                <div className="article-user-card">
+                  {showUserCard == idx && <UserCard user={story.author} />}
+                </div>
+
+                <div className="author" onMouseOver={() => handleUserCard(idx)}>
                   <a href={`/users/${story.author.id}`}>
                     {story.author.firstName} {story.author.lastName}
                   </a>
