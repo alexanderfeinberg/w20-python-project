@@ -46,8 +46,14 @@ a:visited {
     color: #292929;
     font-style: normal;        
     line-height: 20px;
+    vertical-align: bottom;
 }
 
+.profile-icon {
+    max-width: 24px;
+    margin-right: 3px;
+    vertical-align: bottom;
+}
 
 .stories-title{
     font-family: Arial, Helvetica, sans-serif;
@@ -92,4 +98,32 @@ a:visited {
     margin-right: 50px;
     cursor: pointer;
     width: 562px;
+}
+
+.edit-story-button {
+    padding: 4px 12px 6px;
+    border-width: 1px;
+    border-radius: 99em;
+    font-size: 14px;
+    overflow: visible;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    color: rgb(26, 137, 23);
+    border: 1px solid rgb(26, 137, 23);
+    background-color: white;}
+
+.delete-story-button {
+    padding: 4px 12px 6px;
+    border-width: 1px;
+    border-radius: 99em;
+    font-size: 14px;
+    overflow: visible;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    color:rgb(26, 137, 23);
+    border: 1px solid rgb(26, 137, 23);
+    background-color: white;
 }

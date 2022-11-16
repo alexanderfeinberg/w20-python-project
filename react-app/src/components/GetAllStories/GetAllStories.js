@@ -4,7 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { deleteStory } from "../../store/story";
 import { getUser } from "../../store/user";
 import './GetAllStories.css';
-
+import profileIcon from "../../assets/profile-icon.jpeg";
 const GetAllStories = ({stories}) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,7 +35,8 @@ const GetAllStories = ({stories}) => {
             <>
             <div className="stories-author-info"
               onClick={() => history.push(`/users/${story.author.id}`)}>
-              {story.author.profile_picture} {story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}
+              {/* {story.author.profile_picture}  */}
+              <img className="profile-icon" src={profileIcon} alt="Profile Icon"/>{story.author.firstName} {story.author.lastName} · {story.createdAt.slice(5, 11)}
             </div>
             <div className="stories-container2">
                 <div className="stories-info">
@@ -44,9 +45,6 @@ const GetAllStories = ({stories}) => {
                     <div className="stories-content">{story.content}</div>
                   </NavLink>
                     <div className="stories-buttons">
-                      {user && user.id === story.user_id &&
-                        (<div className="stories-options-dropdown">
-                          <i className="fa-solid fa-ellipsis"></i>
                         {user.id === story.user_id &&
                           <button className="edit-story-button"
                             onClick={() => history.push(`/story/${story.id}/edit`)}>
@@ -57,7 +55,6 @@ const GetAllStories = ({stories}) => {
                             onClick={() => deleteStoryHandler(story.id)}>
                             Delete story
                           </button>)}
-                      </div>)}
                     </div>
                 </div>
 

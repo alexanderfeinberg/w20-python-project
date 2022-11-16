@@ -48,16 +48,13 @@ const Home = () => {
 
             {user && (
                 <>
-                    <div id="container-2" className="border">
-                        <div className="text-center">
+                    <div id="container-2">
+                        <div>
                             <GetAllStories stories={stories} />
-                        </div>
-                        <div className="text-center">
-                            Placeholder2
                         </div>
                     </div>
 
-                    <div id={user ? "container-3" : "container-3-logged-out"}>3rd Section</div>
+                    <div id={user ? "container-3" : "container-3-logged-out"}></div>
                 </>
 
             )}

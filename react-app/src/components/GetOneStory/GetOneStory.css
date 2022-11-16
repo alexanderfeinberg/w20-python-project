@@ -80,6 +80,8 @@
     flex-direction: row;
     align-items: baseline;
     align-self: center;
+    position: sticky;
+    top: 20px;
 }
 
 .like-icon {
@@ -97,12 +99,17 @@
     margin-right: 5px;
 }
 
+.story-likes-comments {
+    position: sticky;
+    vertical-align: bottom;
+}
 .story-like-counts {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #080808;
     font-style: normal;
     line-height: 20px;
+    vertical-align: bottom;
 }
 
 .story-comment-counts {
@@ -111,6 +118,7 @@
     color: #080808;
     font-style: normal;
     line-height: 20px;
+    vertical-align: bottom;
 }
 
 
