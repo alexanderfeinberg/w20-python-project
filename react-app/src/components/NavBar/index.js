@@ -20,7 +20,12 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
 
   const goHome = () => {
-    history.push("/")
+    console.log(window.location.pathname)
+    if (window.location.pathname == "/") {
+      window.location.reload(false)
+    } else {
+      history.push("/")
+    }
     // window.location.reload(false)
   }
 
@@ -63,7 +68,7 @@ const NavBar = () => {
             </div>
             :
             <div id="navbar">
-              <img src={homeIcon} alt="Home Icon" />
+              <img src={homeIcon} alt="Home Icon" onClick={goHome} />
               <img src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
             </div>
           }
