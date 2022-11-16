@@ -14,38 +14,40 @@ import "./UserInfo.css";
 
 const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
-  const followings = useSelector((state) => state.user.userList.Followings);
-  // const followers = useSelector((state) => state.user.userList.Followers);
   const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setisLoaded] = useState(false);
   const [isFollowingUser, setFollowsUser] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
-  console.log("FOLLOWINGS ", followings);
   console.log("IS FOLLOWING USER", isFollowingUser);
 
   useEffect(() => {
-    dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => dispatch(getUser(userId)).then((res) => res))
-      .then(() => followsUser(userId).then((res) => setFollowsUser(res)))
+    dispatch(getUser(userId))
+      .then(() =>
+        currentUser
+          ? followsUser(userId).then((res) => setFollowsUser(res))
+          : setFollowsUser(false)
+      )
       .then(() => setisLoaded(true));
   }, [userId]);
 
   useEffect(() => {
-    const res = followsUser(user.id);
-    setFollowsUser(res);
+    if (currentUser) {
+      const res = followsUser(user.id).then((res) => res);
+      setFollowsUser(res);
+    }
   }, [user.followerCount]);
 
   const showFollowerModal = () => {
     setModalType("Followers");
   };
 
-  const showFollowingModal = () => {
-    setModalType("Following");
-  };
-
   const handleFollow = () => {
+    if (!currentUser) {
+      setModalType("Login");
+      return;
+    }
     user = dispatch(followThunk(userId)).then(() =>
       dispatch(getUser(userId)).then((res) => res)
     );
@@ -62,7 +64,11 @@ const UserInfo = ({ userId }) => {
     return (
       <div className="container-content">
         <div className="profile-picture">
-          <img src={user.profile_picture} />
+          <img
+            className="comment-container-2-1-a-1"
+            src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+          />
+          {/* // <img src={user.profile_picture} /> */}
         </div>
         <div className="profile-header">
           <div className="main-header">
@@ -77,34 +83,23 @@ const UserInfo = ({ userId }) => {
         <div className="bio">{user.bio}</div>
         <div className="action-btns">
           {isFollowingUser && user.id != currentUser.id && (
-            <button id="unfollow" onClick={handleUnfollow}>
+            <button className="unfollow" onClick={handleUnfollow}>
               Unfollow
             </button>
           )}
 
-          {!isFollowingUser && user.id != currentUser.id && (
-            <button onClick={handleFollow}>Follow</button>
-          )}
-        </div>
-
-        <div className="following-peak">
-          <h4>Following</h4>
-          <div className="following-list">
-            <ul>
-              {followings.map((following, idx) => {
-                return (
-                  <li key={idx}>
-                    {following.firstName} {following.lastName}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="expand-following textBtn">
-            <button onClick={showFollowingModal}>
-              See all ({user.followingCount})
+          {currentUser ? (
+            !isFollowingUser &&
+            user.id != currentUser.id && (
+              <button className="follow-btn" onClick={handleFollow}>
+                Follow
+              </button>
+            )
+          ) : (
+            <button className="follow-btn" onClick={handleFollow}>
+              Follow
             </button>
-          </div>
+          )}
         </div>
       </div>
     );

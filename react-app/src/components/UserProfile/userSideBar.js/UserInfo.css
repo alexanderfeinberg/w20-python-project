@@ -1,10 +1,3 @@
-.container-content {
-  box-sizing: border-box;
-  margin: 15px;
-  padding: 20px;
-  font-size: 17px;
-}
-
 .main-header {
   font-weight: 600;
   padding: 5px 0px;
@@ -17,7 +10,12 @@
   color: darkgray;
   margin: 0;
   padding-left: 0;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+.expand-following > button {
+  font-size: 12px;
 }
 .textBtn > button:hover {
   color: black;
@@ -26,25 +24,36 @@
 
 .bio {
   color: darkgray;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
+  font-size: 16px;
 }
 
 .action-btns button {
-  background-color: rgb(26, 137, 23);
   border-radius: 99em;
   box-shadow: none;
-  border: none;
-  color: white;
-  font-size: 14px;
+  font-size: 15px;
   padding: 10px;
-  width: 100px;
+  width: 80px;
 }
 .action-btns button:hover {
   cursor: pointer;
 }
 
-#unfollow {
+.action-btns {
+  margin-bottom: 28px;
+}
+.follow-btn {
+  border: none;
+  background-color: rgb(26, 137, 23);
+  color: white;
+}
+
+.unfollow {
   background-color: white;
   color: rgb(26, 137, 23);
   border: 1px solid rgb(26, 137, 23);
+}
+
+.following-peak h4 {
+  margin: 7px 0px;
 }

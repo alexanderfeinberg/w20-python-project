@@ -183,7 +183,7 @@ export const userReducer = (state = initialState, action) => {
     case LOAD_USER_FOLLOWINGS:
       const serFollowingsState = {
         ...state,
-        userList: { ...action.followings },
+        userList: { ...state.userList, ...action.followings },
       };
       return serFollowingsState;
     case PAGINATE_FOLLOWERS:

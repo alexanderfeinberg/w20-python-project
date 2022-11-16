@@ -75,26 +75,43 @@
     height: 461px;
 }
 
-.story-likes-comment {
-    vertical-align: bottom;
+.story-likes-comments {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-self: center;
 }
 
 .like-icon {
     max-width: 24px;
     align-items: center;
+    margin-right: 3px;
 }
 
 .story-likes {
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .comment-icon {
     max-width: 20px;
+    margin-right: 5px;
 }
 
+.story-like-counts {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #080808;
+    font-style: normal;
+    line-height: 20px;
+}
 
-
-
+.story-comment-counts {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #080808;
+    font-style: normal;
+    line-height: 20px;
+}
 
 
 
