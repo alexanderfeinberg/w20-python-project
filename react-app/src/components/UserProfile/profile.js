@@ -19,9 +19,9 @@ const Profile = () => {
   const stories = useSelector((state) => state.story.allStories);
 
   useEffect(() => {
-    dispatch(getUser(userId))
-      .then(() => dispatch(getUsersStories(userId)))
-      .then(() => setIsLoaded(true));
+    dispatch(getUser(userId)).then(() =>
+      dispatch(getUsersStories(userId)).then(() => setIsLoaded(true))
+    );
   }, [userId, currUser]);
 
   if (isLoaded) {
@@ -32,8 +32,8 @@ const Profile = () => {
             <h1>
               {user.firstName} {user.lastName}
             </h1>
+            <div className="sub-nav">Home</div>
           </div>
-          <div className="sub-nav">"Home"</div>
           {/* {user.Stories && (
             <ul>
               {user.Stories.map((story, idx) => {

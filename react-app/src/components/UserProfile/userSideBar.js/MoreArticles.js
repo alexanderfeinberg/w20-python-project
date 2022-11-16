@@ -17,7 +17,14 @@ const MoreArticles = ({ userId }) => {
         <h1>More on Medium</h1>
         <ul>
           {stories.map((story, idx) => (
-            <li key={idx}>{story.title}</li>
+            <li key={idx}>
+              <div>
+                <a href={`/users/${story.author.id}`}>
+                  {story.author.firstName} {story.author.lastName}
+                </a>
+              </div>
+              <a href={`/stories/${story.id}`}>{story.title}</a>
+            </li>
           ))}
         </ul>
       </div>

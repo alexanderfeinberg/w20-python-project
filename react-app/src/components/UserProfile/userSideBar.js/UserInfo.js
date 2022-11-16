@@ -24,13 +24,19 @@ const UserInfo = ({ userId }) => {
 
   useEffect(() => {
     dispatch(getUser(userId))
-      .then(() => followsUser(userId).then((res) => setFollowsUser(res)))
+      .then(() =>
+        currentUser
+          ? followsUser(userId).then((res) => setFollowsUser(res))
+          : setFollowsUser(false)
+      )
       .then(() => setisLoaded(true));
   }, [userId]);
 
   useEffect(() => {
-    const res = followsUser(user.id);
-    setFollowsUser(res);
+    if (currentUser) {
+      const res = followsUser(user.id).then((res) => res);
+      setFollowsUser(res);
+    }
   }, [user.followerCount]);
 
   const showFollowerModal = () => {
@@ -38,6 +44,10 @@ const UserInfo = ({ userId }) => {
   };
 
   const handleFollow = () => {
+    if (!currentUser) {
+      setModalType("Login");
+      return;
+    }
     user = dispatch(followThunk(userId)).then(() =>
       dispatch(getUser(userId)).then((res) => res)
     );
@@ -74,7 +84,14 @@ const UserInfo = ({ userId }) => {
             </button>
           )}
 
-          {!isFollowingUser && user.id != currentUser.id && (
+          {currentUser ? (
+            !isFollowingUser &&
+            user.id != currentUser.id && (
+              <button className="follow-btn" onClick={handleFollow}>
+                Follow
+              </button>
+            )
+          ) : (
             <button className="follow-btn" onClick={handleFollow}>
               Follow
             </button>

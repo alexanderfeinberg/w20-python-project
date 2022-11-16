@@ -15,3 +15,18 @@
   width: 50%;
   border-left: 1px solid rgba(230, 230, 230, 1);
 }
+
+.right-container {
+  box-sizing: border-box;
+  margin: 15px;
+  padding: 20px;
+  font-size: 17px;
+}
+
+.sub-nav {
+  margin-bottom: 10px;
+}
+
+.header {
+  border-bottom: 1px solid lightgrey;
+}
