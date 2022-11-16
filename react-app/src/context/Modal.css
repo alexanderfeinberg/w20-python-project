@@ -18,7 +18,7 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(202, 202, 202, );
+  background-color: rgba(215, 215, 215, 0.9);
 }
 
 .modal-content {
@@ -31,7 +31,7 @@
   align-content: center;
   min-width: 440px;
   max-width: 660px;
-  width: 60%%;
+  width: 40%;
   height: auto;
   padding: 40px 0 50px 0;
 }
