@@ -51,7 +51,7 @@ const CreateStory = () => {
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         placeholder="imageurl"
-                        style={min-height=10px}
+                        // style={min-height=10px}
                     />
                     <textarea
                         type="text"
