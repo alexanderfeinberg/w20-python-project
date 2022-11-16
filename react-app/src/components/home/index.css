@@ -14,8 +14,8 @@
 }
 
 
-/* when below 960px width, should do a new type of view!!!
-BELOW IS FOR 960px or wider screens */
+/* when below 902px width, should do a new type of view!!!
+BELOW IS FOR 902px or wider screens */
 /* #container-1 {
     width: 79px;
     border-right: 1px solid rgba(230, 230, 230, 1);
@@ -86,6 +86,7 @@ BELOW IS FOR 960px or wider screens */
     max-width: 420px;
 }
 #home-upper-left-logged-out > button {
+    border: transparent;
     background-color: black;
     color: white;
     width: 213px;
@@ -116,15 +117,12 @@ BELOW IS FOR 960px or wider screens */
 
 
 
-
-
-
 #home-lower-logged-out {
     height: 5000px;
     /* padding-top: 420px; */
     margin-top: 420px;
     width: 100%;
-    border: 1px solid black;
+    border-top: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;

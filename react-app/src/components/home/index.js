@@ -23,20 +23,20 @@ const Home = () => {
         <div id={user ? "main-container" : "main-container-logged-out"}>
             {!user && (
                 <div>
-                        <div id="home-upper-logged-out">
-                            <div id="home-upper-left-logged-out">
-                                <h1>
-                                    Stay Curious.
-                                </h1>
-                                <p>
-                                    Discover stories, thinking, and expertise from writers on any topic.
-                                </p>
-                                <button onClick={() => setModalType("Signup")}>
-                                    Start reading
-                                </button>
-                            </div>
-                            <img id="home-upper-right-logged-out" src={imgM} />
+                    <div id="home-upper-logged-out">
+                        <div id="home-upper-left-logged-out">
+                            <h1>
+                                Stay Curious.
+                            </h1>
+                            <p>
+                                Discover stories, thinking, and expertise from writers on any topic.
+                            </p>
+                            <button onClick={() => setModalType("Signup")}>
+                                Start reading
+                            </button>
                         </div>
+                        <img id="home-upper-right-logged-out" src={imgM} />
+                    </div>
                     <div id="home-lower-logged-out">
                         <div id="home-lower-logged-out-inner">
                             <GetAllStories stories={stories} />
