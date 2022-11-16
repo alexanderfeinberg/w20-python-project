@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from "../../context/Modal"
 import { authenticate } from "../../store/session";
 import { getAllStories as getAllStoriesThunk } from "../../store/story";
+import imgM from "../../assets/medium-m.png"
 import "./index.css"
 import GetAllStories from "../GetAllStories/GetAllStories";
 
 const Home = () => {
     const dispatch = useDispatch();
-    const {setModalType} = useContext(ModalContext)
+    const { setModalType } = useContext(ModalContext)
     const user = useSelector(state => state.session.user)
     useEffect(() => {
         dispatch(authenticate())
         dispatch(getAllStoriesThunk())
-      }, [dispatch])
+    }, [dispatch])
     const stories = useSelector(state => state.story.allStories)
 
 
@@ -34,9 +35,7 @@ const Home = () => {
                                 Start reading
                             </button>
                         </div>
-                        <div id="home-upper-right-logged-out">
-                            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-                        </div>
+                        <img id="home-upper-right-logged-out" src={imgM} />
                     </div>
                     <div id="home-lower-logged-out">
                         <div id="home-lower-logged-out-inner">

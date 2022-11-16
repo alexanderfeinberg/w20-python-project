@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserfollowers } from "../../../store/user";
+import { getUserfollowers, loadFollowings } from "../../../store/user";
 import UserListModal from "./UserListModal";
 
 const FollowersModal = () => {
@@ -11,7 +11,9 @@ const FollowersModal = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getUserfollowers(user.id, `${page}`, `10`)).then(() =>
+    console.log("FOLLOWERS MODAL RE-RENDER");
+
+    dispatch(getUserfollowers(user.id, `${page}`, "10")).then(() =>
       setIsLoaded(true)
     );
   }, []);

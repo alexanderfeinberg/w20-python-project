@@ -24,13 +24,19 @@ const UserInfo = ({ userId }) => {
 
   useEffect(() => {
     dispatch(getUser(userId))
-      .then(() => followsUser(userId).then((res) => setFollowsUser(res)))
+      .then(() =>
+        currentUser
+          ? followsUser(userId).then((res) => setFollowsUser(res))
+          : setFollowsUser(false)
+      )
       .then(() => setisLoaded(true));
   }, [userId]);
 
   useEffect(() => {
-    const res = followsUser(user.id);
-    setFollowsUser(res);
+    if (currentUser) {
+      const res = followsUser(user.id).then((res) => res);
+      setFollowsUser(res);
+    }
   }, [user.followerCount]);
 
   const showFollowerModal = () => {
@@ -38,6 +44,10 @@ const UserInfo = ({ userId }) => {
   };
 
   const handleFollow = () => {
+    if (!currentUser) {
+      setModalType("Login");
+      return;
+    }
     user = dispatch(followThunk(userId)).then(() =>
       dispatch(getUser(userId)).then((res) => res)
     );
@@ -54,7 +64,11 @@ const UserInfo = ({ userId }) => {
     return (
       <div className="container-content">
         <div className="profile-picture">
-          <img src={user.profile_picture} />
+          <img
+            className="comment-container-2-1-a-1"
+            src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+          />
+          {/* // <img src={user.profile_picture} /> */}
         </div>
         <div className="profile-header">
           <div className="main-header">
@@ -74,7 +88,14 @@ const UserInfo = ({ userId }) => {
             </button>
           )}
 
-          {!isFollowingUser && user.id != currentUser.id && (
+          {currentUser ? (
+            !isFollowingUser &&
+            user.id != currentUser.id && (
+              <button className="follow-btn" onClick={handleFollow}>
+                Follow
+              </button>
+            )
+          ) : (
             <button className="follow-btn" onClick={handleFollow}>
               Follow
             </button>

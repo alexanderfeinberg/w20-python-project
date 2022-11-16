@@ -1,6 +1,8 @@
 .follow-data-content {
   display: flex;
   flex-direction: column;
+  padding: 50px;
+  box-sizing: border-box;
 }
 
 #follow-data {
@@ -8,14 +10,16 @@
 }
 
 #follow-data-title {
-  justify-self: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  font-weight: 600;
 }
 .follow-user li {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .follow-right-container {
@@ -26,4 +30,14 @@
 .follow-info {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.follow-name {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.follow-bio {
+  color: darkgray;
 }

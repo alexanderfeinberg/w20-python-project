@@ -29,10 +29,12 @@ const FollowListUser = ({ user, idx }) => {
         <div className="follow-right-container">
           <div>{user.id}</div>
           <div className="follow-info">
-            <div>
+            <div className="follow-name">
               {user.firstName} {user.lastName}
             </div>
-            <div key={idx}>{user.bio}</div>
+            <div className="follow-bio" key={idx}>
+              {user.bio}
+            </div>
           </div>
         </div>
         <div className="action-btns">
