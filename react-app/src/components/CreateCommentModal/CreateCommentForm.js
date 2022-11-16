@@ -81,28 +81,30 @@ function CreateCommentForm({ story }) {
 
   return (
     <div className="modal2-content">
-      <div>
-        <form onSubmit={handleSubmit} className="create_comment_form_container">
-          <div className="create_comment_form_header">
-            <div className="create_comment_form_title">Responses ()</div>
-          </div>
-          {/* <ul className="errors">
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-          ))}
-        </ul> */}
-          <textarea
-            className="create_comment_form_input"
-            type="text"
-            value={content}
-            placeholder="What are your thoughts?"
-            onChange={(e) => setContent(e.target.value)}
-          // required
-          />
-          <button type="submit" className="create_comment_respond_button">Respond</button>
-        </form>
+      <div className="form-container comment-container-all">
+        <div className="create-comment-form-title comment-container-1">Responses</div>
+        <div className="comment-container-2">
+          <div className="comment-container-2-1">
 
-        <div className="all_comments">
+            <div className="comment-container-2-1-a">
+              <img className="comment-container-2-1-a-1" src="https://media.istockphoto.com/id/1162198273/vector/question-mark-icon-flat-vector-illustration-design.jpg?s=612x612&w=0&k=20&c=MJbd8bw2iewJRd8sEkHxyGMgY3__j9MKA8cXvIvLT9E=" />
+              <div className="comment-container-2-1-a-2">{user.firstName} {user.lastName}</div>
+            </div>
+            <form onSubmit={handleSubmit} className="create-comment-form-container comment-container-2-1-b">
+              <textarea
+                className="create-comment-form-input comment-container-2-1-b-1"
+                type="text"
+                value={content}
+                placeholder="What are your thoughts?"
+                onChange={(e) => setContent(e.target.value)}
+              // required
+              />
+              <button type="submit" className="create-comment-respond-button comment-container-2-1-b-2">Respond</button>
+            </form>
+          </div>
+        </div>
+
+        <div className="all-comments comment-container-3">
           <h3>Comments</h3>
           {commentsArr.map((comment, i) => {
             if (!edit || i !== number) {
@@ -113,7 +115,7 @@ function CreateCommentForm({ story }) {
                     <div>{comment.content}</div>
                   </div>
                   <div className="dropdown-button">
-                  {/* <i onClick={() => openDropdown()} className="fa-solid fa-ellipsis"></i> */}
+                    {/* <i onClick={() => openDropdown()} className="fa-solid fa-ellipsis"></i> */}
                     <button onClick={() => openDropdown()}>Dropdown</button>
                     {dropdown && user.id == comment.user_id && number == i && (
                       <>
