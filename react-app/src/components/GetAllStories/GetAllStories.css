@@ -89,8 +89,7 @@ a:visited {
 .stories-buttons {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
-    align-self: flex-end;
-    margin-left: 40%;
+    margin-right: 50px;
+    cursor: pointer;
+    width: 562px;
 }

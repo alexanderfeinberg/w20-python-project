@@ -43,22 +43,22 @@ const GetAllStories = ({stories}) => {
                     <div className="stories-title">{story.title}</div>
                     <div className="stories-content">{story.content}</div>
                   </NavLink>
-                  <div className="stories-buttons">
-                    {user && user.id === story.user_id &&
-                      (<div className="stories-options-dropdown">
-                        <i className="fa-solid fa-ellipsis"></i>
-                      {user.id === story.user_id &&
-                        <button className="edit-story-button"
-                          onClick={() => history.push(`/story/${story.id}/edit`)}>
-                          Edit story
-                        </button>}
-                      {user.id === story.user_id &&
-                        (<button className="delete-story-button"
-                          onClick={() => deleteStoryHandler(story.id)}>
-                          Delete story
-                        </button>)}
-                    </div>)}
-                  </div>
+                    <div className="stories-buttons">
+                      {user && user.id === story.user_id &&
+                        (<div className="stories-options-dropdown">
+                          <i className="fa-solid fa-ellipsis"></i>
+                        {user.id === story.user_id &&
+                          <button className="edit-story-button"
+                            onClick={() => history.push(`/story/${story.id}/edit`)}>
+                            Edit story
+                          </button>}
+                        {user.id === story.user_id &&
+                          (<button className="delete-story-button"
+                            onClick={() => deleteStoryHandler(story.id)}>
+                            Delete story
+                          </button>)}
+                      </div>)}
+                    </div>
                 </div>
 
                   <NavLink key={story.id} to={`/stories/${story.id}`}>
