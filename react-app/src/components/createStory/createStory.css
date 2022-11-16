@@ -1,14 +1,15 @@
 .create-story-container {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 100%;
     height: 100%;
     background: #fff;
-    margin-left: 20%;
+    /* margin-left: 20%; */
     overflow: auto;
 }
 
 .create-story-header {
+    display: flex;
     justify-content: space-between;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 16px;
@@ -16,6 +17,7 @@
     font-weight: 400;
     color: rgba(0, 0, 0, 0.84);
     justify-content: space-around;
+    vertical-align: bottom;
 }
 
 .form-container{
@@ -24,6 +26,8 @@
     width: 800px;
     margin-top: 5%;
     min-height: 800px;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 
@@ -38,6 +42,7 @@
     border-color: #1a8917;
     background-color: #1a8917;
     height: 25px;
+    width: 90px;
     line-height: 25px;
     border: 1px solid rgba(0, 0, 0, .15);
     text-decoration: none;

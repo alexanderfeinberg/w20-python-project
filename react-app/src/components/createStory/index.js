@@ -34,7 +34,6 @@ const CreateStory = () => {
         <>
         <div className="create-story-container">
             {user && <div className="create-story-header">Draft in {user.firstName} {user.lastName}               
-                <button className="create-story-button" type="submit">Publish</button>
                     <img className="profile-icon" src={profileIcon} alt="Profile Icon"/>
                 </div>} 
 
@@ -51,7 +50,6 @@ const CreateStory = () => {
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         placeholder="imageurl"
-                        // style={min-height=10px}
                     />
                     <textarea
                         type="text"
@@ -59,6 +57,7 @@ const CreateStory = () => {
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="Tell your story..."
                     />
+                    <button className="create-story-button" type="submit">Publish</button>
                 </form>
             </div>
         </div>
