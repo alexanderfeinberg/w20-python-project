@@ -18,7 +18,7 @@ def seed_followings(users):
 def undo_followings():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.followers RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.follows RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM followers")
 
