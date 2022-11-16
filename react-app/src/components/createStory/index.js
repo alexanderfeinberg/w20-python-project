@@ -13,18 +13,23 @@ const CreateStory = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const submit = (e) => {
     e.preventDefault();
+    setErrors([]);
+
     const data = { title, image, content };
 
+    // if (!data.title.length) return setErrors(['Please provide a title.'])
+    // if (!data.image.length) return setErrors(['Please provide an image.'])
+    // if (!data.content.length) return setErrors(['Please provide a content.'])
+    
     dispatch(createStory(data))
       .then(() => {
         history.push(`/users/${user.id}`);
       })
-      .catch(() => {
-        alert("failed");
-      });
+    
   };
 
     return (
