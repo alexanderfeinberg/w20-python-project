@@ -45,12 +45,12 @@ const GetAllStories = ({stories}) => {
                     <div className="stories-content">{story.content}</div>
                   </NavLink>
                     <div className="stories-buttons">
-                        {user.id === story.user_id &&
+                        {user && user.id === story.user_id &&
                           <button className="edit-story-button"
                             onClick={() => history.push(`/story/${story.id}/edit`)}>
                             Edit story
                           </button>}
-                        {user.id === story.user_id &&
+                        {user && user.id === story.user_id &&
                           (<button className="delete-story-button"
                             onClick={() => deleteStoryHandler(story.id)}>
                             Delete story
