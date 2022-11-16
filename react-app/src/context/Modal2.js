@@ -1,9 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import "./Modal2.css";
-import CreateCommentModal from "../components/CreateCommentModal/CreateCommentForm"
+import CreateCommentModal from "../components/CreateCommentModal/CreateCommentForm";
 import { useSelector } from "react-redux";
-
-
 
 export const ModalContext2 = React.createContext();
 
@@ -28,8 +26,8 @@ export function ModalProvider2({ children }) {
 
 export function SelectedModals2() {
   const { modalType2, setModalType2 } = useContext(ModalContext2);
-  const story = useSelector(state => state.story.singleStory)
-  console.log("-----------------------", story)
+  const story = useSelector((state) => state.story.singleStory);
+
   if (modalType2 === "comments") {
     return (
       <div className="modal2">

@@ -20,8 +20,6 @@ const UserInfo = ({ userId }) => {
   const [isFollowingUser, setFollowsUser] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
-  console.log("IS FOLLOWING USER", isFollowingUser);
-
   useEffect(() => {
     dispatch(getUser(userId))
       .then(() =>
