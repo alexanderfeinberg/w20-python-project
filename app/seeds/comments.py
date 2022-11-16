@@ -23,8 +23,8 @@ def seed_comments():
         content='I totally agree with you'
     )
     instance5 = Comment(
-        user_id=5,
-        story_id=5,
+        user_id=2,
+        story_id=3,
         content='Very cool. Thanks for sharing!'
     )
     db.session.add(instance1)
