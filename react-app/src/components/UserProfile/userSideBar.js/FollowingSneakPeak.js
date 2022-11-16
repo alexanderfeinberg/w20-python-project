@@ -29,7 +29,9 @@ const FollowingSneakPeak = ({ userId }) => {
           {followings.map((following, idx) => {
             return (
               <li key={idx}>
-                {following.firstName} {following.lastName}
+                <a href={`/users/${following.id}`} key={`a-${idx}`}>
+                  {following.firstName} {following.lastName}
+                </a>
               </li>
             );
           })}

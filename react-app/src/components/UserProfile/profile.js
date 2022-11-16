@@ -32,8 +32,8 @@ const Profile = () => {
             <h1>
               {user.firstName} {user.lastName}
             </h1>
+            <div className="sub-nav">Home</div>
           </div>
-          <div className="sub-nav">"Home"</div>
           {/* {user.Stories && (
             <ul>
               {user.Stories.map((story, idx) => {

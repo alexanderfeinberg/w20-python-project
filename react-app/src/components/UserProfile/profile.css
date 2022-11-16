@@ -22,3 +22,11 @@
   padding: 20px;
   font-size: 17px;
 }
+
+.sub-nav {
+  margin-bottom: 10px;
+}
+
+.header {
+  border-bottom: 1px solid lightgrey;
+}

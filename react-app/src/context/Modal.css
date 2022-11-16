@@ -34,12 +34,11 @@
 
 .follow-background {
   background-color: white;
-  opacity: 0.75;
+  opacity: 0.95;
 }
 
 .follow {
-  opacity: 0.75;
-  /* background-color: rgba(255, 255, 255, 1); */
+  background-color: rgba(255, 255, 255, 0);
   color: black;
   width: 75vh;
   overflow-y: scoll;
