@@ -44,37 +44,39 @@ const NavBar = () => {
 
   return (
     <div id={user ? "container-1" : "container-1-logged-out"}>
-      <div id={user ? "main-icon" : "main-icon-logged-out"}>
-        <div id={user ? "img" : "img-logged-out"}>
-          <img src={user ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
-        </div>
-        {!user && (<div onClick={goHome} id="median">Median</div>)}
-
-      </div>
-
-      <div id="navbar-container">
-        {!user
-          ?
-          <div id="navbar-logged-out">
-            <div>placeholder</div>
-            <div onClick={() => setModalType("Login")}>Sign In</div>
-            <div id="get-started" onClick={() => setModalType("Signup")}>Get Started</div>
+      <div id={user ? "container-1-inner" : "container-1-inner-logged-out"}>
+        <div id={user ? "main-icon" : "main-icon-logged-out"}>
+          <div id={user ? "img" : "img-logged-out"}>
+            <img src={user ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
           </div>
-          :
-          <div id="navbar">
-            <img src={homeIcon} alt="Home Icon" />
-            <img src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
-          </div>
-        }
-      </div>
-      {user && (
-        <div>
+          {!user && (<div onClick={goHome} id="median">Median</div>)}
 
-          <div onClick={() => history.push(`/users/${user.id}`)}>profile</div>
-          <button onClick={logoutButton}>Log Out</button>
         </div>
 
-      )}
+        <div id="navbar-container">
+          {!user
+            ?
+            <div id="navbar-logged-out">
+              <div>placeholder</div>
+              <div onClick={() => setModalType("Login")}>Sign In</div>
+              <div id="get-started" onClick={() => setModalType("Signup")}>Get Started</div>
+            </div>
+            :
+            <div id="navbar">
+              <img src={homeIcon} alt="Home Icon" />
+              <img src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
+            </div>
+          }
+        </div>
+        {user && (
+          <div>
+
+            <div onClick={() => history.push(`/users/${user.id}`)}>profile</div>
+            <button onClick={logoutButton}>Log Out</button>
+          </div>
+
+        )}
+      </div>
     </div >
   );
 }

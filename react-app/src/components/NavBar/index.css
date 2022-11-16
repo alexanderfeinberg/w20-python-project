@@ -1,12 +1,17 @@
+#main-icon-logged-out {
+    width: 160px;
+    /* width: 40%; */
+    display: flex
+}
+
+#img-logged-out {
+    align-self: center;
+}
+
 #median {
     font-size: 36px;
     font-weight: 800;
     align-self: center
-}
-
-#img-logged-out {
-    /* border: 1px solid black; */
-    align-self: center;
 }
 
 #main-icon-img {
@@ -22,37 +27,42 @@
 }
 
 #container-1-logged-out {
+    border-bottom: 1px solid black;
     height: 67px;
     background-color: rgb(255, 192, 23);
-    border-bottom: 1px solid black;
+    /* background-color: red; */
     position: sticky;
     top: 0;
     z-index: 10;
-    width: 100%;
     display: flex;
     justify-content: center;
-    align-content: center;
+    /* align-content: center; */
+    width: 100%;
+    /* max-width: 1192px; */
+}
+#container-1-inner-logged-out {
+    display: flex;
+    min-width: 544px;
+    width: 1192px;
+    justify-content: space-between;
 }
 
 #navbar-container {
-    width: 50%;
+    /* width: 50%; */
 }
 
-#main-icon-logged-out {
-    min-width: 412px;
-    width: 40%;
-    display: flex
-}
 
 #navbar-logged-out {
+    width: 360px;
     display: flex;
     align-items: center;
     height: 67px;
     justify-content: right;
+    margin: 0
 }
 
 #navbar-logged-out>div {
-    margin: 0 20px;
+    margin-left: 40px;
 }
 
 #get-started {
