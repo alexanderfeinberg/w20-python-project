@@ -5,18 +5,15 @@
 
 .container-2 {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 1030px;
+    max-width: 1030px;
     min-width: 552px; 
-    min-height: 100vh;
-    /* border-right: .5px solid #dddddd; */
-    margin: 5% 10% 0% 10%;
-    text-align: left;
+    border-right: .5px solid #dddddd;
+    margin: 50px 150px;
 }
 
 .story-info {
-    width: 692px;
+    width: 792px;
     height: 461px;
 }
 .story-header {
@@ -60,13 +57,13 @@
     margin-top: 5%;
 }
 
-.container-3 {
+/* .container-3 {
     display: flex;
     flex-direction: column;
-    width: 394px;
+    width: 329px;
     min-height: 100vh;    
     border: .5px solid #dddddd;
-}
+} */
 
 .story-image {
     width: 692px;

@@ -9,10 +9,10 @@ a:visited {
 .stories-container{
     display: flex;
     flex-direction: column;
+    max-width: 1030px;
+    min-width: 552px;
     flex-wrap: wrap;
-    margin: 5% 10% 0% 10%;
-    text-align: left;
-    max-width: 792px;
+    width: 792px;
 }
 
 
