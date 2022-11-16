@@ -20,8 +20,6 @@ const UserInfo = ({ userId }) => {
   const [isFollowingUser, setFollowsUser] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
-  console.log("IS FOLLOWING USER", isFollowingUser);
-
   useEffect(() => {
     dispatch(getUser(userId))
       .then(() =>
@@ -64,16 +62,20 @@ const UserInfo = ({ userId }) => {
     return (
       <div className="container-content">
         <div className="profile-picture">
-          <img
-            className="comment-container-2-1-a-1"
-            src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
-          />
+          <a href={`/users/${user.id}`}>
+            <img
+              className="comment-container-2-1-a-1"
+              src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+            />
+          </a>
           {/* // <img src={user.profile_picture} /> */}
         </div>
         <div className="profile-header">
-          <div className="main-header">
-            {user.firstName} {user.lastName}
-          </div>
+          <a href={`/users/${user.id}`}>
+            <div className="main-header">
+              {user.firstName} {user.lastName}
+            </div>
+          </a>
           <div className="follow-count textBtn">
             <button onClick={showFollowerModal}>
               {user.followerCount} Followers

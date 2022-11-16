@@ -16,10 +16,9 @@ const FollowingSneakPeak = ({ userId }) => {
   };
 
   useEffect(() => {
-    console.log("DISPATCHING LAOD FOLLOWINGS");
-    dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => console.log("RESPONSE FOLLOWINGS"))
-      .then(() => dispatch(getUser(userId)).then((res) => setIsLoaded(true)));
+    dispatch(loadFollowings(userId, "1", "5")).then(() =>
+      dispatch(getUser(userId)).then((res) => setIsLoaded(true))
+    );
   }, [modalType]);
   if (isLoaded) {
     return (

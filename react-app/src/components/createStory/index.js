@@ -1,34 +1,30 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createStory } from "../../store/story";
 import './createStory.css';
 import profileIcon from "../../assets/profile-icon.jpeg";
 
 const CreateStory = () => {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const user = useSelector(state => state.session.user)
-    const [title, setTitle] = useState("")
-    const [image, setImage] = useState("")
-    const [content, setContent] = useState("")
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((state) => state.session.user);
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [content, setContent] = useState("");
 
-    const submit = (e) => {
-        e.preventDefault()
-        const data = { title, image, content }
-        console.log(data)
-        dispatch(createStory(data))
-        .then(() => {
-            history.push(`/users/${user.id}`)
-        })
-        .catch(() => {
-            alert("failed")
-        })
-    }
+  const submit = (e) => {
+    e.preventDefault();
+    const data = { title, image, content };
 
-
-
-
+    dispatch(createStory(data))
+      .then(() => {
+        history.push(`/users/${user.id}`);
+      })
+      .catch(() => {
+        alert("failed");
+      });
+  };
 
     return (
         <>

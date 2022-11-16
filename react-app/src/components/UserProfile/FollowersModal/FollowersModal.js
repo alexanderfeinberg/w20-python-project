@@ -11,8 +11,6 @@ const FollowersModal = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    console.log("FOLLOWERS MODAL RE-RENDER");
-
     dispatch(getUserfollowers(user.id, `${page}`, "10")).then(() =>
       setIsLoaded(true)
     );

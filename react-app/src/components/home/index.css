@@ -118,18 +118,37 @@ BELOW IS FOR 902px or wider screens */
 
 
 #home-lower-logged-out {
-    height: 5000px;
+    /* height: 5000px; */
     /* padding-top: 420px; */
-    margin-top: 420px;
-    width: 100%;
-    border-top: 1px solid black;
+    margin: 420px;
+    /* width: 100%; */
+    /* border-top: 1px solid black; */
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    /* max-width: 1192px; */
+    /* min-width: 888px; */
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
 
 #home-lower-logged-out-inner {
-    border: 1px solid black;
-    max-width: 1192px;
+    /* border: 1px solid black; */
     width: 100%;
+    max-width: 794px;
+    min-width: 555px;
+    width: 100%;
+    margin:0
+}
+
+
+
+#placeholder {
+    border: 1px solid black;
+    min-width: 333px;
+    max-width: 398px;
+}
+
+#padding-all-story-container {
+    border: 1px solid black;
+    padding: 5% 10% 0% 10%;
 }

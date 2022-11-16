@@ -18,7 +18,7 @@ const GetOneStory = () => {
   const { setModalType2 } = useContext(ModalContext2);
 
   const story = useSelector((state) => state.story.singleStory);
-  const stories = useSelector(state => state.story.allStories)
+  const stories = useSelector((state) => state.story.allStories);
   const comment = useSelector((state) => state.comment.singleComment);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,7 +32,6 @@ const GetOneStory = () => {
   // }, [dispatch, storyId, count]);
 
   const handleLike = () => {
-    console.log("HANDLING LIKE");
     dispatch(addLikeToStory(storyId, 1)).then(() =>
       dispatch(getSingleStory(storyId)).then(() => setIsLoaded(true))
     );
@@ -92,7 +91,7 @@ const GetOneStory = () => {
               <GetAllStories stories={stories}/>
               </div>
           </div>
-          
+
           <div className="container-3">
             <UserInfo userId={story.author.id} />
             <MoreArticles userId={story.author.id} />
