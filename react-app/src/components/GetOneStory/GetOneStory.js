@@ -41,7 +41,7 @@ const GetOneStory = () => {
     return (
       <>
         <div className="containers">
-          <div className="container-2">
+          <div className="story-container2">
             <div className="story-info">
               <div className="story-header">
                 <div className="story-author-info"

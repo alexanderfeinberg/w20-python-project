@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { deleteStory } from "../../store/story";
 import { getUser } from "../../store/user";
 import profileIcon from "../../assets/profile-icon.jpeg";
@@ -9,13 +9,14 @@ import './GetAllStories.css';
 const GetAllStories = ({stories}) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { userId } = useParams();
 
   const user = useSelector((state) => state.session.user);
   const storiesArr = Object.values(stories);
 
   useEffect(() => {
-    dispatch(getUser())
-  }, [dispatch]);
+    dispatch(getUser(userId))
+  }, [dispatch, userId]);
 
   if (Object.keys(storiesArr).length === 0) {
     return null;

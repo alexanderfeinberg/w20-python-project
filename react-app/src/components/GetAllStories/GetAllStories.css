@@ -10,9 +10,9 @@ a:visited {
     display: flex;
     flex-direction: column;
     max-width: 1030px;
-    min-width: 552px;
-    flex-wrap: wrap;
-    width: 792px;
+    /* min-width: 552px; */
+    /* width: 792px; */
+    /* margin: 50px 150px; */
 }
 
 
@@ -90,6 +90,7 @@ a:visited {
     width: 200px;
     height: 134px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .stories-buttons {
