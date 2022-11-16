@@ -4,19 +4,18 @@
     width: 100%;
     height: 100%;
     background: #fff;
-    /* margin-left: 20%; */
     overflow: auto;
 }
 
 .create-story-header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 16px;
     line-height: 22px;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.84);
-    justify-content: space-around;
     vertical-align: bottom;
 }
 
@@ -49,4 +48,14 @@
     font-weight: 400;
     align-content: center;
     font-family: Arial, "Helvetica Neue", sans-serif;
+}
+
+.header-home-logo{ 
+    width: 24px;
+    height: 24px;
+}
+
+.header-profile-icon {
+    width: 24px;
+    height: 24px;
 }

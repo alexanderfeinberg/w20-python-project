@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createStory } from "../../store/story";
 import './createStory.css';
 import profileIcon from "../../assets/profile-icon.jpeg";
+import mainLogo from "../../assets/main-logo-2.png"
 
 const CreateStory = () => {
   const dispatch = useDispatch();
@@ -29,10 +30,16 @@ const CreateStory = () => {
     return (
         <>
         <div className="create-story-container">
-            {user && <div className="create-story-header">Draft in {user.firstName} {user.lastName}               
-                    <img className="profile-icon" src={profileIcon} alt="Profile Icon"/>
+            <div className="create-story-header">
+                <div className="header-left">
+                    <img className="header-home-logo" src={mainLogo} alt="Main Logo"
+                        onClick={() => history.push('/')}/>
+                    {user && <div className="header-author-info">Draft in {user.firstName} {user.lastName}               
                 </div>} 
-
+                </div>
+                <img className="header-profile-icon" src={profileIcon} alt="Profile Icon"
+                    onClick={() => history.push(`/users/${user.id}`)}/>
+            </div>
             <div className="form-wrapper">
                 <form className="form-container" onSubmit={submit}>
                     <input

@@ -38,7 +38,6 @@ const GetOneStory = () => {
   };
   if (isLoaded) {
     return (
-      <>
         <div className="containers">
           <div className="story-container2">
             <div className="story-info">
@@ -97,7 +96,6 @@ const GetOneStory = () => {
             <MoreArticles userId={story.author.id} />
           </div>
         </div>
-      </>
     );
   } else {
     return <h1>Loading...</h1>;

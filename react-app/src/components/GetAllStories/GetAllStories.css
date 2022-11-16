@@ -110,11 +110,10 @@ a:visited {
     border-radius: 99em;
     font-size: 14px;
     overflow: visible;
-    color: white;
     cursor: pointer;
-    color: rgb(26, 137, 23);
+    color:white ;
     border: 1px solid rgb(26, 137, 23);
-    background-color: white;
+    background-color:rgb(26, 137, 23) ;
 }
 
 .delete-story-button {
@@ -123,9 +122,8 @@ a:visited {
     border-radius: 99em;
     font-size: 14px;
     overflow: visible;
-    color: white;
     cursor: pointer;
-    color:rgb(26, 137, 23);
+    color:white ;
     border: 1px solid rgb(26, 137, 23);
-    background-color: white;
+    background-color:rgb(26, 137, 23) ;
 }

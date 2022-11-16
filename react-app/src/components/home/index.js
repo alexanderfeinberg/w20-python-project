@@ -54,7 +54,6 @@ const Home = () => {
                                 <GetAllStories stories={stories} />
                             </div>
                             <div className="text-center">
-                                Placeholder2
                             </div>
                         </div>
                     </div>
