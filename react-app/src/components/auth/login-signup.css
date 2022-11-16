@@ -1,0 +1,30 @@
+#login-container {
+    /* border: 1px solid red; */
+    display: flex;
+    /* flex-direction: column; */
+}
+
+#login-container > * {
+    border: transparent;
+    align-self: center;
+    text-align: center;
+    margin: 12px 0;
+    width: 50%
+}
+
+#login-container > input {
+    border-bottom: 1px solid black;
+}
+
+#login-container > button {
+    background: black;
+    color: white;
+    border-radius: 100px;
+    width: 200px;
+    height: 32px
+}
+
+#login-title {
+    font-size: 38px;
+    color: red
+}

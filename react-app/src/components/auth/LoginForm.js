@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 import { ModalContext } from "../../context/Modal"
+import "./login-signup.css"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -41,35 +42,35 @@ const LoginForm = () => {
 
 
   return (
-    <form className="modal-content" onSubmit={onLogin}>
-      <div>Log In</div>
+    <form id="login-container" className="modal-content" onSubmit={onLogin}>
+      <div id="login-title">Log In</div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      {/* <div className="border"> */}
         <label htmlFor='email'>Email</label>
         <input
           name='email'
           type='text'
-          placeholder='Email'
+          // placeholder='Email'
           value={email}
           onChange={updateEmail}
         />
-      </div>
-      <div>
+      {/* </div> */}
+      {/* <div className="border"> */}
         <label htmlFor='password'>Password</label>
         <input
           name='password'
           type='password'
-          placeholder='Password'
+          // placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
-        <button onClick={() => demoLogin()}>Demo Login</button>
-      </div>
+      {/* </div> */}
+      <button type='submit'>Login</button>
+      <button onClick={() => demoLogin()}>Demo Login</button>
     </form>
   );
 };
