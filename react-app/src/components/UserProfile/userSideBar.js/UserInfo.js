@@ -64,7 +64,11 @@ const UserInfo = ({ userId }) => {
     return (
       <div className="container-content">
         <div className="profile-picture">
-          <img src={user.profile_picture} />
+          <img
+            className="comment-container-2-1-a-1"
+            src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+          />
+          {/* // <img src={user.profile_picture} /> */}
         </div>
         <div className="profile-header">
           <div className="main-header">
