@@ -49,8 +49,13 @@ const Home = () => {
             {user && (
                 <>
                     <div id="container-2">
-                        <div>
-                            <GetAllStories stories={stories} />
+                        <div id="padding-all-story-container">
+                            <div>
+                                <GetAllStories stories={stories} />
+                            </div>
+                            <div className="text-center">
+                                Placeholder2
+                            </div>
                         </div>
                     </div>
 
