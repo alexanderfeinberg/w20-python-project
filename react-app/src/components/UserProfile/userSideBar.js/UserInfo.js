@@ -34,7 +34,7 @@ const UserInfo = ({ userId }) => {
 
   useEffect(() => {
     if (currentUser) {
-      const res = followsUser(user.id);
+      const res = followsUser(user.id).then((res) => res);
       setFollowsUser(res);
     }
   }, [user.followerCount]);

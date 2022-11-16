@@ -2,6 +2,7 @@ import { ModalContext } from "../../../context/Modal";
 import { loadFollowings, getUser } from "../../../store/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useContext } from "react";
+import "./FollowingSneakPeak.css";
 
 const FollowingSneakPeak = ({ userId }) => {
   const dispatch = useDispatch();
@@ -15,24 +16,23 @@ const FollowingSneakPeak = ({ userId }) => {
   };
 
   useEffect(() => {
+    console.log("DISPATCHING LAOD FOLLOWINGS");
     dispatch(loadFollowings(userId, "1", "5"))
-      .then(() => dispatch(getUser(userId)))
-      .then((res) => setIsLoaded(true));
+      .then(() => console.log("RESPONSE FOLLOWINGS"))
+      .then(() => dispatch(getUser(userId)).then((res) => setIsLoaded(true)));
   }, [modalType]);
   if (isLoaded) {
     return (
       <div className="following-peak">
         <h4>Following</h4>
         <div className="following-list">
-          <ul>
-            {followings.map((following, idx) => {
-              return (
-                <li key={idx}>
-                  {following.firstName} {following.lastName}
-                </li>
-              );
-            })}
-          </ul>
+          {followings.map((following, idx) => {
+            return (
+              <li key={idx}>
+                {following.firstName} {following.lastName}
+              </li>
+            );
+          })}
         </div>
         <div className="expand-following textBtn">
           <button onClick={showFollowingModal}>

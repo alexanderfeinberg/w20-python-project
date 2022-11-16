@@ -19,9 +19,9 @@ const Profile = () => {
   const stories = useSelector((state) => state.story.allStories);
 
   useEffect(() => {
-    dispatch(getUser(userId))
-      .then(() => dispatch(getUsersStories(userId)))
-      .then(() => setIsLoaded(true));
+    dispatch(getUser(userId)).then(() =>
+      dispatch(getUsersStories(userId)).then(() => setIsLoaded(true))
+    );
   }, [userId, currUser]);
 
   if (isLoaded) {
