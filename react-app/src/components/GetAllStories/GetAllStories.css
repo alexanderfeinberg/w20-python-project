@@ -10,9 +10,8 @@ a:visited {
     display: flex;
     flex-direction: column;
     max-width: 1030px;
-    /* min-width: 552px; */
+    min-width: 552px;
     /* width: 792px; */
-    /* margin: 50px 150px; */
 }
 
 
@@ -28,8 +27,8 @@ a:visited {
 
 .stories-divider {
     border-bottom: .5px solid #dddddd;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .stories-info {
@@ -40,7 +39,7 @@ a:visited {
 }
 
 .stories-author-info {
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #292929;
@@ -51,7 +50,7 @@ a:visited {
 
 .profile-icon {
     max-width: 24px;
-    margin-right: 3px;
+    padding-right: 3px;
     vertical-align: bottom;
 }
 
@@ -70,7 +69,7 @@ a:visited {
     font-size: 16px;
     line-height: 24px;
     color: rgba(41, 41, 41, 1);
-    margin-right: 30px;
+    padding-right: 30px;
     max-height: 48px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -78,7 +77,7 @@ a:visited {
     cursor: pointer;
     /* width: 520px; */
     text-decoration: none;
-    margin-bottom: 35px;
+    padding-bottom: 35px;
  }
 
 .stories-image-container{
@@ -89,14 +88,14 @@ a:visited {
 .stories-image{
     width: 200px;
     height: 134px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     object-fit: cover;
 }
 
 .stories-buttons {
     display: flex;
     justify-content: flex-end;
-    margin-right: 50px;
+    padding-right: 50px;
     cursor: pointer;
     width: 562px;
 }
@@ -108,12 +107,11 @@ a:visited {
     font-size: 14px;
     overflow: visible;
     color: white;
-    margin-top: 10px;
     cursor: pointer;
-    margin-right: 5px;
     color: rgb(26, 137, 23);
     border: 1px solid rgb(26, 137, 23);
-    background-color: white;}
+    background-color: white;
+}
 
 .delete-story-button {
     padding: 4px 12px 6px;
@@ -122,7 +120,6 @@ a:visited {
     font-size: 14px;
     overflow: visible;
     color: white;
-    margin-top: 10px;
     cursor: pointer;
     color:rgb(26, 137, 23);
     border: 1px solid rgb(26, 137, 23);
