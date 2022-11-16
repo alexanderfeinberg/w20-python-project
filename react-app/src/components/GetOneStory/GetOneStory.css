@@ -7,15 +7,10 @@
     display: flex;
     flex-direction: column;
     max-width: 1030px;
-    /* min-width: 552px;  */
-    /* border-right: .5px solid #dddddd; */
+    min-width: 552px; 
+    border-right: .5px solid #dddddd;
     padding: 50px 150px;
 }
-
-/* .story-info {
-    width: 792px;
-    height: 461px;
-} */
 
 .story-header {
     padding-top: 56px;
