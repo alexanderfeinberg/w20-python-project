@@ -41,6 +41,7 @@ const Home = () => {
                         <div id="home-lower-logged-out-inner">
                             <GetAllStories stories={stories} />
                         </div>
+                        <div id="placeholder">Placeholder</div>
                     </div>
                 </div>
             )}

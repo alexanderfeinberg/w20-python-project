@@ -20,10 +20,32 @@
 
 #container-1 {
     width: 79px;
+    min-width: 79px;
+    height: 100%;
     border-right: 1px solid rgba(230, 230, 230, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#container-1-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0
+}
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
+
+#navbar > * {
+    margin: 12px 0
 }
 
 #container-1-logged-out {
@@ -46,10 +68,11 @@
     width: 1192px;
     justify-content: space-between;
 }
-
+/*
 #navbar-container {
-    /* width: 50%; */
-}
+    display: flex;
+
+} */
 
 
 #navbar-logged-out {
