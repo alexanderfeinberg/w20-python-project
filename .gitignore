@@ -6,4 +6,3 @@ __pycache__/
 .vscode/
 *.db
 /app/dev.db
-/Users/alexfeinberg/Documents/python-group-project/app/dev.db
