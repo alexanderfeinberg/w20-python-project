@@ -1,0 +1,28 @@
+.more-articles-title h4 {
+  margin: 0px;
+  font-size: 18px;
+}
+
+.more-articles-title {
+  margin-bottom: 8px;
+}
+
+.article-list li {
+  list-style: none;
+  margin-right: 0px;
+}
+
+.article-item {
+  margin: 8px 0px;
+}
+
+.author a {
+  color: darkgray;
+  font-size: 14px;
+}
+
+.title a {
+  font-size: 17px;
+  font-weight: 600;
+  color: black;
+}
