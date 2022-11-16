@@ -1,0 +1,15 @@
+.user-card {
+  position: absolute;
+  top: -200px;
+  z-index: 100;
+  background-color: white;
+  box-shadow: 0 0 6px lightgrey;
+  height: 200px;
+  width: 200px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

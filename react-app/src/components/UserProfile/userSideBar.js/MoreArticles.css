@@ -13,12 +13,18 @@
 }
 
 .article-item {
-  margin: 8px 0px;
+  margin: 0px 0px 14px 0px;
+  position: relative;
+  /* overflow: visible; */
 }
 
 .author a {
   color: darkgray;
   font-size: 14px;
+}
+
+.author {
+  margin-bottom: 5px;
 }
 
 .title a {

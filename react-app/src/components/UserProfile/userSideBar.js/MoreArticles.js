@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUsersStories } from "../../../store/story";
+import UserCard from "../FollowersModal/UserCard";
 
 import "./MoreArticles.css";
 
@@ -9,9 +10,18 @@ const MoreArticles = ({ userId }) => {
   const storiesRaw = useSelector((state) => state.story.allStories);
   const [isLoaded, setIsLoaded] = useState(false);
   const stories = Object.values(storiesRaw);
+  const [showUserCard, setShowUserCard] = useState(null);
+
   useEffect(() => {
     dispatch(getUsersStories(userId)).then(() => setIsLoaded(true));
   }, []);
+
+  const handleUserCard = (idx) => {
+    setShowUserCard(idx);
+  };
+  const handleCloseUserCard = () => {
+    setShowUserCard(null);
+  };
 
   if (isLoaded) {
     return (
@@ -23,7 +33,12 @@ const MoreArticles = ({ userId }) => {
           {stories.map((story, idx) => (
             <li key={idx}>
               <div className="article-item">
-                <div className="author">
+                {showUserCard == idx && <UserCard user={story.author} />}
+                <div
+                  className="author"
+                  onMouseOver={() => handleUserCard(idx)}
+                  onMouseOut={handleCloseUserCard}
+                >
                   <a href={`/users/${story.author.id}`}>
                     {story.author.firstName} {story.author.lastName}
                   </a>
