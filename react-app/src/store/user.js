@@ -133,7 +133,7 @@ export const followsUser = async (userId) => {
   const resp = await csrfFetch(`/api/users/${userId}/isFollowing`);
   if (resp.ok) {
     const { isFollowing } = await resp.json();
-    console.log("IS FOLLOWING ", isFollowing);
+
     return isFollowing;
   }
 };
@@ -149,7 +149,7 @@ export const loadFollowings =
       query += `&size=${size}`;
     }
     const resp = await csrfFetch(`/api/users/${userId}/following?${query}`);
-    console.log("RESP ", resp);
+
     if (resp.ok) {
       const followings = await resp.json();
       if (page > 1) dispatch(paginateFollowing(followings));
