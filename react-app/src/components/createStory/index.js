@@ -66,7 +66,7 @@ const CreateStory = () => {
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
-                        placeholder="imageurl"
+                        placeholder="Image url"
                         className="input-image"
                     />
                     <textarea
