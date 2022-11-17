@@ -62,7 +62,7 @@ const NavBar = () => {
           {!user
             ?
             <div id="navbar-logged-out">
-              <div>placeholder</div>
+              {/* <div>placeholder</div> */}
               <div onClick={() => setModalType("Login")}>Sign In</div>
               <div id="get-started" onClick={() => setModalType("Signup")}>Get Started</div>
             </div>
