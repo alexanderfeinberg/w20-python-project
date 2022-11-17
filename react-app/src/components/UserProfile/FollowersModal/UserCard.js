@@ -7,9 +7,11 @@ const UserCard = ({ user }) => {
   return (
     <div className="user-card">
       <div className="card-header">
-        <h2>
-          {user.firstName} {user.lastName}
-        </h2>
+        <a href={`/users/${user.id}`}>
+          <h2>
+            {user.firstName} {user.lastName}
+          </h2>
+        </a>
       </div>
       <div className="card-content">{user.bio}</div>
       <div className="card-footer">
