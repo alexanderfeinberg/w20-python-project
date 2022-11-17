@@ -25,10 +25,8 @@ def seed_followings(users):
     user19 = users[18]
     user20 = users[19]
 
-    user1.following.append(user1)
     user1.following.append(user2)
     user2.following.append(user1)
-    user2.following.append(user2)
     user2.following.append(user3)
     user2.following.append(user4)
     user2.following.append(user5)
@@ -48,7 +46,6 @@ def seed_followings(users):
     user2.following.append(user19)
     user2.following.append(user20)
     user3.following.append(user1)
-    user3.following.append(user3)
     user3.following.append(user6)
     user3.following.append(user9)
     user3.following.append(user12)
@@ -56,7 +53,6 @@ def seed_followings(users):
     user3.following.append(user19)
     user4.following.append(user1)
     user4.following.append(user2)
-    user4.following.append(user4)
     user4.following.append(user6)
     user4.following.append(user7)
     user4.following.append(user9)
@@ -86,7 +82,6 @@ def seed_followings(users):
     user6.following.append(user20)
     user7.following.append(user1)
     user7.following.append(user5)
-    user7.following.append(user7)
     user7.following.append(user9)
     user7.following.append(user11)
     user7.following.append(user12)
