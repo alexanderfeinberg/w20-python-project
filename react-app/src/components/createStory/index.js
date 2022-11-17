@@ -51,6 +51,10 @@ const CreateStory = () => {
             </div>
             <div className="form-wrapper">
                 <form className="form-container" onSubmit={submit}>
+                    <div className="errors">
+                        {errors.length > 0 &&
+                        errors.map((error) => <li key={error}>{error}</li>)}
+                    </div>
                     <input
                         type="text"
                         value={title}
