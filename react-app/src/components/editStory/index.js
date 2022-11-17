@@ -50,10 +50,6 @@ const EditStory = () => {
             })
     }
 
-
-
-
-
     return (
         <div className="edit-story-container">
             <div className="edit-story-header">
@@ -75,18 +71,18 @@ const EditStory = () => {
                         // placeholder={story.title}
                         className="input-title"
                     />
-                    <textarea
-                        type="text"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        // placeholder={story.content}
-                    />
                     <input
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         // placeholder={story.image}
                         className="input-image"
+                    />
+                    <textarea
+                        type="text"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        // placeholder={story.content}
                     />
                     <button className="editStory-button" type="submit">Save and publish</button>
                 </form>  
