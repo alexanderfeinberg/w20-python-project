@@ -1,14 +1,19 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
+
 from datetime import datetime
 
 
 class Comment(db.Model):
     __tablename__ = "comments"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")), nullable=False)
     story_id = db.Column(db.Integer, db.ForeignKey(
-        "stories.id"), nullable=False)
+        add_prefix_for_prod("stories.id")), nullable=False)
     content = db.Column(db.String(500), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
@@ -23,6 +28,7 @@ class Comment(db.Model):
             'content': self.content,
             "created_at": self.created_at
         }
+
     def to_dict_with_user(self):
         return {
             'id': self.id,
