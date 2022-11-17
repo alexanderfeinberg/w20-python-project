@@ -3,11 +3,12 @@
   flex-direction: column;
   padding: 50px;
   box-sizing: border-box;
-  overflow-y: scroll;
 }
 
 #follow-data {
   padding: 0;
+  overflow-y: scroll;
+  max-height: 700px;
 }
 
 #follow-data-title {
