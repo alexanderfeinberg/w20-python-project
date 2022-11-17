@@ -42,39 +42,43 @@ const LoginForm = () => {
   return (
     <form id="login-container" className="modal-content" onSubmit={onLogin}>
       <div id="login-title">Log In</div>
-      <div id="login-title-b">Click the Demo Login button below to Log In as a Demo User</div>
-      <div>
+      <div id="login-title-b">
+        Click the Demo Login button below to Log In as a Demo User
+      </div>
+      <div className="errors">
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <li key={ind}>{error}</li>
         ))}
       </div>
       {/* <div className="border"> */}
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          // placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-          required
-          />
+      <label htmlFor="email">Email</label>
+      <input
+        name="email"
+        type="text"
+        // placeholder='Email'
+        value={email}
+        onChange={updateEmail}
+        required
+      />
       {/* </div> */}
       {/* <div className="border"> */}
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          // placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-          required
-        />
+      <label htmlFor="password">Password</label>
+      <input
+        name="password"
+        type="password"
+        // placeholder='Password'
+        value={password}
+        onChange={updatePassword}
+        required
+      />
       {/* </div> */}
       <button type="submit">Login</button>
       <button onClick={() => demoLogin()}>Demo Login</button>
       <div>
         <div>No Account?</div>
-        <div id="login-redirect-signup" onClick={() => setModalType("Signup")}>Sign Up</div>
+        <div id="login-redirect-signup" onClick={() => setModalType("Signup")}>
+          Sign Up
+        </div>
       </div>
     </form>
   );
