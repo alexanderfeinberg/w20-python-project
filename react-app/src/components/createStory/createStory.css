@@ -1,10 +1,12 @@
 .create-story-container {
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     background: #fff;
     overflow: auto;
+    border: 1px solid black;
+    padding: 20px;
 }
 
 .create-story-header {
@@ -22,14 +24,51 @@
 .form-container{
     display: flex;
     flex-direction: column;
-    width: 800px;
-    margin-top: 5%;
-    min-height: 800px;
-    padding-left: 20%;
-    padding-right: 20%;
+    /* width: 700px;
+    min-height: 100%; */
+    padding: 5% 20% 5% 20%;
+    border: 1px solid black;
 }
 
+.input-title {
+    border: none;
+    padding-bottom: 2%;
+    font-size: 42px;
+    word-break: break-word; 
+    color: #b3b3b1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    visibility: visible;
+}
 
+.input-image {
+    font-size: 20px;
+    border: none;
+    padding-bottom: 2%;
+    word-break: break-word; 
+    color: #b3b3b1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    visibility: visible;
+}
+
+textarea {
+    height: 50vh;
+    border: none;
+    padding-top: 2%;
+    word-break: break-word;
+    color: #b3b3b1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.58;
+    font-size: 21px;
+    visibility: visible;
+}
 .create-story-button {
     padding: 0px 10px 10px 10px;
     border-radius: 99em;

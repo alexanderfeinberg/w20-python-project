@@ -10,6 +10,7 @@ const CreateStory = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
@@ -21,14 +22,17 @@ const CreateStory = () => {
 
     const data = { title, image, content };
 
-    // if (!data.title.length) return setErrors(['Please provide a title.'])
-    // if (!data.image.length) return setErrors(['Please provide an image.'])
-    // if (!data.content.length) return setErrors(['Please provide a content.'])
+    if (!data.title.length) return setErrors(['Please provide a title and it must be less than 200 characters.'])
+    if (!data.image.length) return setErrors(['Please provide an image.'])
+    if (!data.content.length) return setErrors(['Please provide a content.'])
     
     dispatch(createStory(data))
       .then(() => {
         history.push(`/users/${user.id}`);
       })
+      .catch(() => {
+        alert("failed");
+      });
     
   };
 
@@ -52,12 +56,14 @@ const CreateStory = () => {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Title"
+                        className="input-title"
                     />
                     <input
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         placeholder="imageurl"
+                        className="input-image"
                     />
                     <textarea
                         type="text"
