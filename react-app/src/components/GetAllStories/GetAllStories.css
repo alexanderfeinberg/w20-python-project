@@ -9,10 +9,9 @@ a:visited {
 .stories-container{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    /* margin: 5% 10% 0% 10%; */
-    text-align: left;
-    max-width: 792px;
+    max-width: 1030px;
+    min-width: 552px;
+    /* max-width: 792px; */
 }
 
 
@@ -21,28 +20,22 @@ a:visited {
     flex-direction: row;
     justify-content: space-between;
     max-height: 250px;
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .stories-divider {
     border-bottom: .5px solid #dddddd;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .stories-info {
     display: flex;
     flex-direction: column;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    /* border: 1px solid black; */
-    width: 100%
+    width: 100%;
 }
 
 .stories-author-info {
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #292929;
@@ -53,7 +46,7 @@ a:visited {
 
 .profile-icon {
     max-width: 24px;
-    margin-right: 3px;
+    padding-right: 3px;
     vertical-align: bottom;
 }
 
@@ -63,8 +56,6 @@ a:visited {
     color: #292929;
     font-style: normal;
     line-height: 28px;
-    text-overflow: ellipsis;
-    overflow: hidden;
  }
 
 .stories-content{
@@ -72,15 +63,15 @@ a:visited {
     font-size: 16px;
     line-height: 24px;
     color: rgba(41, 41, 41, 1);
-    margin-right: 30px;
+    padding-right: 30px;
     max-height: 48px;
+    white-space: wrap;
+    overflow: clip;
     text-overflow: ellipsis;
-    overflow: hidden;
     word-break: break-word;
-    cursor: pointer;
-    /* width: 520px; */
+    /* width: 420px; */
     text-decoration: none;
-    margin-bottom: 35px;
+    padding-bottom: 35px;
  }
 
 .stories-image-container{
@@ -91,16 +82,15 @@ a:visited {
 .stories-image{
     width: 200px;
     height: 134px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    object-fit: cover;
 }
 
 .stories-buttons {
     display: flex;
     justify-content: flex-end;
-    /* margin-right: 50px; */
     padding-right: 50px;
     cursor: pointer;
-    /* width: 562px; */
 }
 
 .edit-story-button {
@@ -109,13 +99,11 @@ a:visited {
     border-radius: 99em;
     font-size: 14px;
     overflow: visible;
-    color: white;
-    margin-top: 10px;
     cursor: pointer;
-    margin-right: 5px;
-    color: rgb(26, 137, 23);
+    color:white ;
     border: 1px solid rgb(26, 137, 23);
-    background-color: white;}
+    background-color:rgb(26, 137, 23) ;
+}
 
 .delete-story-button {
     padding: 4px 12px 6px;
@@ -123,10 +111,8 @@ a:visited {
     border-radius: 99em;
     font-size: 14px;
     overflow: visible;
-    color: white;
-    margin-top: 10px;
     cursor: pointer;
-    color:rgb(26, 137, 23);
+    color:white ;
     border: 1px solid rgb(26, 137, 23);
-    background-color: white;
+    background-color:rgb(26, 137, 23) ;
 }

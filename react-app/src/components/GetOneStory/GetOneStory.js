@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { addLikeToStory, getSingleStory } from "../../store/story";
 import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
@@ -9,9 +9,11 @@ import { ModalContext2 } from "../../context/Modal2";
 import UserInfo from "../UserProfile/userSideBar.js/UserInfo";
 import MoreArticles from "../UserProfile/userSideBar.js/MoreArticles";
 import GetAllStories from "../GetAllStories/GetAllStories";
+import profileIcon from "../../assets/profile-icon.jpeg";
 
 const GetOneStory = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { storyId } = useParams();
   const { setModalType2 } = useContext(ModalContext2);
 
@@ -37,11 +39,12 @@ const GetOneStory = () => {
   if (isLoaded) {
     return (
         <div className="containers">
-          <div className="container-2">
+          <div className="story-container2">
             <div className="story-info">
               <div className="story-header">
-                <div className="story-author-info">
-                  {story?.author?.firstName} {story?.author?.lastName}
+                <div className="story-author-info"
+                onClick={() => history.push(`/users/${story.author.id}`)}>
+                  <img className="profile-icon" src={profileIcon} alt="Profile Icon"/> {story?.author?.firstName} {story?.author?.lastName}
                 </div>
                 <div className="story-author-info2">
                   {" "}
@@ -82,10 +85,10 @@ const GetOneStory = () => {
                 </div>
               </div>
             </div>
-            <div className="get-all-stories">
-              More from {story?.author?.firstName} {story?.author?.lastName}
-              <GetAllStories stories={stories} />
-            </div>
+              <div className="get-all-stories" onClick={() => history.push(`/users/${story.author.id}`)}>
+                More from {story?.author?.firstName} {story?.author?.lastName}
+              <GetAllStories stories={stories}/>
+              </div>
           </div>
 
           <div className="container-3">

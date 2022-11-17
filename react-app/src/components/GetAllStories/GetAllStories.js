@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { deleteStory } from "../../store/story";
-import { getUser } from "../../store/user";
 import profileIcon from "../../assets/profile-icon.jpeg";
 import "./GetAllStories.css";
 
