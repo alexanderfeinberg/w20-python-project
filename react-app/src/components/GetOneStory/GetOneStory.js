@@ -44,7 +44,7 @@ const GetOneStory = () => {
               <div className="story-header">
                 <div className="story-author-info"
                 onClick={() => history.push(`/users/${story.author.id}`)}>
-                  <img className="profile-icon" src={profileIcon} alt="Profile Icon"/> {story?.author?.firstName} {story?.author?.lastName}
+                  <img className="profile-icon" src={story.author.profile_picture} alt="Profile Icon"/> {story?.author?.firstName} {story?.author?.lastName}
                 </div>
                 <div className="story-author-info2">
                   {" "}
@@ -54,9 +54,7 @@ const GetOneStory = () => {
               <div className="story-title">{story.title}</div>
               <img
                 className="story-image"
-                src={
-                  "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg"
-                }
+                src={story.image}
                 alt=""
               />
               <div className="story-content">{story.content}</div>
