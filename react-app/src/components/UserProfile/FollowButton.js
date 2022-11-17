@@ -1,4 +1,9 @@
-import { followsUser, followThunk, unfollowThunk } from "../../store/user";
+import {
+  followsUser,
+  followThunk,
+  unfollowThunk,
+  getUser,
+} from "../../store/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useContext } from "react";
 import { ModalContext } from "../../context/Modal";
@@ -21,13 +26,17 @@ const FollowButton = ({ userId, idx }) => {
     }
     dispatch(followThunk(userId))
       .then(() => followsUser(userId))
-      .then((res) => setIsFollowing(res));
+      .then((res) => setIsFollowing(res))
+      .then((res) => dispatch(getUser(userId)))
+      .then((res) => res);
   };
 
   const handleUnfollow = () => {
     dispatch(unfollowThunk(userId))
       .then(() => followsUser(userId))
-      .then((res) => setIsFollowing(res));
+      .then((res) => setIsFollowing(res))
+      .then(() => dispatch(getUser(userId)))
+      .then((res) => res);
   };
 
   return (
