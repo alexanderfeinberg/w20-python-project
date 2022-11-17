@@ -7,8 +7,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useContext } from "react";
 import { ModalContext } from "../../context/Modal";
+import { useParams } from "react-router-dom";
 
-const FollowButton = ({ userId, idx }) => {
+const FollowButton = ({ userId, idx, profileId }) => {
   console.log("RENDERING FOLLOW BTN");
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
@@ -27,16 +28,28 @@ const FollowButton = ({ userId, idx }) => {
     dispatch(followThunk(userId))
       .then(() => followsUser(userId))
       .then((res) => setIsFollowing(res))
-      .then((res) => dispatch(getUser(userId)))
-      .then((res) => res);
+      .then(() => {
+        console.log("PROFILE ID ", profileId);
+        if (profileId) dispatch(getUser(profileId)).then((res) => res);
+      });
+
+    // if (profile) {
+    //   console.log("PROFILE GETTING USER");
+    //   .then((res) => res);
+    // }
   };
 
   const handleUnfollow = () => {
     dispatch(unfollowThunk(userId))
       .then(() => followsUser(userId))
       .then((res) => setIsFollowing(res))
-      .then(() => dispatch(getUser(userId)))
-      .then((res) => res);
+      .then(() => {
+        if (profileId) dispatch(getUser(profileId)).then((res) => res);
+      });
+
+    // if (profile) {
+    //  .then((res) => res);
+    // }
   };
 
   return (

@@ -1,9 +1,10 @@
 import "./UserCard.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getUser } from "../../../store/user";
+import { useDispatch } from "react-redux";
 import FollowButton from "../FollowButton";
 
 const UserCard = ({ user }) => {
-  console.log("USER CARD ");
   return (
     <div className="user-card">
       <div className="card-header">
