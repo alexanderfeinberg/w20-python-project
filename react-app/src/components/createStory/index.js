@@ -46,7 +46,7 @@ const CreateStory = () => {
                     {user && <div className="header-author-info">Draft in {user.firstName} {user.lastName}               
                 </div>} 
                 </div>
-                <img className="header-profile-icon" src={profileIcon} alt="Profile Icon"
+                <img className="header-profile-icon" src={user.profile_picture} alt="Profile Icon"
                     onClick={() => history.push(`/users/${user.id}`)}/>
             </div>
             <div className="form-wrapper">

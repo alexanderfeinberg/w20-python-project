@@ -35,7 +35,7 @@ const GetAllStories = ({ stories }) => {
                   {/* {story.author.profile_picture}  */}
                   <img
                     className="profile-icon"
-                    src={profileIcon}
+                    src={story.author.profile_picture}
                     alt="Profile Icon"
                   />
                   {story.author.firstName} {story.author.lastName} ·{" "}
@@ -73,9 +73,7 @@ const GetAllStories = ({ stories }) => {
                     <div className="stories-image-container">
                       <img
                         className="stories-image"
-                        src={
-                          "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg"
-                        }
+                        src={story.image}
                         alt=""
                       />
                     </div>
