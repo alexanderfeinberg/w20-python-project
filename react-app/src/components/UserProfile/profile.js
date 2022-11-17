@@ -8,6 +8,7 @@ import "./profile.css";
 import { getUsersStories } from "../../store/story";
 import GetAllStories from "../GetAllStories/GetAllStories";
 import FollowingSneakPeak from "./userSideBar.js/FollowingSneakPeak";
+import FollowButton from "./FollowButton";
 
 const Profile = () => {
   const dispatch = useDispatch();

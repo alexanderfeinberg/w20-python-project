@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useContext } from "react";
 import { ModalContext } from "../../../context/Modal";
 import "./FollowListUser.css";
+import FollowButton from "../FollowButton";
 
 const FollowListUser = ({ user, idx }) => {
   const dispatch = useDispatch();
@@ -10,25 +11,25 @@ const FollowListUser = ({ user, idx }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const { setModalType } = useContext(ModalContext);
 
-  useEffect(() => {
-    followsUser(user.id).then((res) => setIsFollowing(res));
-  }, []);
+  // useEffect(() => {
+  //   followsUser(user.id).then((res) => setIsFollowing(res));
+  // }, []);
 
-  const handleFollow = () => {
-    if (!currentUser) {
-      setModalType("Login");
-      return;
-    }
-    dispatch(followThunk(user.id))
-      .then(() => followsUser(user.id))
-      .then((res) => setIsFollowing(res));
-  };
+  // const handleFollow = () => {
+  //   if (!currentUser) {
+  //     setModalType("Login");
+  //     return;
+  //   }
+  //   dispatch(followThunk(user.id))
+  //     .then(() => followsUser(user.id))
+  //     .then((res) => setIsFollowing(res));
+  // };
 
-  const handleUnfollow = () => {
-    dispatch(unfollowThunk(user.id))
-      .then(() => followsUser(user.id))
-      .then((res) => setIsFollowing(res));
-  };
+  // const handleUnfollow = () => {
+  //   dispatch(unfollowThunk(user.id))
+  //     .then(() => followsUser(user.id))
+  //     .then((res) => setIsFollowing(res));
+  // };
 
   return (
     <div key={`main-${idx}`} className="follow-user">
@@ -46,7 +47,7 @@ const FollowListUser = ({ user, idx }) => {
             </div>
           </div>
         </div>
-        <div className="action-btns">
+        {/* <div className="action-btns">
           {isFollowing && currentUser && user.id != currentUser.id && (
             <button className="unfollow" key={idx} onClick={handleUnfollow}>
               Unfollow
@@ -62,7 +63,8 @@ const FollowListUser = ({ user, idx }) => {
               Follow
             </button>
           )}
-        </div>
+        </div> */}
+        <FollowButton userId={user.id} idx={idx} />
       </li>
     </div>
   );

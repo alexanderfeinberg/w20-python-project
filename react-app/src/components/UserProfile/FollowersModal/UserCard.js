@@ -1,5 +1,7 @@
 import "./UserCard.css";
 import { useState } from "react";
+import FollowButton from "../FollowButton";
+
 const UserCard = ({ user }) => {
   return (
     <div className="user-card">
@@ -14,7 +16,8 @@ const UserCard = ({ user }) => {
           {user.followerCount} Followers
         </div>
         <div className="btn">
-          <button>Follow</button>
+          <FollowButton userId={user.id} key={null} />
+          {/* <button>Follow</button> */}
         </div>
       </div>
     </div>

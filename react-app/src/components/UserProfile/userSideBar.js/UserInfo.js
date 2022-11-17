@@ -11,6 +11,7 @@ import {
 } from "../../../store/user";
 
 import "./UserInfo.css";
+import FollowButton from "../FollowButton";
 
 const UserInfo = ({ userId }) => {
   let user = useSelector((state) => state.user.singleUser);
@@ -21,41 +22,11 @@ const UserInfo = ({ userId }) => {
   const { setModalType } = useContext(ModalContext);
 
   useEffect(() => {
-    dispatch(getUser(userId))
-      .then(() =>
-        currentUser
-          ? followsUser(userId).then((res) => setFollowsUser(res))
-          : setFollowsUser(false)
-      )
-      .then(() => setisLoaded(true));
+    dispatch(getUser(userId)).then(() => setisLoaded(true));
   }, [userId]);
-
-  useEffect(() => {
-    if (currentUser) {
-      const res = followsUser(user.id).then((res) => res);
-      setFollowsUser(res);
-    }
-  }, [user.followerCount]);
 
   const showFollowerModal = () => {
     setModalType("Followers");
-  };
-
-  const handleFollow = () => {
-    if (!currentUser) {
-      setModalType("Login");
-      return;
-    }
-    user = dispatch(followThunk(userId)).then(() =>
-      dispatch(getUser(userId)).then((res) => res)
-    );
-  };
-
-  const handleUnfollow = () => {
-    user = dispatch(unfollowThunk(userId))
-      .then(() => dispatch(getUser(userId)))
-      .then(() => followsUser(userId))
-      .then((res) => setFollowsUser(res));
   };
 
   if (isLoaded) {
@@ -83,7 +54,7 @@ const UserInfo = ({ userId }) => {
           </div>
         </div>
         <div className="bio">{user.bio}</div>
-        <div className="action-btns">
+        {/* <div className="action-btns">
           {isFollowingUser && user.id != currentUser.id && (
             <button className="unfollow" onClick={handleUnfollow}>
               Unfollow
@@ -102,7 +73,9 @@ const UserInfo = ({ userId }) => {
               Follow
             </button>
           )}
-        </div>
+        </div> */}
+
+        <FollowButton userId={user.id} />
       </div>
     );
   }

@@ -17,3 +17,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.btn .action-btns {
+  margin: 0px;
+}
