@@ -45,9 +45,9 @@ const EditStory = () => {
             .then(() => {
                 history.push(`/users/${user.id}`)
             })
-            .catch(() => {
-                alert("failed")
-            })
+            // .catch(() => {
+            //     alert("failed")
+            // })
     }
 
     return (
