@@ -20,11 +20,11 @@ BELOW IS FOR 902px or wider screens */
     width: 79px;
     border-right: 1px solid rgba(230, 230, 230, 1);
 } */
-/* #container-2 {
+#container-2 {
     max-width: 1030px;
     min-width: 552px;
     width: 100%;
-} */
+}
 #container-3 {
     width: 329px;
     border-left: 1px solid rgba(230, 230, 230, 1);

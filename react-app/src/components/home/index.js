@@ -53,8 +53,8 @@ const Home = () => {
                             <div>
                                 <GetAllStories stories={stories} />
                             </div>
-                            <div className="text-center">
-                            </div>
+                            {/* <div className="text-center">
+                            </div> */}
                         </div>
                     </div>
 
