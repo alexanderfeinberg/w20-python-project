@@ -11,8 +11,7 @@ a:visited {
     flex-direction: column;
     max-width: 1030px;
     min-width: 552px;
-    /* width: 792px; */
-    /* margin: 5% 10% 0% 10%; */
+    /* max-width: 792px; */
 }
 
 
@@ -21,9 +20,6 @@ a:visited {
     flex-direction: row;
     justify-content: space-between;
     max-height: 250px;
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .stories-divider {
@@ -35,10 +31,7 @@ a:visited {
 .stories-info {
     display: flex;
     flex-direction: column;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    /* border: 1px solid black; */
-    width: 100%
+    width: 100%;
 }
 
 .stories-author-info {
@@ -63,8 +56,6 @@ a:visited {
     color: #292929;
     font-style: normal;
     line-height: 28px;
-    text-overflow: ellipsis;
-    overflow: hidden;
  }
 
 .stories-content{
@@ -74,11 +65,11 @@ a:visited {
     color: rgba(41, 41, 41, 1);
     padding-right: 30px;
     max-height: 48px;
+    white-space: wrap;
+    overflow: clip;
     text-overflow: ellipsis;
-    overflow: hidden;
     word-break: break-word;
-    cursor: pointer;
-    /* width: 520px; */
+    /* width: 420px; */
     text-decoration: none;
     padding-bottom: 35px;
  }
@@ -98,10 +89,8 @@ a:visited {
 .stories-buttons {
     display: flex;
     justify-content: flex-end;
-    /* margin-right: 50px; */
     padding-right: 50px;
     cursor: pointer;
-    /* width: 562px; */
 }
 
 .edit-story-button {
