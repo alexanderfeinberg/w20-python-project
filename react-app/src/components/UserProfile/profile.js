@@ -8,6 +8,7 @@ import "./profile.css";
 import { getUsersStories } from "../../store/story";
 import GetAllStories from "../GetAllStories/GetAllStories";
 import FollowingSneakPeak from "./userSideBar.js/FollowingSneakPeak";
+import FollowButton from "./FollowButton";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,14 @@ const Profile = () => {
   const currUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const stories = useSelector((state) => state.story.allStories);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getUser(userId)).then(() =>
-      dispatch(getUsersStories(userId)).then(() => setIsLoaded(true))
-    );
+    dispatch(getUser(userId))
+      .then(() => dispatch(getUsersStories(userId)))
+      .then(() => setIsLoaded(true))
+      .catch((e) => e.json())
+      .then((e) => setErrors([e]));
   }, [userId, currUser]);
 
   if (isLoaded) {
@@ -47,6 +51,18 @@ const Profile = () => {
           <UserInfo userId={user.id} />
           <FollowingSneakPeak userId={user.id} />
         </div>
+      </div>
+    );
+  }
+  if (errors.length) {
+    return (
+      <div>
+        <h2>We're sorry, something went wrong!</h2>
+        <ul>
+          {errors.map((err, idx) => (
+            <li key={idx}>{err.message}</li>
+          ))}
+        </ul>
       </div>
     );
   }

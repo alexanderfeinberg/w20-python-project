@@ -1,12 +1,18 @@
 import "./UserCard.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getUser } from "../../../store/user";
+import { useDispatch } from "react-redux";
+import FollowButton from "../FollowButton";
+
 const UserCard = ({ user }) => {
   return (
     <div className="user-card">
       <div className="card-header">
-        <h2>
-          {user.firstName} {user.lastName}
-        </h2>
+        <a href={`/users/${user.id}`}>
+          <h2>
+            {user.firstName} {user.lastName}
+          </h2>
+        </a>
       </div>
       <div className="card-content">{user.bio}</div>
       <div className="card-footer">
@@ -14,7 +20,8 @@ const UserCard = ({ user }) => {
           {user.followerCount} Followers
         </div>
         <div className="btn">
-          <button>Follow</button>
+          <FollowButton userId={user.id} key={null} />
+          {/* <button>Follow</button> */}
         </div>
       </div>
     </div>

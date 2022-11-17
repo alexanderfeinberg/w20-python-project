@@ -8,3 +8,7 @@
 .following-list a {
   color: darkgray;
 }
+
+.follower-item {
+  position: relative;
+}

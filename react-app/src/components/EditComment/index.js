@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllComments,
@@ -12,25 +12,33 @@ const EditComment = ({ comment }) => {
   const commentId = comment.id;
 
   const [content, setContent] = useState(comment.content);
+  const [error, setError] = useState("")
 
   const cancelButton = () => {
     dispatch(testComment());
   };
 
+  useEffect(() => {
+    setError("")
+  }, [content])
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { content };
-
+    if (!content.length) {
+      setError("Comment can not be empty")
+    }
     dispatch(updateComment(commentId, data))
-      .then(() => {
-        alert("success");
-      })
-      .catch(() => alert("fail"));
+      // .then(() => {
+      //   alert("success");
+      // })
+      // .catch(() => alert("fail"));
   };
 
   return (
     <div className="comment-container-2-1">
       <div className="comment-container-2-1-a-lol"></div>
+      {error && (<div id="edit-comment-error">{error}</div>)}
       <form onSubmit={handleSubmit} className="comment-container-2-1-b">
         {/* <div className="create_comment_form_header">
                     <div className="create_comment_form_title">Change Comment</div>

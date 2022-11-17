@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { deleteStory } from "../../store/story";
-import { getUser } from "../../store/user";
 import profileIcon from "../../assets/profile-icon.jpeg";
 import "./GetAllStories.css";
 
@@ -27,6 +26,7 @@ const GetAllStories = ({ stories }) => {
       <div className="stories-container">
         {storiesArr &&
           storiesArr.map((story) => {
+            let contentPreview = story.content.slice(0,143) + "..."
             return (
               <>
                 <div
@@ -36,7 +36,7 @@ const GetAllStories = ({ stories }) => {
                   {/* {story.author.profile_picture}  */}
                   <img
                     className="profile-icon"
-                    src={profileIcon}
+                    src={story.author.profile_picture}
                     alt="Profile Icon"
                   />
                   {story.author.firstName} {story.author.lastName} ·{" "}
@@ -46,7 +46,7 @@ const GetAllStories = ({ stories }) => {
                   <div className="stories-info">
                     <NavLink key={story.id} to={`/stories/${story.id}`}>
                       <div className="stories-title">{story.title}</div>
-                      <div className="stories-content">{story.content}</div>
+                      <div className="stories-content">{contentPreview}</div>
                     </NavLink>
                     <div className="stories-buttons">
                       {user && user.id === story.user_id && (
@@ -74,9 +74,7 @@ const GetAllStories = ({ stories }) => {
                     <div className="stories-image-container">
                       <img
                         className="stories-image"
-                        src={
-                          "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_1280.jpg"
-                        }
+                        src={story.image}
                         alt=""
                       />
                     </div>

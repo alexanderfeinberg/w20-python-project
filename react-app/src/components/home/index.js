@@ -53,13 +53,12 @@ const Home = () => {
                             <div>
                                 <GetAllStories stories={stories} />
                             </div>
-                            <div className="text-center">
-                                Placeholder2
-                            </div>
+                            {/* <div className="text-center">
+                            </div> */}
                         </div>
                     </div>
 
-                    <div id={user ? "container-3" : "container-3-logged-out"}></div>
+                    <div id={user ? "container-3" : "container-3-logged-out"}>This box is reserved for 5th/6th Bonus Features</div>
                 </>
 
             )}

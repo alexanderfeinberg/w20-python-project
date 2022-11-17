@@ -17,3 +17,19 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.btn .action-btns {
+  margin: 0px;
+}
+.card-follower-count {
+  align-self: flex-end;
+}
+
+.card-content {
+  color: darkgray;
+  font-size: 13px;
+}
+
+.card-header a {
+  color: black;
+}

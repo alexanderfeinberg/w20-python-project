@@ -11,7 +11,7 @@ from .api.story_routes import story_routes
 from .api.comment_routes import comment_routes
 from .seeds import seed_commands
 from .config import Config
-
+from .errors import NotFoundError
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -78,14 +78,18 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-
 @app.route("/api/docs")
 def api_help():
     """
     Returns all API routes and their doc strings
     """
     acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    route_list = { rule.rule: [[ method for method in rule.methods if method in acceptable_methods ],
-                    app.view_functions[rule.endpoint].__doc__ ]
-                    for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
+    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
+                              app.view_functions[rule.endpoint].__doc__]
+                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
+
+
+@app.errorhandler(NotFoundError)
+def handle_error(e):
+    return {"error": e.title, "message": e.message}, 404

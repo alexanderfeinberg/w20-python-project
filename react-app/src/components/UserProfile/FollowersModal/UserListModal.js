@@ -7,9 +7,7 @@ const UserListModal = ({ followers, following }) => {
 
   return (
     <div className="follow-data-content">
-      <div id="follow-data-title">
-        {followData.length} {title}
-      </div>
+      <div id="follow-data-title">{title}</div>
       <ul id="follow-data">
         {followData.map((user, idx) => (
           <FollowListUser user={user} idx={idx} />
