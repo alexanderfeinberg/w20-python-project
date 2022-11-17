@@ -80,6 +80,7 @@
 .story-image {
   width: 100%;
   height: 461px;
+  object-fit: cover;
 }
 
 .story-likes-comments {
