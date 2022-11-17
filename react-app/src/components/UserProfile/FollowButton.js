@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import { ModalContext } from "../../context/Modal";
 
 const FollowButton = ({ userId, idx }) => {
+  console.log("RENDERING FOLLOW BTN");
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const { setModalType } = useContext(ModalContext);

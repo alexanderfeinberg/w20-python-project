@@ -21,3 +21,6 @@
 .btn .action-btns {
   margin: 0px;
 }
+.card-follower-count {
+  align-self: flex-end;
+}

@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 50px;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 #follow-data {

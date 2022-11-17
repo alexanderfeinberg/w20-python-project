@@ -205,7 +205,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         userList: {
           ...state.userList,
-          Following: [
+          Followings: [
             ...state.userList.Followings,
             ...action.newFollowing.Followings,
           ],
