@@ -104,7 +104,7 @@ Nobody really understood Kevin. It wasn't that he was super strange or difficult
     instance16 = Story(
         user_id=12,
         title="How to Find the Perfect Snow Online",
-        image="storyimage5",
+        image="https://cdn.pixabay.com/photo/2022/09/01/09/31/sunset-glow-7425170__340.jpg",
         content="He was after the truth. At least, that's what he told himself. He believed it, but any rational person on the outside could see he was lying to himself. It was apparent he was really only after his own truth that he'd already decided and was after this truth because the facts didn't line up with the truth he wanted. So he continued to tell everyone he was after the truth oblivious to the real truth sitting right in front of him. \
 Twenty-five hours had passed since the incident. It seemed to be a lot longer than that. That twenty-five hours seemed more like a week in her mind. The fact that she still was having trouble comprehending exactly what took place wasn't helping the matter. She thought if she could just get a little rest the entire incident might make a little more sense."
     )
