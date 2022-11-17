@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createStory } from "../../store/story";
 import './createStory.css';
-import profileIcon from "../../assets/profile-icon.jpeg";
 import mainLogo from "../../assets/main-logo-2.png"
 
 const CreateStory = () => {
@@ -24,6 +23,7 @@ const CreateStory = () => {
 
         if (!data.title.length) return setErrors(['Please provide a title and it must be less than 200 characters.'])
         if (!data.image.length) return setErrors(['Please provide an image.'])
+        if (!data.image.includes('.jpg') && !data.image.includes('.jpeg') && !data.image.includes('.png')) return setErrors(['Image must be in .jpg, .jpeg, or .png format']);
         if (!data.content.length) return setErrors(['Please provide a content.'])
 
         dispatch(createStory(data))
