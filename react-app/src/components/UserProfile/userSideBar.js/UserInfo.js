@@ -75,7 +75,7 @@ const UserInfo = ({ userId }) => {
           )}
         </div> */}
 
-        <FollowButton userId={user.id} />
+        <FollowButton userId={user.id} profileId={user.id} />
       </div>
     );
   }
