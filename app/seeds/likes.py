@@ -14,14 +14,14 @@ def seed_likes():
             count=1
         ),
         Like(
-            user_id=4,
-            story_id=1,
-            count=40
-        ),
-        Like(
             user_id=2,
             story_id=2,
             count=4
+        ),
+        Like(
+            user_id=4,
+            story_id=1,
+            count=40
         ),
         Like(
             user_id=3,
@@ -82,11 +82,6 @@ def seed_likes():
             user_id=9,
             story_id=7,
             count=6
-        ),
-        Like(
-            user_id=9,
-            story_id=9,
-            count=2
         ),
         Like(
             user_id=9,

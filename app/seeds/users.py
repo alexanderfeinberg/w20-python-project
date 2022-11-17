@@ -42,144 +42,144 @@ def seed_users():
         bio="The Universe is: Expanding, cooling, and dark. It starts with a bang! #Cosmology Science writer, astrophysicist, science communicator & NASA columnist."
     )
     instance5 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username5',
+        email='email5@gmail.com',
+        password='password5',
         first_name="Cory",
         last_name="Doctrowrow",
         profile_picture=PROFILE_PIC,
         bio="Writer, blogger, activist."
     )
     instance6 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username6',
+        email='email6@gmail.com',
+        password='password6',
         first_name="Clive",
         last_name="Thompson",
         profile_picture=PROFILE_PIC,
         bio="I write 3X a week on tech, science, culture — and how those collide. Writer at NYT mag/Wired; author, 'Coders'. "
     )
     instance7 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username7',
+        email='email7@gmail.com',
+        password='password7',
         first_name="Chuck",
         last_name="Frey",
         profile_picture=PROFILE_PIC,
         bio="Thought leader in mind mapping, visual thinking and creativity for 15+ years. Relentless explorer, learner and dot-collector. I help you elevate your thinking."
     )
     instance8 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username8',
+        email='email8@gmail.com',
+        password='password8',
         first_name="Daniel",
         last_name="Burrus",
         profile_picture=PROFILE_PIC,
         bio="#1 Bestselling Author, Global Futurist, Innovation Expert and Keynote Speaker. One of the Worlds Leading Futurists on Global Trends and Innovation."
     )
     instance9 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username9',
+        email='email9@gmail.com',
+        password='password9',
         first_name="Cait",
         last_name="Mack",
         profile_picture=PROFILE_PIC,
         bio="Lean Living: I simplify everything so you can focus on crushing life"
     )
     instance10 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username10',
+        email='email10@gmail.com',
+        password='password10',
         first_name="Ben",
         last_name="LeFort",
         profile_picture=PROFILE_PIC,
         bio="Making of a Millionaire editor | Personal finance writer | Author of 'The Financial Freedom Equation'"
     )
     instance11 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username11',
+        email='email11@gmail.com',
+        password='password11',
         first_name="Sean",
         last_name="Kernan",
         profile_picture=PROFILE_PIC,
         bio="Quality over quantity. Always on the hunt for a good story. That guy from Quora. Writing out of Tampa, Florida."
     )
     instance12 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username12',
+        email='email12@gmail.com',
+        password='password12',
         first_name="Jamie",
         last_name="Jackson",
         profile_picture=PROFILE_PIC,
         bio="Between two skies."
     )
     instance13 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username13',
+        email='email13@gmail.com',
+        password='password13',
         first_name="Philip",
         last_name="Son",
         profile_picture=PROFILE_PIC,
         bio="High school teacher by day, koala by night. Founder of Koala Quest. My wife is a cartoonist with a Ph.D., and she co-authors all of these articles.."
     )
     instance14 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username14',
+        email='email14@gmail.com',
+        password='password14',
         first_name="Erica",
         last_name="Verillo",
         profile_picture=PROFILE_PIC,
         bio="Helping writers get published"
     )
     instance15 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username15',
+        email='email15@gmail.com',
+        password='password15',
         first_name="Lauren",
         last_name="Sapala",
         profile_picture=PROFILE_PIC,
         bio="Writer. Writing Coach. Author of The INFJ Writer: Cracking the Creative Genius of the Worlds Rarest Type."
     )
     instance16 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username16',
+        email='email16@gmail.com',
+        password='password16',
         first_name="Daniel",
         last_name="O'Shea",
         profile_picture=PROFILE_PIC,
         bio="The writer, editor, and chief lackey of Knowledge Stew and the Knowledge Stew line of trivia books."
     )
     instance17 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username17',
+        email='email17@gmail.com',
+        password='password17',
         first_name="Casey",
         last_name="Botticello",
         profile_picture=PROFILE_PIC,
         bio="Entrepreneur, Designer, Blogger | Join 100000+ creators & learn how to make money writing online"
     )
     instance18 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username18',
+        email='email18@gmail.com',
+        password='password18',
         first_name="Elle",
         last_name="Fredine",
         profile_picture=PROFILE_PIC,
         bio="West-Coaster, born and bred"
     )
     instance19 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username19',
+        email='email19@gmail.com',
+        password='password19',
         first_name="Elizabeth",
         last_name="Joyce",
         profile_picture=PROFILE_PIC,
         bio="Essayist • Poet • Author"
     )
     instance20 = User(
-        username='username4',
-        email='email4@gmail.com',
-        password='password4',
+        username='username20',
+        email='email20@gmail.com',
+        password='password20',
         first_name="Gus",
         last_name="Gresham",
         profile_picture=PROFILE_PIC,
@@ -190,6 +190,7 @@ def seed_users():
     db.session.add(instance2)
     db.session.add(instance3)
     db.session.add(instance4)
+    db.session.add(instance5)
     db.session.add(instance6)
     db.session.add(instance7)
     db.session.add(instance8)
