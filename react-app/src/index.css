@@ -1,21 +1,21 @@
 /* TODO Add site wide styles */
-.border {
+/* .border {
     border: 1px solid black;
     width: 100%
-}
+} */
 
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-width: 970px
-
+    min-width: 970px;
 }
 
 #root {
     /* border: 5px solid blue; */
     display: flex;
     justify-content: center;
+    /* height: 100% */
 
 }
 

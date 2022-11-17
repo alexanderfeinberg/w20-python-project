@@ -13,7 +13,7 @@ const EditStory = () => {
 
     const user = useSelector(state => state.session.user)
     const story = useSelector(state => state.story.singleStory)
-    
+
     const [title, setTitle] = useState("")
     const [image, setImage] = useState("")
     const [content, setContent] = useState("")
@@ -40,7 +40,7 @@ const EditStory = () => {
         if (!data.title.length) return setErrors(['Please provide a title and it must be less than 200 characters.'])
         if (!data.image.length) return setErrors(['Please provide an image.'])
         if (!data.content.length) return setErrors(['Please provide a content.'])
-    
+
         dispatch(updateStory(storyId, data))
             .then(() => {
                 history.push(`/users/${user.id}`)
@@ -56,8 +56,8 @@ const EditStory = () => {
                 <div className="header-left">
                     <img className="header-home-logo" src={mainLogo} alt="Main Logo"
                         onClick={() => history.push('/')}/>
-                    {user && <div className="header-author-info">{user.firstName} {user.lastName}               
-                </div>} 
+                    {user && <div className="header-author-info">{user.firstName} {user.lastName}
+                </div>}
                 </div>
                 <img className="header-profile-icon" src={user.profile_picture} alt="Profile Icon"
                     onClick={() => history.push(`/users/${user.id}`)}/>
@@ -83,14 +83,15 @@ const EditStory = () => {
                         className="input-image"
                     />
                     <textarea
+                        className="edit-story-textarea"
                         type="text"
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         // placeholder={story.content}
                     />
                     <button className="editStory-button" type="submit">Save and publish</button>
-                </form>  
-            </div>      
+                </form>
+            </div>
     )
 }
 

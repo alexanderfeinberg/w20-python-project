@@ -35,7 +35,7 @@
     border: none;
     padding-bottom: 2%;
     font-size: 42px;
-    word-break: break-word; 
+    word-break: break-word;
     color: #b3b3b1;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
@@ -48,7 +48,7 @@
     font-size: 20px;
     border: none;
     padding-bottom: 2%;
-    word-break: break-word; 
+    word-break: break-word;
     color: #b3b3b1;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
@@ -57,7 +57,7 @@
     visibility: visible;
 }
 
-textarea {
+.create-story-textarea {
     height: 50vh;
     border: none;
     padding-top: 2%;
@@ -91,7 +91,7 @@ textarea {
     font-family: Arial, "Helvetica Neue", sans-serif;
 }
 
-.header-home-logo{ 
+.header-home-logo{
     width: 32px;
     height: 32px;
     padding-right: 10px;

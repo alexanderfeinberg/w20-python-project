@@ -1,6 +1,6 @@
 #main-container {
-    border: 1px solid red;
-    height: 100vh;
+    /* border: 1px solid red; */
+    height: 100%;
     width: 100%;
     margin: 0;
     max-width: 1504px;
@@ -16,10 +16,13 @@
 
 /* when below 902px width, should do a new type of view!!!
 BELOW IS FOR 902px or wider screens */
-/* #container-1 {
+#container-1 {
     width: 79px;
     border-right: 1px solid rgba(230, 230, 230, 1);
-} */
+    height: 100vh;
+    position: sticky;
+    top: 0px
+}
 #container-2 {
     max-width: 1030px;
     min-width: 552px;
@@ -28,6 +31,9 @@ BELOW IS FOR 902px or wider screens */
 #container-3 {
     width: 329px;
     border-left: 1px solid rgba(230, 230, 230, 1);
+    height: 100vh;
+    position: sticky;
+    top: 0px
 }
 
 /* #container-1-logged-out {
@@ -143,12 +149,12 @@ BELOW IS FOR 902px or wider screens */
 
 
 #placeholder {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     min-width: 333px;
     max-width: 398px;
 }
 
 #padding-all-story-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 5% 10% 0% 10%;
 }

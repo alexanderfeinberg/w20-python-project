@@ -26,7 +26,12 @@ function CreateCommentForm({ story }) {
   const [number, setNumber] = useState("");
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState("")
+
+  useEffect(() => {
+    setError("")
+  }, [content])
+
 
   useEffect(() => {
     dispatch(getAllComments(storyId));
@@ -59,19 +64,20 @@ function CreateCommentForm({ story }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
+    console.log("-----------------")
+    console.log(content.length)
+    if (!content.length) {
+      console.log("ASLKFJHALSKJFH")
+      setError("Comment can not be empty")
+    }
 
     const data = { content };
 
-    // if (!content.length) {
-    //   return setErrors(['Please provide a response.'])
-    // }
-
     dispatch(createComment(storyId, data))
-      .then(() => {
-        alert("success");
-      })
-      .catch(() => alert("fail"));
+    // .then(() => {
+    //   alert("success");
+    // })
+    // .catch(() => alert("fail"));
     setContent("");
   };
 
@@ -85,10 +91,11 @@ function CreateCommentForm({ story }) {
 
   return (
     <div className="modal2-content">
-      <div className="form-container comment-container-all">
-        <div className="create-comment-form-title comment-container-1">
+      <div className="comment-container-all">
+        <div className="comment-container-1">
           Responses
         </div>
+        {error && (<div id="create-comment-error">{error}</div>)}
         <div className="comment-container-2">
           <div className="comment-container-2-1">
             <div className="comment-container-2-1-a">
@@ -102,19 +109,19 @@ function CreateCommentForm({ story }) {
             </div>
             <form
               onSubmit={handleSubmit}
-              className="create-comment-form-container comment-container-2-1-b"
+              className="comment-container-2-1-b"
             >
               <textarea
-                className="create-comment-form-input comment-container-2-1-b-1"
+                className="comment-container-2-1-b-1"
                 type="text"
                 value={content}
                 placeholder="What are your thoughts?"
                 onChange={(e) => setContent(e.target.value)}
-                // required
+              // required
               />
               <button
                 type="submit"
-                className="create-comment-respond-button comment-container-2-1-b-2"
+                className="comment-container-2-1-b-2"
               >
                 Respond
               </button>
@@ -122,8 +129,8 @@ function CreateCommentForm({ story }) {
           </div>
         </div>
 
-        <div className="all-comments comment-container-3">
-          <h3>Comments</h3>
+        <h3 id="comments-title">Comments</h3>
+        <div className="comment-container-3">
           {commentsArr.map((comment, i) => {
             let dateReviewed = comment.created_at.slice(4, 17);
             if (!edit || i !== number) {

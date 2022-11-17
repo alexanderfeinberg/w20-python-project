@@ -76,7 +76,7 @@ const NavBar = () => {
         {user && (
           <div>
 
-            <div onClick={() => history.push(`/users/${user.id}`)}>profile</div>
+            <button onClick={() => history.push(`/users/${user.id}`)}>profile</button>
             <button onClick={logoutButton}>Log Out</button>
           </div>
 

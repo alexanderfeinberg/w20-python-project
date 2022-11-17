@@ -74,3 +74,11 @@
     height: 10px;
     display: flex;
 }
+
+#edit-comment-error {
+    color: red;
+    position: fixed;
+    align-content: center;
+    width: 100%;
+    z-index: 1;
+}

@@ -26,6 +26,7 @@ const GetAllStories = ({ stories }) => {
       <div className="stories-container">
         {storiesArr &&
           storiesArr.map((story) => {
+            let contentPreview = story.content.slice(0,143) + "..."
             return (
               <>
                 <div
@@ -45,7 +46,7 @@ const GetAllStories = ({ stories }) => {
                   <div className="stories-info">
                     <NavLink key={story.id} to={`/stories/${story.id}`}>
                       <div className="stories-title">{story.title}</div>
-                      <div className="stories-content">{story.content}</div>
+                      <div className="stories-content">{contentPreview}</div>
                     </NavLink>
                     <div className="stories-buttons">
                       {user && user.id === story.user_id && (
