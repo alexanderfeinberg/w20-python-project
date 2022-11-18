@@ -2,6 +2,7 @@ import { ModalContext } from "../../../context/Modal";
 import { loadFollowings, getUser } from "../../../store/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import "./FollowingSneakPeak.css";
 import UserCard from "../FollowersModal/UserCard";
 
@@ -47,8 +48,10 @@ const FollowingSneakPeak = ({ userId }) => {
                     </div>
                   )}
                   <div onMouseOver={() => handleUserCard(idx)}>
-                    <a href={`/users/${following.id}`} key={`a-${idx}`}>
-                      {following.firstName} {following.lastName}
+                    <a key={`a-${idx}`}>
+                      <Link href={`/users/${following.id}`} key={`a-${idx}`}>
+                        {following.firstName} {following.lastName}
+                      </Link>
                     </a>
                   </div>
                 </div>

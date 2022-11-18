@@ -26,12 +26,11 @@ function CreateCommentForm({ story }) {
   const [number, setNumber] = useState("");
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    setError("")
-  }, [content])
-
+    setError("");
+  }, [content]);
 
   useEffect(() => {
     dispatch(getAllComments(storyId));
@@ -64,16 +63,18 @@ function CreateCommentForm({ story }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("-----------------")
-    console.log(content.length)
+    console.log("-----------------");
+    console.log(content.length);
     if (!content.length) {
-      console.log("ASLKFJHALSKJFH")
-      setError("Comment can not be empty")
+      console.log("ASLKFJHALSKJFH");
+      setError("Comment can not be empty");
     }
 
     const data = { content };
 
-    dispatch(createComment(storyId, data))
+    dispatch(createComment(storyId, data)).catch((e) =>
+      e.json().then((e) => setError([e.errors]))
+    );
     // .then(() => {
     //   alert("success");
     // })
@@ -92,10 +93,8 @@ function CreateCommentForm({ story }) {
   return (
     <div className="modal2-content">
       <div className="comment-container-all">
-        <div className="comment-container-1">
-          Responses
-        </div>
-        {error && (<div id="create-comment-error">{error}</div>)}
+        <div className="comment-container-1">Responses</div>
+        {error && <div id="create-comment-error">{error}</div>}
         <div className="comment-container-2">
           <div className="comment-container-2-1">
             <div className="comment-container-2-1-a">
@@ -107,22 +106,16 @@ function CreateCommentForm({ story }) {
                 {user.firstName} {user.lastName}
               </div>
             </div>
-            <form
-              onSubmit={handleSubmit}
-              className="comment-container-2-1-b"
-            >
+            <form onSubmit={handleSubmit} className="comment-container-2-1-b">
               <textarea
                 className="comment-container-2-1-b-1"
                 type="text"
                 value={content}
                 placeholder="What are your thoughts?"
                 onChange={(e) => setContent(e.target.value)}
-              // required
+                // required
               />
-              <button
-                type="submit"
-                className="comment-container-2-1-b-2"
-              >
+              <button type="submit" className="comment-container-2-1-b-2">
                 Respond
               </button>
             </form>

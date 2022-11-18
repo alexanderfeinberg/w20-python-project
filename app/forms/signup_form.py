@@ -24,7 +24,8 @@ class SignUpForm(FlaskForm):
     REQUIRED_MESSAGE = '{} field is required.'
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[
+        DataRequired(), Email("Email must be valid."), user_exists])
     password = StringField('password', validators=[DataRequired()])
     first_name = StringField("first_naame", validators=[
                              DataRequired(REQUIRED_MESSAGE.format('First name'))])
