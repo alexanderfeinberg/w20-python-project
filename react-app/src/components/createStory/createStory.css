@@ -31,17 +31,25 @@
     padding: 5% 20% 5% 20%;
 }
 
+.input-title::placeholder {
+    color: #b3b3b1;
+}
+
 .input-title {
     border: none;
     padding-bottom: 2%;
     font-size: 42px;
     word-break: break-word;
-    color: #b3b3b1;
+    color: rgba(0, 0, 0, 0.84);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1.25;
     visibility: visible;
+}
+
+.input-image::placeholder {
+    color: #b3b3b1;
 }
 
 .input-image {
@@ -49,7 +57,7 @@
     border: none;
     padding-bottom: 2%;
     word-break: break-word;
-    color: #b3b3b1;
+    color: rgba(0, 0, 0, 0.84);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
@@ -57,12 +65,16 @@
     visibility: visible;
 }
 
+.create-story-textarea::placeholder {
+    color: #b3b3b1;
+}
+
 .create-story-textarea {
     height: 50vh;
     border: none;
     padding-top: 2%;
     word-break: break-word;
-    color: #b3b3b1;
+    color: rgba(0, 0, 0, 0.84);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
