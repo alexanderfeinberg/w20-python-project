@@ -35,7 +35,7 @@ const FollowListUser = ({ user, idx }) => {
     <div key={`main-${idx}`} className="follow-user">
       <li key={idx}>
         <div className="follow-right-container">
-          <div>{user.id}</div>
+          {/* <div>{user.id}</div> */}
           <div className="follow-info">
             <a href={`/users/${user.id}`}>
               <div className="follow-name">

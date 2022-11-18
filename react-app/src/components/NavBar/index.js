@@ -20,7 +20,6 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
 
   const goHome = () => {
-    console.log(window.location.pathname)
     if (window.location.pathname == "/") {
       window.location.reload(false)
     } else {
@@ -52,9 +51,9 @@ const NavBar = () => {
       <div id={user ? "container-1-inner" : "container-1-inner-logged-out"}>
         <div id={user ? "main-icon" : "main-icon-logged-out"}>
           <div id={user ? "img" : "img-logged-out"}>
-            <img src={user ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
+            <img className="cursor" src={user ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
           </div>
-          {!user && (<div onClick={goHome} id="median">Median</div>)}
+          {!user && (<div className="cursor" onClick={goHome} id="median">Median</div>)}
 
         </div>
 
@@ -62,22 +61,23 @@ const NavBar = () => {
           {!user
             ?
             <div id="navbar-logged-out">
-              {/* <div>placeholder</div> */}
-              <div onClick={() => setModalType("Login")}>Sign In</div>
-              <div id="get-started" onClick={() => setModalType("Signup")}>Get Started</div>
+              <div className="cursor" onClick={() => history.push("/team")}>Meet the Team</div>
+              <div className="cursor" onClick={() => setModalType("Login")}>Sign In</div>
+              <div className="cursor" id="get-started" onClick={() => setModalType("Signup")}>Get Started</div>
             </div>
             :
             <div id="navbar">
-              <img src={homeIcon} alt="Home Icon" onClick={goHome} />
-              <img src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
+              <img className="cursor" src={homeIcon} alt="Home Icon" onClick={goHome} />
+              <img className="cursor" src={createNewStoryIcon} alt="Create New Story" onClick={newStoryRoute} />
             </div>
           }
         </div>
         {user && (
-          <div>
+          <div id="nav-bar-container-3">
 
-            <button onClick={() => history.push(`/users/${user.id}`)}>profile</button>
-            <button onClick={logoutButton}>Log Out</button>
+            <button className="cursor" id="meet-the-team" onClick={() => history.push("/team")}>Meet the Team</button>
+            <button className="cursor" id="profile-button" onClick={() => history.push(`/users/${user.id}`)}>profile</button>
+            <button className="cursor" id="log-out-button" onClick={logoutButton}>Log Out</button>
           </div>
 
         )}

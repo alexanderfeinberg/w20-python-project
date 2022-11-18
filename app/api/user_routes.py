@@ -96,8 +96,8 @@ def follow_user(userId):
         raise NotFoundError("User not found.")
 
     res = current.follow(following)
-    print("RES ", res)
     current.following = res.following
+
     db.session.commit()
     return {"message": "Successfully Followed", "statusCode": 201}
 
@@ -106,7 +106,6 @@ def follow_user(userId):
 @user_routes.route('/<int:user_id>/followers', methods=['DELETE'])
 @login_required
 def remove_follow(user_id):
-    print("UNFOLLOWING")
     user = User.query.get(user_id)
     if not user:
         raise NotFoundError(f'User {user_id} does not exist.')

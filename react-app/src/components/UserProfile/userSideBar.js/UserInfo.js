@@ -60,7 +60,6 @@ const UserInfo = ({ userId }) => {
               Unfollow
             </button>
           )}
-
           {currentUser ? (
             !isFollowingUser &&
             user.id != currentUser.id && (
@@ -75,7 +74,7 @@ const UserInfo = ({ userId }) => {
           )}
         </div> */}
 
-        <FollowButton userId={user.id} profileId={user.id} />
+        <FollowButton userId={user.id} />
       </div>
     );
   }

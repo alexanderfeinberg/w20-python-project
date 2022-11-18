@@ -4,21 +4,22 @@
     width: 100%
 } */
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-width: 970px;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 970px;
+  font-family: "Lucida Grande";
 }
 
 #root {
-    /* border: 5px solid blue; */
-    display: flex;
-    justify-content: center;
-    /* height: 100% */
-
+  /* border: 5px solid blue; */
+  display: flex;
+  justify-content: center;
+  /* height: 100% */
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }

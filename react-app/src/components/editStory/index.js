@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleStory, updateStory } from "../../store/story";
 import './editStory.css';
-import profileIcon from "../../assets/profile-icon.jpeg";
 import mainLogo from "../../assets/main-logo-2.png"
 
 const EditStory = () => {
@@ -37,9 +36,10 @@ const EditStory = () => {
 
         const data = { title, image, content }
 
-        if (!data.title.length) return setErrors(['Please provide a title and it must be less than 200 characters.'])
-        if (!data.image.length) return setErrors(['Please provide an image.'])
-        if (!data.content.length) return setErrors(['Please provide a content.'])
+        if (!data.title.length || data.title.length > 200) return setErrors(['Title can not be empty and it must be less than 200 characters.'])
+        if (!data.image.length) return setErrors(['Image can not be empty.'])
+        if (!data.image.includes('.jpg') && !data.image.includes('.jpeg') && !data.image.includes('.png')) return setErrors(['Image must be in .jpg, .jpeg, or .png format']);
+        if (!data.content.length) return setErrors(['Content can not be empty.'])
 
         dispatch(updateStory(storyId, data))
             .then(() => {
@@ -54,12 +54,12 @@ const EditStory = () => {
         <div className="edit-story-container">
             <div className="edit-story-header">
                 <div className="header-left">
-                    <img className="header-home-logo" src={mainLogo} alt="Main Logo"
+                    <img className="header-home-logo cursor" src={mainLogo} alt="Main Logo"
                         onClick={() => history.push('/')}/>
-                    {user && <div className="header-author-info">{user.firstName} {user.lastName}
+                    {user && <div className="header-author-info cursor">{user.firstName} {user.lastName}
                 </div>}
                 </div>
-                <img className="header-profile-icon" src={user.profile_picture} alt="Profile Icon"
+                <img className="header-profile-icon cursor" src={user.profile_picture} alt="Profile Icon"
                     onClick={() => history.push(`/users/${user.id}`)}/>
             </div>
             <div className="form-wrapper"></div>

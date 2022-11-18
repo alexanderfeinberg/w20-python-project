@@ -1,144 +1,98 @@
-# Flask React Project
+# **Median**
 
-This is the starter for the Flask React project.
+Median is a full-stack application clone of Medium. It is an online platform where readers can find diverse stories, ideas and can share their prospectives on any topic. Our application incorporating React and Redux on the frontend with Flask, Python and SQLAlchemy on the backend.
 
-## Getting started
-1. Clone this repository (only this branch)
-
-2. Install dependencies
-
-      ```bash
-      pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+Live site: https://median.onrender.com
 
 
-## Deployment through Render.com
+### Please find below links for our project Wiki:
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+[API Documentation](https://github.com/calvintzeng96/w20-python-project/wiki/API-Routes)
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+[Database Schema](https://github.com/calvintzeng96/w20-python-project/wiki/Database-Schema)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+[Feature List](https://github.com/calvintzeng96/w20-python-project/wiki/Feature-List)
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+[User Stories](https://github.com/calvintzeng96/w20-python-project/wiki/User-Stories)
 
-### Part A: Configure the Start and Build Commands
 
-Start by giving your application a name.
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+### **This application was built with:**
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-orange?style=for-the-badge)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Render](https://img.shields.io/badge/render-%23430098.svg?style=for-the-badge&logo=render&logoColor=white)
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+### **Features**
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+#### Authentication
+* Create a new account 
+* Log in
+* Sign out
+* Demo user
 
-Now, add your start command in the Start field:
+#### Users
+* View user profile
+* View followers of a User
 
-```shell
-# start script
-gunicorn app:app
-```
+#### Stories
+* View all, specific story, and user stories 
+* Create a story
+* Edit a story
+* Delete a story
 
-### Part B: Add the Environment Variables
+#### Comments
+* View all comments on a specific story
+* Create a comment for a specific story
+* Edit a comment
+* Delete a comment
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+#### Likes
+* View like count of a specific story
+* Like a story
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+#### Follows
+* View all followers/followings of a user
+* Follow/unfollow a user
+ 
 
-Add the following keys and values in the Render GUI form:
+### **Feature Highlights**
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+#### Home Page
+<img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202573752-d407d9b0-5473-43e5-b190-c238bf09a6b2.png">
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+#### Home Page Demo User:
+You will be able to test the features without signing up by clicking on the "Demo User" button.
+<img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202577152-523e397d-9516-4807-a431-7fe76f6f0f40.png">
 
-Add the following keys and values:
+#### Profile Page:
+Once logged-in, you can see all your stories, your followers and your followings on the profile page by clicking the profile button. You can also edit and delete your stories.
 
-- DATABASE_URL (copy value from Internal Database URL field)
+<img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202583167-484437eb-f897-4264-a74f-54f3545e5f99.png">
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+### **Coming Soon**:
+* We would like to add the Topics/Categories feature
+* We would like to add the Search Bar feature
+* We would like to add the Bookmarks feature
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+### **Contact Us**: 
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+* Calvin Tzeng
+[LinkedIn](https://www.linkedin.com/in/calvintzengviolins)
+
+* Alex Feinberg
+[LinkedIn](https://www.linkedin.com/in/alex-feinberg)
+
+* Jenny Jiang
+[Linkedin](https://www.linkedin.com/in/jenny-jiang-81033b48)

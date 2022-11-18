@@ -9,6 +9,7 @@ const LOAD_USER_FOLLOWERS = "/users/LOAD_USER_FOLLOWERS";
 const LOAD_USER_FOLLOWINGS = "/user/LOAD_USER_FOLLOWINGS";
 const PAGINATE_FOLLOWERS = "/user/PAGINATE_FOLLOWERS";
 const PAGINATE_FOLLOWING = "/users/PAGINATE_FOLLOWING";
+const LOAD_POP_UP_USER = "/users/LOAD_POP_UP_USER";
 //actions
 const loadUser = (user) => {
   return {
@@ -65,6 +66,10 @@ const loadUserFollowings = (followings) => {
   };
 };
 
+const loadPopUpUser = (user) => {
+  return { type: LOAD_POP_UP_USER, user };
+};
+
 export const getUser = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}`);
   if (res.ok) {
@@ -116,7 +121,7 @@ export const followThunk = (userFollowedId) => async (dispatch) => {
     method: "POST",
   });
   if (resp.ok) {
-    return;
+    dispatch(getPopupUser(userFollowedId)).then((res) => res);
   }
 };
 
@@ -125,7 +130,16 @@ export const unfollowThunk = (userUnfollowedId) => async (dispatch) => {
     method: "DELETE",
   });
   if (resp.ok) {
-    return;
+    dispatch(getPopupUser(userUnfollowedId)).then((res) => res);
+  }
+};
+
+export const getPopupUser = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${userId}`);
+  if (res.ok) {
+    const user = await res.json();
+    dispatch(loadPopUpUser(user));
+    return user;
   }
 };
 
@@ -161,6 +175,7 @@ export const loadFollowings =
 let initialState = {
   singleUser: {},
   userList: {},
+  popupUser: {},
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -168,6 +183,9 @@ export const userReducer = (state = initialState, action) => {
     case LOAD_USER:
       const userState = { ...state, singleUser: { ...action.user } };
       return userState;
+    case LOAD_POP_UP_USER:
+      const popupState = { ...state, popupUser: { ...action.user } };
+      return popupState;
     case LOAD_CURRENT_USER:
       const currentUserState = { ...state, singleUser: { ...action.user } };
       return currentUserState;

@@ -11,6 +11,7 @@ import Profile from "./components/UserProfile/profile";
 import CreateStory from "./components/createStory";
 import CreateCommentForm from "./components/CreateCommentModal/CreateCommentForm";
 import EditStory from "./components/editStory";
+import Team from "./components/Team";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path="/story/:storyId/edit">
           <EditStory />
+        </Route>
+        <Route path="/team">
+          <Team />
         </Route>
       </Switch>
     </div>
