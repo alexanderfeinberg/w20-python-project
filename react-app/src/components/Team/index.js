@@ -1,5 +1,5 @@
 import "./team.css"
-import mainLogo from "../../assets/main-logo.png"
+import mainLogo from "../../assets/main-logo-2.png"
 import githubLogo from "../../assets/github-logo.svg"
 import linkedinLogo from "../../assets/linkedin-logo.png"
 import profilePic1 from "../../assets/profile-pic-1.png"
@@ -41,7 +41,7 @@ const Team = () => {
                             Calvin Tzeng
                         </div>
                         <div className="individual-title">
-                            Title Lead
+                            Team Lead
                         </div>
                         <div className="linkedin-github">
                             <a href="//github.com/calvintzeng96">
@@ -63,7 +63,7 @@ const Team = () => {
                             Alex Feinberg
                         </div>
                         <div className="individual-title">
-                            Title Lead
+                            Frontend Lead
                         </div>
                         <div className="linkedin-github">
                             <a href="//github.com/alexanderfeinberg">
@@ -85,7 +85,7 @@ const Team = () => {
                             Jenny Jiang
                         </div>
                         <div className="individual-title">
-                            Title Lead
+                            Backend Lead
                         </div>
                         <div className="linkedin-github">
                             <a href="//github.com/jenjenkayi">

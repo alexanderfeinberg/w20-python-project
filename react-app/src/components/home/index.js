@@ -58,7 +58,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div id={user ? "container-3" : "container-3-logged-out"}>asdfadf</div>
+                    <div id={user ? "container-3" : "container-3-logged-out"}></div>
                 </>
 
             )}

@@ -10,31 +10,32 @@
 #team-header {
     width: 100%;
     height: 68px;
-    background-color: rgb(255, 192, 23);
+    background-color: white(255, 192, 23);
     display: flex;
     justify-content: center;
+    border-bottom: black;
 }
 #team-header-2 {
     width: 100%;
-    max-width: 980px;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
-    padding: 0px 100px;
+    padding: 0px 20px;
 }
 #team-header-2 > * {
     align-self: center;
 }
 
 #go-back-home {
-    background-color: grey;
+    background-color: green;
     border: transparent;
     color: white;
-    font-weight: bold;
-    height: 32px;
-    border-radius: 16px;
-    line-height: 32px;
+    /* font-weight: bold; */
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
     text-align: center;
-    width: 120px
+    width: 132px
 }
 
 #team-body {
