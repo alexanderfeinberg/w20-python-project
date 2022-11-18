@@ -28,6 +28,8 @@ const NavBar = () => {
     // window.location.reload(false)
   }
 
+  const loggedIn = localStorage.getItem("logged")
+
   const logoutButton = (e) => {
     e.preventDefault()
     dispatch(logout())
@@ -47,18 +49,18 @@ const NavBar = () => {
   }
 
   return (
-    <div id={user ? "container-1" : "container-1-logged-out"}>
-      <div id={user ? "container-1-inner" : "container-1-inner-logged-out"}>
-        <div id={user ? "main-icon" : "main-icon-logged-out"}>
-          <div id={user ? "img" : "img-logged-out"}>
-            <img className="cursor" src={user ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
+    <div id={loggedIn ? "container-1" : "container-1-logged-out"}>
+      <div id={loggedIn ? "container-1-inner" : "container-1-inner-logged-out"}>
+        <div id={loggedIn ? "main-icon" : "main-icon-logged-out"}>
+          <div id={loggedIn ? "img" : "img-logged-out"}>
+            <img className="cursor" src={loggedIn ? logo2 : logo} onClick={goHome} width="36px" height="36px" />
           </div>
-          {!user && (<div className="cursor" onClick={goHome} id="median">Median</div>)}
+          {!loggedIn && (<div className="cursor" onClick={goHome} id="median">Median</div>)}
 
         </div>
 
         <div id="navbar-container">
-          {!user
+          {!loggedIn
             ?
             <div id="navbar-logged-out">
               <div className="cursor" onClick={() => history.push("/team")}>Meet the Team</div>
@@ -72,7 +74,7 @@ const NavBar = () => {
             </div>
           }
         </div>
-        {user && (
+        {loggedIn && user && (
           <div id="nav-bar-container-3">
 
             <button className="cursor" id="meet-the-team" onClick={() => history.push("/team")}>Meet the Team</button>

@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { csrfFetch } from "./csrf";
 
 // constants
@@ -43,6 +44,7 @@ export const login = (email, password) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    localStorage.setItem("logged", "true")
     dispatch(setUser(data));
     return null;
   } else if (response.status < 500) {
@@ -63,6 +65,7 @@ export const logout = () => async (dispatch) => {
   });
 
   if (response.ok) {
+    localStorage.removeItem("logged")
     dispatch(removeUser());
   }
 };
@@ -104,8 +107,8 @@ export function sessionReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case SET_USER:
-      // newState = {...state, user: {...state.user}}
-      newState = Object.assign({}, state);
+      newState = {...state, user: {...state.user}}
+      // newState = Object.assign({}, state);
       newState.user = action.payload;
       return newState;
     case REMOVE_USER:
