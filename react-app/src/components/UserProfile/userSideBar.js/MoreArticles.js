@@ -27,7 +27,7 @@ const MoreArticles = ({ userId }) => {
     return (
       <div className="more-articles-content">
         <div className="more-articles-title">
-          <h4>More from Medium</h4>
+          <h4>More from Author</h4>
         </div>
         <div className="article-list" onMouseLeave={handleCloseUserCard}>
           {stories.map((story, idx) => (
