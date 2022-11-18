@@ -10,7 +10,6 @@ import { ModalContext } from "../../context/Modal";
 import { useParams } from "react-router-dom";
 
 const FollowButton = ({ userId, idx, profileId }) => {
-  console.log("RENDERING FOLLOW BTN");
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const { setModalType } = useContext(ModalContext);
@@ -29,14 +28,8 @@ const FollowButton = ({ userId, idx, profileId }) => {
       .then(() => followsUser(userId))
       .then((res) => setIsFollowing(res))
       .then(() => {
-        console.log("PROFILE ID ", profileId);
         if (profileId) dispatch(getUser(profileId)).then((res) => res);
       });
-
-    // if (profile) {
-    //   console.log("PROFILE GETTING USER");
-    //   .then((res) => res);
-    // }
   };
 
   const handleUnfollow = () => {

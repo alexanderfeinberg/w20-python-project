@@ -19,7 +19,6 @@ const FollowingSneakPeak = ({ userId }) => {
 
   const handleUserCard = (idx) => {
     setShowUserCard(idx);
-    console.log("SETTING USER CARD STATE", idx, showUserCard);
   };
 
   const handleCloseUserCard = () => {

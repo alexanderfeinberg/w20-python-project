@@ -64,10 +64,9 @@ function CreateCommentForm({ story }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("-----------------")
-    console.log(content.length)
+
     if (!content.length) {
-      console.log("ASLKFJHALSKJFH")
+
       setError("Comment can not be empty")
     }
 
@@ -151,21 +150,23 @@ function CreateCommentForm({ story }) {
                     <div className="comment-container-3-1-c">
                       {comment?.user?.firstName} {comment?.user?.lastName}
                     </div>
+                    {user.id == comment.user_id && (
 
                     <button
                       className="comment-container-3-1-d"
                       onClick={() => openDropdown()}
                     >
-                      -
+                      ...
                     </button>
+                    )}
                     {dropdown && user.id == comment.user_id && number == i && (
                       <div className="dropdown-content-123">
-                        <button
+                        {/* <button
                           className="invisible"
                           onClick={() => closeDropdown()}
                         >
                           XD
-                        </button>
+                        </button> */}
                         <button onClick={() => editCommentButton(i)}>
                           Edit
                         </button>

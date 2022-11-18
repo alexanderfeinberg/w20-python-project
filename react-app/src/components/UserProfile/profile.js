@@ -33,10 +33,10 @@ const Profile = () => {
       <div className="main">
         <div className="middle-container">
           <div className="header">
-            <h1>
+            <h1 className="cursor">
               {user.firstName} {user.lastName}
             </h1>
-            <div className="sub-nav">Home</div>
+            {/* <div className="sub-nav">Home</div> */}
           </div>
           {/* {user.Stories && (
             <ul>
