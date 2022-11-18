@@ -17,10 +17,8 @@ const FollowButton = ({ userId, idx }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    console.log("RENDERING FOLLOW BTN ", userId);
     followsUser(userId)
       .then((res) => {
-        console.log(res);
         return res;
       })
       .then((res) => setIsFollowing(res));
