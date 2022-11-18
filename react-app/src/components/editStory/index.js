@@ -39,7 +39,7 @@ const EditStory = () => {
         if (!data.title.length) return setErrors(['Please provide a title and it must be less than 200 characters.'])
         if (!data.image.length) return setErrors(['Please provide an image.'])
         if (!data.image.includes('.jpg') && !data.image.includes('.jpeg') && !data.image.includes('.png')) return setErrors(['Image must be in .jpg, .jpeg, or .png format']);
-        if (!data.content.length) return setErrors(['Please provide a content.'])
+        if (!data.content.length) return setErrors(['Please provide a story.'])
 
         dispatch(updateStory(storyId, data))
             .then(() => {
