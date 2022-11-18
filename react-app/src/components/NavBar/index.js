@@ -32,8 +32,9 @@ const NavBar = () => {
 
   const logoutButton = (e) => {
     e.preventDefault()
-    dispatch(logout())
-    history.push("/")
+    dispatch(logout()).then(() => {
+      history.push("/")
+    })
     alert("Successfully Logged Out")
   }
 
