@@ -34,6 +34,7 @@ const UserCard = ({ userId }) => {
           </a>
         </div>
         <div className="card-content">{user.bio}</div>
+        <div className="card-sep"></div>
         <div className="card-footer">
           <div className="card-follower-count">
             {user.followerCount} Followers
