@@ -15,7 +15,7 @@ const Profile = () => {
   const { userId } = useParams();
 
   const user = useSelector((state) => state.user.singleUser);
-  const currUser = useSelector((state) => state.session.user);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const stories = useSelector((state) => state.story.allStories);
   const [errors, setErrors] = useState([]);
@@ -26,7 +26,7 @@ const Profile = () => {
       .then(() => setIsLoaded(true))
       .catch((e) => e.json())
       .then((e) => setErrors([e]));
-  }, [userId, currUser]);
+  }, [userId]);
 
   if (isLoaded) {
     return (

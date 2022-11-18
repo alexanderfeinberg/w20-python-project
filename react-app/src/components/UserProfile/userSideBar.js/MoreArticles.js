@@ -34,7 +34,7 @@ const MoreArticles = ({ userId }) => {
             <li key={idx}>
               <div className="article-item">
                 <div className="article-user-card">
-                  {showUserCard == idx && <UserCard user={story.author} />}
+                  {showUserCard == idx && <UserCard userId={story.author.id} />}
                 </div>
 
                 <div className="author" onMouseOver={() => handleUserCard(idx)}>
