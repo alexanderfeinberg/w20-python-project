@@ -1,9 +1,13 @@
-
+import "./team.css"
 
 
 const Team = () => {
     return (
-        <h1>Team STUFF</h1>
+    <div>
+        <div id="team-header">Header</div>
+        <div id="team-body">Body</div>
+    </div>
+
     )
 }
 
