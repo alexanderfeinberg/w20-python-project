@@ -2,6 +2,7 @@ import { ModalContext } from "../../../context/Modal";
 import { loadFollowings, getUser } from "../../../store/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import "./FollowingSneakPeak.css";
 import UserCard from "../FollowersModal/UserCard";
 
