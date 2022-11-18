@@ -35,19 +35,26 @@ const FollowingSneakPeak = ({ userId }) => {
     return (
       <div className="following-peak">
         <h4>Following</h4>
-        <div className="following-list" onMouseLeave={handleCloseUserCard}>
+        <div className="following-list">
           {followings.map((following, idx) => {
             if (idx > 5) return;
             return (
               <li key={idx}>
-                <div className="follower-item">
+                <div
+                  className="follower-item"
+                  onMouseLeave={handleCloseUserCard}
+                >
                   {showUserCard === idx && (
                     <div className="article-user-card">
-                      <UserCard user={following} idx={idx} />
+                      <UserCard userId={following.id} idx={idx} />
                     </div>
                   )}
-                  <div onMouseOver={() => handleUserCard(idx)}>
-                    <a href={`/users/${following.id}`} key={`a-${idx}`}>
+                  <div>
+                    <a
+                      onMouseOver={() => handleUserCard(idx)}
+                      href={`/users/${following.id}`}
+                      key={`a-${idx}`}
+                    >
                       {following.firstName} {following.lastName}
                     </a>
                   </div>
