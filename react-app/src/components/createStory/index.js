@@ -41,7 +41,7 @@ const CreateStory = () => {
             <div className="create-story-container">
                 <div className="create-story-header">
                     <div className="header-left">
-                        <img className="header-home-logo" src={mainLogo} alt="Main Logo"
+                        <img className="header-home-logo cursor" src={mainLogo} alt="Main Logo"
                             onClick={() => history.push('/')} />
                         {user && <div className="header-author-info">Draft in {user.firstName} {user.lastName}
                         </div>}

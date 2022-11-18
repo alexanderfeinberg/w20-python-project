@@ -46,7 +46,7 @@
     height: 100%
 }
 
-#navbar > * {
+#navbar>* {
     margin: 12px 0
 }
 
@@ -64,12 +64,14 @@
     width: 100%;
     /* max-width: 1192px; */
 }
+
 #container-1-inner-logged-out {
     display: flex;
-    min-width: 544px;
+    min-width: 600px;
     width: 1192px;
     justify-content: space-between;
 }
+
 /*
 #navbar-container {
     display: flex;
@@ -82,13 +84,13 @@
     display: flex;
     align-items: center;
     height: 67px;
-    justify-content: right;
+    justify-content: space-between;
     margin: 0
 }
 
-#navbar-logged-out>div {
-    margin-left: 40px;
-}
+/* #navbar-logged-out>div {
+    margin-left: 32px;
+} */
 
 #get-started {
     background-color: black;
@@ -99,4 +101,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#nav-bar-container-3 {
+    display: flex;
+    flex-direction: column;
+}
+
+#log-out-button {
+    background: transparent;
+    border: 1px solid grey;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+#profile-button {
+    background: transparent;
+    border: 1px solid grey;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+#meet-the-team {
+    background: transparent;
+    border: 1px solid grey;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }

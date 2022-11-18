@@ -30,7 +30,7 @@ const GetAllStories = ({ stories }) => {
             return (
               <>
                 <div
-                  className="stories-author-info"
+                  className="stories-author-info cursor"
                   onClick={() => history.push(`/users/${story.author.id}`)}
                 >
                   {/* {story.author.profile_picture}  */}

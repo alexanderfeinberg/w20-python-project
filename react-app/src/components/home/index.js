@@ -31,7 +31,7 @@ const Home = () => {
                             <p>
                                 Discover stories, thinking, and expertise from writers on any topic.
                             </p>
-                            <button onClick={() => setModalType("Signup")}>
+                            <button className="cursor" onClick={() => setModalType("Signup")}>
                                 Start reading
                             </button>
                         </div>
@@ -58,7 +58,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div id={user ? "container-3" : "container-3-logged-out"}>This box is reserved for 5th/6th Bonus Features</div>
+                    <div id={user ? "container-3" : "container-3-logged-out"}>asdfadf</div>
                 </>
 
             )}

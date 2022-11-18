@@ -15,7 +15,7 @@ const Profile = () => {
   const { userId } = useParams();
 
   const user = useSelector((state) => state.user.singleUser);
-  const currUser = useSelector((state) => state.session.user);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const stories = useSelector((state) => state.story.allStories);
   const [errors, setErrors] = useState([]);
@@ -26,17 +26,17 @@ const Profile = () => {
       .then(() => setIsLoaded(true))
       .catch((e) => e.json())
       .then((e) => setErrors([e]));
-  }, [userId, currUser]);
+  }, [userId]);
 
   if (isLoaded) {
     return (
       <div className="main">
         <div className="middle-container">
           <div className="header">
-            <h1>
+            <h1 className="cursor">
               {user.firstName} {user.lastName}
             </h1>
-            <div className="sub-nav">Home</div>
+            {/* <div className="sub-nav">Home</div> */}
           </div>
           {/* {user.Stories && (
             <ul>

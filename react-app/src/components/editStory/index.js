@@ -54,12 +54,12 @@ const EditStory = () => {
         <div className="edit-story-container">
             <div className="edit-story-header">
                 <div className="header-left">
-                    <img className="header-home-logo" src={mainLogo} alt="Main Logo"
+                    <img className="header-home-logo cursor" src={mainLogo} alt="Main Logo"
                         onClick={() => history.push('/')}/>
-                    {user && <div className="header-author-info">{user.firstName} {user.lastName}
+                    {user && <div className="header-author-info cursor">{user.firstName} {user.lastName}
                 </div>}
                 </div>
-                <img className="header-profile-icon" src={user.profile_picture} alt="Profile Icon"
+                <img className="header-profile-icon cursor" src={user.profile_picture} alt="Profile Icon"
                     onClick={() => history.push(`/users/${user.id}`)}/>
             </div>
             <div className="form-wrapper"></div>
