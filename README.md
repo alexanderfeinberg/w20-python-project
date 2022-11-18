@@ -68,16 +68,14 @@ Live site: https://median.onrender.com
 ### **Feature Highlights**
 
 #### Home Page
-
 <img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202573752-d407d9b0-5473-43e5-b190-c238bf09a6b2.png">
 
 #### Home Page Demo User:
-
 You will be able to test the features without signing up by clicking on the "Demo User" button.
 <img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202577152-523e397d-9516-4807-a431-7fe76f6f0f40.png">
 
 #### Profile Page:
-As an user, you can see all your stories, your followers, your followings on the profile page by clicking the profile button. You can also edit and delete your stories.
+Once logged-in, you can see all your stories, your followers and your followings on the profile page by clicking the profile button. You can also edit and delete your stories.
 
 <img width="650" alt="" src="https://user-images.githubusercontent.com/92122927/202583167-484437eb-f897-4264-a74f-54f3545e5f99.png">
 
