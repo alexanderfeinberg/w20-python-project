@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUsersStories } from "../../../store/story";
-import { Link } from "react-router-dom";
 import UserCard from "../FollowersModal/UserCard";
 
 import "./MoreArticles.css";
@@ -39,17 +38,12 @@ const MoreArticles = ({ userId }) => {
                 </div>
 
                 <div className="author" onMouseOver={() => handleUserCard(idx)}>
-                  <a href="javascript:;">
-                    <Link href={`/users/${story.author.id}`}>
-                      {story.author.firstName} {story.author.lastName}
-                    </Link>
+                  <a href={`/users/${story.author.id}`}>
+                    {story.author.firstName} {story.author.lastName}
                   </a>
                 </div>
                 <div className="title">
-                  <a href="javascript:;">
-                    {" "}
-                    <Link href={`/stories/${story.id}`}>{story.title}</Link>
-                  </a>
+                  <a href={`/stories/${story.id}`}>{story.title}</a>
                 </div>
               </div>
             </li>

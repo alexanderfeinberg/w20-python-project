@@ -1,5 +1,4 @@
 import { followThunk, followsUser, unfollowThunk } from "../../../store/user";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useContext } from "react";
 import { ModalContext } from "../../../context/Modal";
@@ -38,12 +37,10 @@ const FollowListUser = ({ user, idx }) => {
         <div className="follow-right-container">
           {/* <div>{user.id}</div> */}
           <div className="follow-info">
-            <a href="javascript:;">
-              <Link href={`/users/${user.id}`}>
-                <div className="follow-name">
-                  {user.firstName} {user.lastName}
-                </div>
-              </Link>
+            <a href={`/users/${user.id}`}>
+              <div className="follow-name">
+                {user.firstName} {user.lastName}
+              </div>
             </a>
             <div className="follow-bio" key={idx}>
               {user.bio}

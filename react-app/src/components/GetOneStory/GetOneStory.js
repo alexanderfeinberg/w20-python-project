@@ -6,6 +6,7 @@ import commentIcon from "../../assets/comment-icon.png";
 import likeIcon from "../../assets/like-icon.jpeg";
 import "./GetOneStory.css";
 import { ModalContext2 } from "../../context/Modal2";
+import { ModalContext } from "../../context/Modal";
 import UserInfo from "../UserProfile/userSideBar.js/UserInfo";
 import MoreArticles from "../UserProfile/userSideBar.js/MoreArticles";
 import GetAllStories from "../GetAllStories/GetAllStories";
@@ -16,7 +17,8 @@ const GetOneStory = () => {
   const history = useHistory();
   const { storyId } = useParams();
   const { setModalType2 } = useContext(ModalContext2);
-
+  const { setModalType } = useContext(ModalContext);
+  const currentUser = useSelector((state) => state.session.user);
   const story = useSelector((state) => state.story.singleStory);
   const stories = useSelector((state) => state.story.allStories);
   const comment = useSelector((state) => state.comment.singleComment);
@@ -42,9 +44,16 @@ const GetOneStory = () => {
         <div className="story-container2">
           <div className="story-info">
             <div className="story-header">
-              <div className="story-author-info"
-                onClick={() => history.push(`/users/${story.author.id}`)}>
-                <img className="profile-icon" src={story.author.profile_picture} alt="Profile Icon" /> {story?.author?.firstName} {story?.author?.lastName}
+              <div
+                className="story-author-info"
+                onClick={() => history.push(`/users/${story.author.id}`)}
+              >
+                <img
+                  className="profile-icon"
+                  src={story.author.profile_picture}
+                  alt="Profile Icon"
+                />{" "}
+                {story?.author?.firstName} {story?.author?.lastName}
               </div>
               <div className="story-author-info2">
                 {" "}
@@ -52,11 +61,7 @@ const GetOneStory = () => {
               </div>
             </div>
             <div className="story-title">{story.title}</div>
-            <img
-              className="story-image"
-              src={story.image}
-              alt=""
-            />
+            <img className="story-image" src={story.image} alt="" />
             <div className="story-content">{story.content}</div>
             <div className="story-likes-comments">
               <div className="story-likes">
@@ -70,7 +75,13 @@ const GetOneStory = () => {
               </div>
               <div
                 className="story-comments"
-                onClick={() => setModalType2("comments")}
+                onClick={() => {
+                  if (currentUser) {
+                    setModalType2("comments");
+                    return;
+                  }
+                  setModalType("Login");
+                }}
               >
                 <img
                   className="comment-icon cursor"

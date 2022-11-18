@@ -37,51 +37,35 @@ const CreateStory = () => {
     //   });
   };
 
-    };
-
-    return (
-        <>
-            <div className="create-story-container">
-                <div className="create-story-header">
-                    <div className="header-left">
-                        <img className="header-home-logo cursor" src={mainLogo} alt="Main Logo"
-                            onClick={() => history.push('/')} />
-                        {user && <div className="header-author-info">Draft in {user.firstName} {user.lastName}
-                        </div>}
-                    </div>
-                    <img className="header-profile-icon cursor" src={user.profile_picture} alt="Profile Icon"
-                        onClick={() => history.push(`/users/${user.id}`)} />
-                </div>
-                <div className="form-wrapper">
-                    <form className="form-container" onSubmit={submit}>
-                        <div className="errors">
-                            {errors.length > 0 &&
-                                errors.map((error) => <li key={error}>{error}</li>)}
-                        </div>
-                        <input
-                            type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Title"
-                            className="input-title"
-                        />
-                        <input
-                            type="text"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                            placeholder="Image url"
-                            className="input-image"
-                        />
-                        <textarea
-                            className="create-story-textarea"
-                            type="text"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            placeholder="Tell your story..."
-                        />
-                        <button className="create-story-button" type="submit">Publish</button>
-                    </form>
-                </div>
+  return (
+    <>
+      <div className="create-story-container">
+        <div className="create-story-header">
+          <div className="header-left">
+            <img
+              className="header-home-logo cursor"
+              src={mainLogo}
+              alt="Main Logo"
+              onClick={() => history.push("/")}
+            />
+            {user && (
+              <div className="header-author-info">
+                Draft in {user.firstName} {user.lastName}
+              </div>
+            )}
+          </div>
+          <img
+            className="header-profile-icon cursor"
+            src={user.profile_picture}
+            alt="Profile Icon"
+            onClick={() => history.push(`/users/${user.id}`)}
+          />
+        </div>
+        <div className="form-wrapper">
+          <form className="form-container" onSubmit={submit}>
+            <div className="errors">
+              {errors.length > 0 &&
+                errors.map((error) => <li key={error}>{error}</li>)}
             </div>
             <input
               type="text"

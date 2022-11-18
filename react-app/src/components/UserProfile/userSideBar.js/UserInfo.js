@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useContext } from "react";
 import { loadFollowings } from "../../../store/user";
 import { ModalContext } from "../../../context/Modal";
-import { Link } from "react-router-dom";
 import {
   getUser,
   getUserfollowers,
@@ -34,23 +33,19 @@ const UserInfo = ({ userId }) => {
     return (
       <div className="container-content">
         <div className="profile-picture">
-          <a href="javascript:;">
-            <Link href={`/users/${user.id}`}>
-              <img
-                className="comment-container-2-1-a-1"
-                src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
-              />
-            </Link>
+          <a href={`/users/${user.id}`}>
+            <img
+              className="comment-container-2-1-a-1"
+              src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+            />
           </a>
           {/* // <img src={user.profile_picture} /> */}
         </div>
         <div className="profile-header">
-          <a href="javascript:;">
-            <Link href={`/users/${user.id}`}>
-              <div className="main-header">
-                {user.firstName} {user.lastName}
-              </div>
-            </Link>
+          <a href={`/users/${user.id}`}>
+            <div className="main-header">
+              {user.firstName} {user.lastName}
+            </div>
           </a>
           <div className="follow-count textBtn">
             <button onClick={showFollowerModal}>
@@ -65,7 +60,6 @@ const UserInfo = ({ userId }) => {
               Unfollow
             </button>
           )}
-
           {currentUser ? (
             !isFollowingUser &&
             user.id != currentUser.id && (
